@@ -15,7 +15,7 @@
   - Quản lý xuất, nhập hàng hóa.
   - Quản lý hóa đơn xuất, nhập kho, hóa đơn mua bán.
   - Thống kê báo cáo.
-##Hướng dẫn cài đặt phần mềm
+## Hướng dẫn cài đặt phần mềm
 
 ## Tác giả:
   - Đặng Hải Thịnh - 19520976
