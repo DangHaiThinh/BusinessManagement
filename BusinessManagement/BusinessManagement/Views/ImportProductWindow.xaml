@@ -1,0 +1,365 @@
+﻿<Window 
+    x:Class="StoreManagement.Views.ImportProductWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:StoreManagement.Views"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:vd="clr-namespace:StoreManagement.Validations"
+    mc:Ignorable="d"
+    DataContext="{StaticResource ImportProductVM}"
+    Title="Import product window"
+    WindowStartupLocation="CenterScreen"
+    ResizeMode="CanMinimize"
+    Height="800" 
+    Width="1400"
+    Background="#F7F8FC"
+    x:Name="wdImportProduct">
+    <Grid Margin="20">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction 
+                            Command="{Binding LoadListProductCommand}"
+                            CommandParameter="{Binding ElementName=wdImportProduct}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="400"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0"
+            Style="{StaticResource DropShadow}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Rectangle
+                Fill="#FFFFFFFF"
+                RadiusX="5"
+                RadiusY="5"
+                Grid.RowSpan="4" />
+            <StackPanel Grid.Row="0"
+                Orientation="Horizontal">
+                <Button 
+                    Style="{StaticResource TransperantButton}"
+                    Command="{Binding BackCommand}"
+                    CommandParameter="{Binding ElementName=wdImportProduct}"
+                    Height="50" 
+                    Width="50" 
+                    VerticalAlignment="Center"
+                    Margin="20,0,0,0" >
+                    <materialDesign:PackIcon
+                        Width="30"
+                        Height="30"
+                        Foreground="{StaticResource Black1}"
+                        Kind="KeyboardBackspace" />
+                </Button>
+                <TextBlock 
+                    Text="Import" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    FontSize="26"
+                    FontWeight="Bold"
+                    Foreground="#504D85"
+                    Margin="10,0,0,0"/>
+                <!--<Grid 
+                    Margin="40,0,0,0" 
+                    Height="46" 
+                    Style="{StaticResource DropShadow}" 
+                    VerticalAlignment="Center" >
+                    <Rectangle 
+                        RadiusY="5" 
+                        RadiusX="5"
+                        StrokeThickness="1"
+                        Stroke="#E2D2DA"
+                        Margin="0"/>
+                    <TextBox 
+                        x:Name="txtSearch"
+                        materialDesign:HintAssist.Hint="Search by product name"
+                        materialDesign:HintAssist.IsFloating="False"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Left"
+                        Padding="10 0 0 0"
+                        FontSize="17" 
+                        FontWeight="Regular"
+                        BorderThickness="0"
+                        MaxLines="1"
+                        Height="45"
+                        Margin="10,0,50,0" 
+                        Width="400" >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TextChanged">
+                                <i:InvokeCommandAction Command="{Binding TextChangedSearchCommand}"
+                                                       CommandParameter="{Binding ElementName=wdImportProduct}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
+                    <Button 
+                        IsDefault="True"
+                        Style="{StaticResource TransperantButton}"
+                        Command="{Binding SearchCommand}"
+                        CommandParameter="{Binding ElementName=wdImportProduct}"
+                        Height="30"
+                        Width="30"
+                        Margin="0,0,10,0" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Right" 
+                        ToolTip="Tìm kiếm sản phẩm"
+                        FontWeight="SemiBold">
+                        <materialDesign:PackIcon
+                            Kind="Magnify" 
+                            Width="30"
+                            Height="30" 
+                            HorizontalAlignment="Left" 
+                            Foreground="{StaticResource Black2}" />
+                    </Button>
+                </Grid>-->
+                <Grid  
+                    Margin="40,0,0,0" 
+                    Height="45" 
+                    Width="240"
+                    Style="{StaticResource DropShadow}"
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center">
+                    <Rectangle 
+                        Stroke="#E2D2DA"
+                        StrokeThickness="1"
+                        RadiusY="5" 
+                        RadiusX="5" />
+                    <ComboBox
+                        x:Name="cboSelectFast"
+                        materialDesign:ComboBoxAssist.ClassicMode="True"
+                        materialDesign:HintAssist.Hint="Select list by type"
+                        Height="35"
+                        FontSize="17"
+                        Width="220"
+                        BorderThickness="0"
+                        Padding="10,0,10,0"
+                        ItemsSource="{Binding ItemSourceUnits}"
+                        SelectedItem="{Binding SelectedUnits}"
+                        DisplayMemberPath="Name"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Left"
+                        FontWeight="Regular"
+                        BorderBrush="{StaticResource Black2}" 
+                        Background="{StaticResource White}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction 
+                                    Command="{Binding SelectedChangedUnitsCommand}"
+                                    CommandParameter="{Binding ElementName=wdImportProduct}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+                </Grid>
+            </StackPanel>
+            <Border Grid.Row="1"
+                Background="#FF9CB9"
+                Height="40"
+                VerticalAlignment="Top"
+                Margin="20 0"
+                CornerRadius="5 5 0 0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                        <ColumnDefinition Width="2.3*"></ColumnDefinition>
+                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                        <ColumnDefinition Width="1.7*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="1.7*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock 
+                        Grid.Column="0"
+                        Text="ID"
+                        Foreground="#504D85"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center" 
+                    />
+                    <TextBlock 
+                        Grid.Column="1"
+                        Text="Name"
+                        Foreground="#504D85"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        Margin="20 0 0 0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left" 
+                    />
+                    <TextBlock 
+                        Grid.Column="2"
+                        Text="Units"
+                        Foreground="#504D85"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center" 
+                    />
+                    <TextBlock 
+                        Grid.Column="3"
+                        Text="Price"
+                        Foreground="#504D85"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center" 
+                    />
+                    <TextBlock 
+                        Grid.Column="4"
+                        Text="Count"
+                        Foreground="#504D85"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center" 
+                    />
+                    <TextBlock 
+                        Grid.Column="5"
+                        Text="Total"
+                        Foreground="#504D85"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center" 
+                    />
+                </Grid>
+            </Border>
+            <Border
+                Grid.Row="2"
+                BorderBrush="#E2D2DA"
+                CornerRadius="5,0,5,5"
+                BorderThickness="2,0,2,2" 
+                Margin="20,0,20,20">
+                <ScrollViewer
+                    Style="{StaticResource FavsScrollViewer}"
+                    VerticalScrollBarVisibility="Auto" 
+                    HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel 
+                        x:Name="stkImportProducts"
+                    />
+                </ScrollViewer>
+            </Border>
+        </Grid>
+        <Grid Grid.Column="1"
+            Style="{StaticResource DropShadow}"
+            Margin="20,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Rectangle 
+                Fill="#FFFFFFFF" 
+                RadiusY="5" 
+                RadiusX="5"
+                Grid.RowSpan="4"
+                Panel.ZIndex="-1"/>
+            <StackPanel 
+                Margin="20,20,20,0" 
+                VerticalAlignment="Top">
+                <TextBlock
+                    Text="Payment"
+                    FontSize="32"
+                    FontWeight="Bold"
+                    Foreground="#504D85"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center" />
+                <Grid 
+                    Margin="0 20 0 0">
+                    <TextBlock 
+                        Foreground="{StaticResource Black1}"
+                        Text="Stock receipt ID"
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        TextWrapping="Wrap"
+                        TextAlignment="Center"
+                        VerticalAlignment="Center"
+                        Height="25"
+                        HorizontalAlignment="Left"/>
+                    <TextBlock 
+                        x:Name="txbStockID"
+                        Text="Stock ID"
+                        Foreground="{StaticResource Black1}"
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        TextWrapping="Wrap"
+                        TextAlignment="Center"
+                        VerticalAlignment="Center"
+                        Height="25"
+                        HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid 
+                    Margin="0 20 0 0">
+                    <TextBlock 
+                        Foreground="{StaticResource Black1}"
+                        Text="Date"
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        TextWrapping="Wrap"
+                        TextAlignment="Center"
+                        VerticalAlignment="Center"
+                        Height="25"
+                        HorizontalAlignment="Left"/>
+                    <TextBlock 
+                        x:Name="txbDate"
+                        Text="Date"
+                        Foreground="{StaticResource Black1}"
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        TextWrapping="Wrap"
+                        TextAlignment="Center"
+                        VerticalAlignment="Center"
+                        Height="25"
+                        HorizontalAlignment="Right"/>
+                </Grid>
+            </StackPanel>
+            <StackPanel
+                Grid.Row="1" 
+                Margin="20,0,20,30" 
+                VerticalAlignment="Bottom">
+                <Rectangle 
+                    Fill="#FBA1BB" 
+                    Height="3" 
+                    VerticalAlignment="Top" 
+                    Margin="0 0 0 10"/>
+                <Grid 
+                    Margin="0,30,0,10">
+                    <TextBlock 
+                        Foreground="{StaticResource Black1}"
+                        Text="Total"
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        TextWrapping="Wrap"
+                        TextAlignment="Center"
+                        VerticalAlignment="Center"
+                        Height="25"
+                        HorizontalAlignment="Left"/>
+                    <TextBlock 
+                        x:Name="txbTotalPrice"
+                        HorizontalAlignment="Right"
+                        Text="{Binding Path=TotalPrice, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        FontSize="18"
+                        TextAlignment="Right"/>
+                </Grid>
+                <Button 
+                    x:Name="btnPay"
+                    Height="40"
+                    Command="{Binding PayBillCommand}"
+                    CommandParameter="{Binding ElementName=wdImportProduct}"
+                    BorderThickness="0"
+                    Margin="0,30,0,0" 
+                    FontSize="20" 
+                    Content="Pay"
+                    VerticalAlignment="Top"
+                    Background="#F79BB5"
+                    Foreground="#57548B"
+                />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
