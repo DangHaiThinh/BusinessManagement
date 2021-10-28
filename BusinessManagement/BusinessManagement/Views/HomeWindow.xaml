@@ -1330,7 +1330,255 @@
             </Grid>
 
             <!--Body products -->
-
+            <Grid Grid.Row="1"                 
+                DataContext="{StaticResource ProductVM}"
+                x:Name="grdBody_Product"
+                Visibility="Hidden">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Loaded">
+                        <i:InvokeCommandAction 
+                            Command="{Binding LoadProductOnWindowCommand}" 
+                            CommandParameter="{Binding ElementName=wdHome}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                    Background="#FBA1BB"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid 
+                            Margin="30 5 0 0"
+                            Width="300"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center">
+                            <Rectangle
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Width="300"
+                                Height="40"
+                                Margin="0 0 0 0"
+                                StrokeThickness="2"
+                                RadiusX="5"
+                                RadiusY="5"
+                                Stroke="#E2D2DA"/>
+                            <materialDesign:PackIcon
+                                Kind="Magnify"
+                                Width="40"
+                                Height="35"
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="Center"
+                                Margin="260 0 0 0">
+                            </materialDesign:PackIcon>
+                            <TextBox
+                                x:Name="txtSeachProduct"
+                                BorderThickness="0"
+                                Height="35"
+                                Width="250" 
+                                HorizontalAlignment="Left"
+                                Margin="10 0 0 0"
+                                materialDesign:HintAssist.Hint="Search..."
+                                FontSize="22"
+                                FontWeight="Regular"
+                                BorderBrush="#FCE5EC">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <i:InvokeCommandAction
+                                            Command="{Binding SearchProductCommand}" 
+                                            CommandParameter="{Binding ElementName=wdHome}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
+                        </Grid>
+                        <Grid
+                            Width="240"
+                            Margin="0 5 80 0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Height="40">
+                            <Rectangle 
+                                Stroke="#E2D2DA"
+                                StrokeThickness="2"
+                                RadiusY="5" 
+                                RadiusX="5" />
+                            <ComboBox
+                                x:Name="cboSelectFast"
+                                materialDesign:ComboBoxAssist.ClassicMode="True"
+                                materialDesign:HintAssist.Hint="Select list by type"
+                                Height="35"
+                                FontSize="22"
+                                Width="220"
+                                BorderThickness="0"
+                                Padding="0,0,5,0"
+                                ItemsSource="{Binding ItemsSourceUnits}"
+                                SelectedItem="{Binding SelectedUnits}"
+                                DisplayMemberPath="Name"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Left"
+                                FontWeight="Regular"
+                                BorderBrush="{StaticResource Black2}" 
+                                Background="{StaticResource White}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction 
+                                            Command="{Binding SelectedChangedUnitsCommand}"
+                                            CommandParameter="{Binding ElementName=wdHome}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ComboBox>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <StackPanel 
+                            Height="50"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Margin="0 0 30 0">
+                            <Button
+                                x:Name="btnExportExcel"
+                                Margin="0 10 20 0"
+                                FocusVisualStyle="{x:Null}"
+                                BorderBrush="{x:Null}"
+                                Cursor="Hand"
+                                Background="#F79BB5"
+                                Foreground="#504D85"
+                                Content="Export excel"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Command="{Binding ExportExcelProductCommand}"
+                                CommandParameter="{Binding ElementName=wdHome}">
+                            </Button>
+                            <Button
+                                Margin="0 10 20 0"
+                                FocusVisualStyle="{x:Null}"
+                                BorderBrush="{x:Null}"
+                                Cursor="Hand"
+                                Background="#F79BB5"
+                                Foreground="#504D85"
+                                Content="Import product"
+                                DataContext="{StaticResource ImportProductVM}"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Command="{Binding OpenImportProductWindowCommand}"
+                                CommandParameter="{Binding ElementName=wdHome}">
+                            </Button>
+                            <Button
+                                x:Name="btnAddProduct"
+                                Margin="0 10 2 0"
+                                FocusVisualStyle="{x:Null}"
+                                BorderBrush="{x:Null}"
+                                Cursor="Hand"
+                                Background="#F79BB5"
+                                Foreground="#504D85"
+                                Content="Add product"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Command="{Binding AddProductWindowCommand}"
+                                CommandParameter="{Binding ElementName=wdHome}">
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="2"
+                    Height="590"
+                    Width="1070"
+                    Margin="0 10 0 0"
+                    Background="#FCE5EC" 
+                    VerticalAlignment="Top">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0"
+                          Background="#FF9CB9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.65*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.7*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.7*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"
+                            Text="ID"
+                            FontStyle="Normal"
+                            FontSize="22" 
+                            FontWeight="SemiBold"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="#504D85"/>
+                        <TextBlock Grid.Column="1"
+                            Text="Items" 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="20 0 0 0"
+                            FontStyle="Normal"
+                            FontSize="22"
+                            FontWeight="SemiBold"
+                            Foreground="#504D85"/>
+                        <TextBlock Grid.Column="2"
+                            Text="Units" 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="10 0 0 0"
+                            FontStyle="Normal"
+                            FontSize="22"
+                            FontWeight="SemiBold"
+                            Foreground="#504D85"/>
+                        <TextBlock Grid.Column="3"
+                            Text="Import Price" 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="10 0 0 0"
+                            FontWeight="SemiBold"
+                            FontStyle="Normal"
+                            FontSize="22"
+                            Foreground="#504D85"/>
+                        <TextBlock Grid.Column="4"
+                            Text="Export price" 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="10 0 0 0"
+                            FontWeight="SemiBold"
+                            FontStyle="Normal"
+                            FontSize="22"
+                            Foreground="#504D85"/>
+                        <TextBlock Grid.Column="5"
+                            Text="Count" 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="10 0 0 0"
+                            FontStyle="Normal"
+                            FontSize="22"
+                            FontWeight="SemiBold"
+                            Foreground="#504D85"/>
+                    </Grid>
+                    <Grid 
+                        Grid.Row="1"
+                        HorizontalAlignment="Left"
+                        Background="#F2F2F2">
+                        <ScrollViewer 
+                            Grid.Row="2"
+                            HorizontalScrollBarVisibility="Disabled" 
+                            Margin="0"
+                            HorizontalAlignment="Left" 
+                            Style="{StaticResource FavsScrollViewer}"
+                            VerticalScrollBarVisibility="Auto">
+                            <StackPanel 
+                                x:Name="stkProducts" 
+                                Width="1070" 
+                                ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </Grid>
             <!--Body Business-->
 
             <!--Body bills-->
