@@ -1,14 +1,14 @@
-﻿<Window x:Class="StoreManagement.Views.HomeWindow"
+﻿<Window x:Class="BusinessManagement.Views.HomeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:controls="clr-namespace:StoreManagement.Resources.UserControls"
+        xmlns:controls="clr-namespace:BusinessManagement.Resources.UserControls"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:vd="clr-namespace:StoreManagement.Validations"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:vd="clr-namespace:BusinessManagement.Validations"
         mc:Ignorable="d"
-        Title="Agency Management"
+        Title="QUẢN LÝ ĐẠI LÝ"
         Height="810"
         Width="1440"
         WindowStartupLocation="CenterScreen"
@@ -81,7 +81,7 @@
                     <Button 
                         x:Name="btnMain" 
                         Uid="0"
-                        Content="Main"
+                        Content="Trang chủ"
                         Foreground="#504D85"
                         Height="45" 
                         Width="260" 
@@ -136,7 +136,7 @@
                     <Button 
                         x:Name="btnStores" 
                         Uid="1"
-                        Content="Agencies"
+                        Content="Đại lý"
                         Foreground="#504D85"
                         Margin="0" 
                         Height="45" 
@@ -191,7 +191,7 @@
                     <Button 
                         x:Name="btnProduct" 
                         Uid="2"
-                        Content="Products"
+                        Content="Sản phẩm"
                         Foreground="#504D85"
                         HorizontalAlignment="Center" 
                         Margin="0" 
@@ -247,7 +247,7 @@
                     <Button 
                         x:Name="btnBusiness" 
                         Uid="3"
-                        Content="Business"
+                        Content="Kinh doanh"
                         Foreground="#504D85"
                         HorizontalAlignment="Center" 
                         Margin="0" 
@@ -305,7 +305,7 @@
                     <Button 
                         x:Name="btnBills" 
                         Uid="4"
-                        Content="Bill"
+                        Content="Hóa đơn"
                         Foreground="#504D85"
                         HorizontalAlignment="Center" 
                         Margin="0" 
@@ -362,7 +362,7 @@
                     <Button 
                         x:Name="btnReport" 
                         Uid="5"
-                        Content="Report"
+                        Content="Báo cáo"
                         Foreground="#504D85"
                         HorizontalAlignment="Center" 
                         Margin="0" 
@@ -418,7 +418,7 @@
                     <Button 
                         x:Name="btnSetting" 
                         Uid="6"
-                        Content="Settings"
+                        Content="Cài đặt"
                         Foreground="#504D85"
                         HorizontalAlignment="Center" 
                         Margin="0" 
@@ -463,7 +463,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <TextBlock
-                        Text="AGENCY MANAGEMENT"
+                        Text="QUẢN LÝ ĐẠI LÝ"
                         FontSize="40"
                         FontWeight="Bold"
                         Foreground="#504D85"
@@ -503,49 +503,48 @@
                         IsMainMenu="True"
                         Background="White"
                         VerticalAlignment="Center">
-                        <!--set width cho menuitem hơi ngu vì cái tag ni lỗi, để tạm vậy rồi nhờ mng xem giúp-->
                         <MenuItem          
                             x:Name="menu_Acc_DisplayName"
-                            Header="display name"
+                            Header="Tên tài khoản"
                             FontSize="22"
                             Cursor="Hand"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             FontWeight="SemiBold"
-                            Foreground="#504D85">
+                            Foreground="#504D85" Width="420">
                             <MenuItem
-                                Header="Your profile"
+                                Header="Hồ sơ của bạn"
                                 FontWeight="Normal"
                                 Cursor="Hand">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <i:InvokeCommandAction 
                                             Command="{Binding ShowProfileCommand}"
-                                            CommandParameter="{Binding ElementName = wdHome}"/>
+                                            CommandParameter="{Binding ElementName=wdHome}"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </MenuItem>
                             <MenuItem
-                                Header="Change password"
+                                Header="Đổi mật khẩu"
                                 FontWeight="Normal"
                                 Cursor="Hand">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <i:InvokeCommandAction 
                                             Command="{Binding ShowChangePasswordCommand}"
-                                            CommandParameter="{Binding ElementName = wdHome}"/>
+                                            CommandParameter="{Binding ElementName=wdHome}"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </MenuItem>
                             <MenuItem
-                                Header="Log out"
+                                Header="Đăng xuất"
                                 Cursor="Hand"
                                 FontWeight="Normal">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <i:InvokeCommandAction 
                                             Command="{Binding LogOutCommand}"
-                                            CommandParameter="{Binding ElementName = wdHome}"/>
+                                            CommandParameter="{Binding ElementName=wdHome}"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </MenuItem>
@@ -558,7 +557,7 @@
             <Grid Grid.Row="1"
                 x:Name="grdBody_Main"
                 DataContext="{StaticResource ReportVM}"
-                Visibility="Visible">
+                Visibility="Hidden">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2"></RowDefinition>
                     <RowDefinition Height="210"></RowDefinition>
@@ -606,7 +605,7 @@
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
                             <TextBlock
-                                Text="Today's sales result"
+                                Text="Kết quả doanh số trong ngày"
                                 FontStyle="Normal"
                                 FontSize="25" 
                                 FontWeight="Bold"
@@ -641,7 +640,7 @@
                                     </Border.Effect>
                                     <Grid>
                                         <TextBlock
-                                            Text="Total sales today"
+                                            Text="Tổng doanh số hôm nay"
                                             FontSize="14"
                                             Foreground="#9098B1"
                                             VerticalAlignment="Top"
@@ -680,7 +679,7 @@
                                     </Border.Effect>
                                     <Grid>
                                         <TextBlock
-                                            Text="Total bill today"
+                                            Text="Số hóa đơn hôm nay"
                                             FontSize="14"
                                             Foreground="#9098B1"
                                             VerticalAlignment="Top"
@@ -724,7 +723,7 @@
                                         </Grid.RowDefinitions>
                                         <Grid Grid.Row="0">
                                             <TextBlock
-                                                Text="Compare with yesterday"
+                                                Text="So với hôm qua"
                                                 FontSize="14"
                                                 Foreground="#9098B1"
                                                 VerticalAlignment="Top"
@@ -781,7 +780,7 @@
                                         </Grid.RowDefinitions>
                                         <Grid Grid.Row="0">
                                             <TextBlock
-                                                Text="Compare with last month"
+                                                Text="So với tháng trước"
                                                 FontSize="14"
                                                 Foreground="#9098B1"
                                                 VerticalAlignment="Top"
@@ -854,7 +853,7 @@
                                     FontWeight="Medium" 
                                     Foreground="#504D85"
                                     Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                    materialDesign:HintAssist.Hint="Select chart type"
+                                    materialDesign:HintAssist.Hint="Chọn loại biểu đồ"
                                     Width="160" 
                                     Height="40" 
                                     HorizontalAlignment="Left" 
@@ -863,9 +862,9 @@
                                     VerticalContentAlignment="Center" 
                                     Padding="3,0,0,0" 
                                     Margin="0,0,0,0" >
-                                    <ComboBoxItem Content="Agency"/>
-                                    <ComboBoxItem Content="Product"/>
-                                    <ComboBoxItem Content="Total And Debt"/>
+                                    <ComboBoxItem Content="Đại lý"/>
+                                    <ComboBoxItem Content="Sản phẩm"/>
+                                    <ComboBoxItem Content="Doanh thu và nợ"/>
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="SelectionChanged">
                                             <i:InvokeCommandAction Command="{Binding SelectedTypeChangeCommand}" 
@@ -881,7 +880,7 @@
                                     FontSize="16"
                                     FontWeight="Medium" 
                                     Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                    materialDesign:HintAssist.Hint="Select cycle"
+                                    materialDesign:HintAssist.Hint="Chọn đại lượng"
                                     Width="160" 
                                     Height="40" 
                                     HorizontalAlignment="Left" 
@@ -897,13 +896,13 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                     <ComboBoxItem 
-                                        Content="Monthly"
+                                        Content="Hàng tháng"
                                         Foreground="#504D85"/>
                                     <ComboBoxItem 
-                                        Content="Quarterly"
+                                        Content="Hàng quý"
                                         Foreground="#504D85"/>
                                     <ComboBoxItem 
-                                        Content="Annual"
+                                        Content="Hàng năm"
                                         Foreground="#504D85"/>
                                 </ComboBox>
                                 <ComboBox
@@ -915,7 +914,7 @@
                                     FontWeight="Medium" 
                                     Foreground="#504D85"
                                     Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                    materialDesign:HintAssist.Hint="Select time"
+                                    materialDesign:HintAssist.Hint="Chọn thời gian"
                                     Width="160" 
                                     Height="40" 
                                     HorizontalAlignment="Left" 
@@ -940,7 +939,7 @@
                                     FontWeight="Medium" 
                                     Foreground="#504D85"
                                     Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                    materialDesign:HintAssist.Hint="Select year"
+                                    materialDesign:HintAssist.Hint="Chọn năm"
                                     Width="160" 
                                     Height="40" 
                                     HorizontalAlignment="Left" 
@@ -1031,7 +1030,7 @@
                             Height="35"
                             BorderThickness="0"
                             Width="250"
-                            materialDesign:HintAssist.Hint="Search..."
+                            materialDesign:HintAssist.Hint="Tìm kiếm..."
                             FontSize="22"
                             FontWeight="Regular"
                             BorderBrush="#FCE5EC"
@@ -1050,7 +1049,7 @@
                             Height="35"
                             BorderThickness="0"
                             Width="250"
-                            materialDesign:HintAssist.Hint="Search..."
+                            materialDesign:HintAssist.Hint="Tìm kiếm..."
                             FontSize="22"
                             FontWeight="Regular"
                             BorderBrush="#FCE5EC"
@@ -1085,16 +1084,16 @@
                             Background="Transparent"
                             Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                             materialDesign:ColorZoneAssist.Mode="Custom" 
-                            materialDesign:HintAssist.Hint="Search by..."
+                            materialDesign:HintAssist.Hint="Tìm kiếm..."
                             Width="200" 
                             Height="50" 
                             Padding="5,0,0,5" 
                             Margin="370,0,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center">
-                            <ComboBoxItem Content="Name"></ComboBoxItem>
-                            <ComboBoxItem Content="Type"></ComboBoxItem>
-                            <ComboBoxItem Content="District"></ComboBoxItem>
+                            <ComboBoxItem Content="Tên"></ComboBoxItem>
+                            <ComboBoxItem Content="Loại"></ComboBoxItem>
+                            <ComboBoxItem Content="Quận"></ComboBoxItem>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
                                     <i:InvokeCommandAction
@@ -1111,15 +1110,15 @@
                             Background="Transparent"
                             Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                             materialDesign:ColorZoneAssist.Mode="Custom" 
-                            materialDesign:HintAssist.Hint="View mode"
+                            materialDesign:HintAssist.Hint="Chế độ xem"
                             Width="200" 
                             Height="50" 
                             Padding="5,0,0,5" 
                             Margin="600,0,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center">
-                            <ComboBoxItem Content="List detail"></ComboBoxItem>
-                            <ComboBoxItem Content="Paging"></ComboBoxItem>
+                            <ComboBoxItem Content="Chi tiết danh sách"></ComboBoxItem>
+                            <ComboBoxItem Content="Phân trang"></ComboBoxItem>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
                                     <i:InvokeCommandAction
@@ -1139,7 +1138,7 @@
                             Foreground="#504D85"
                             HorizontalAlignment="Right" 
                             VerticalAlignment="Center"
-                            Content="Export Excel"
+                            Content="Xuất file excel"
                             Margin="0 0 160 0"
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             Command="{Binding ExportExcelStoreCommand}"
@@ -1155,7 +1154,7 @@
                             Foreground="#504D85"
                             HorizontalAlignment="Right" 
                             VerticalAlignment="Center"
-                            Content="Add agency"
+                            Content="Thêm đại lý"
                             Margin="0 0 31.8 0"
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             Command="{Binding OpenAddStoreWindowCommand}"
@@ -1188,7 +1187,7 @@
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0"
-                                Text="Name" 
+                                Text="Tên" 
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 FontFamily="Poppins"
@@ -1197,7 +1196,7 @@
                                 FontWeight="SemiBold"
                                 Foreground="#504D85"/>
                             <TextBlock Grid.Column="1"
-                                Text="Species" 
+                                Text="Loại" 
                                 HorizontalAlignment="Center"
                                 FontFamily="Poppins"
                                 FontStyle="Normal"
@@ -1206,7 +1205,7 @@
                                 VerticalAlignment="Center"
                                 Foreground="#504D85"/>
                             <TextBlock Grid.Column="2"
-                                Text="District" 
+                                Text="Quận" 
                                 HorizontalAlignment="Center"
                                 FontFamily="Poppins"
                                 FontStyle="Normal"
@@ -1215,7 +1214,7 @@
                                 VerticalAlignment="Center"
                                 Foreground="#504D85"/>
                             <TextBlock Grid.Column="3"
-                                Text="Address" 
+                                Text="Địa chỉ" 
                                 HorizontalAlignment="Center"
                                 FontWeight="SemiBold"
                                 FontFamily="Poppins"
@@ -1224,7 +1223,7 @@
                                 VerticalAlignment="Center"
                                 Foreground="#504D85"/>
                             <TextBlock Grid.Column="4"
-                                Text="Phone" 
+                                Text="SĐT" 
                                 HorizontalAlignment="Center"
                                 FontWeight="SemiBold"
                                 FontFamily="Poppins"
@@ -1233,7 +1232,7 @@
                                 VerticalAlignment="Center"
                                 Foreground="#504D85"/>
                             <TextBlock Grid.Column="5"
-                                Text="Debt" 
+                                Text="Nợ" 
                                 HorizontalAlignment="Center"
                                 FontFamily="Poppins"
                                 FontStyle="Normal"
@@ -1383,7 +1382,7 @@
                                 Width="250" 
                                 HorizontalAlignment="Left"
                                 Margin="10 0 0 0"
-                                materialDesign:HintAssist.Hint="Search..."
+                                materialDesign:HintAssist.Hint="Tìm kiếm..."
                                 FontSize="22"
                                 FontWeight="Regular"
                                 BorderBrush="#FCE5EC">
@@ -1410,7 +1409,7 @@
                             <ComboBox
                                 x:Name="cboSelectFast"
                                 materialDesign:ComboBoxAssist.ClassicMode="True"
-                                materialDesign:HintAssist.Hint="Select list by type"
+                                materialDesign:HintAssist.Hint="Chọn theo loại"
                                 Height="35"
                                 FontSize="22"
                                 Width="220"
@@ -1449,7 +1448,7 @@
                                 Cursor="Hand"
                                 Background="#F79BB5"
                                 Foreground="#504D85"
-                                Content="Export excel"
+                                Content="Xuất file excel"
                                 Style="{StaticResource MaterialDesignRaisedButton}"
                                 Command="{Binding ExportExcelProductCommand}"
                                 CommandParameter="{Binding ElementName=wdHome}">
@@ -1461,7 +1460,7 @@
                                 Cursor="Hand"
                                 Background="#F79BB5"
                                 Foreground="#504D85"
-                                Content="Import product"
+                                Content="Nhập sản phẩm"
                                 DataContext="{StaticResource ImportProductVM}"
                                 Style="{StaticResource MaterialDesignRaisedButton}"
                                 Command="{Binding OpenImportProductWindowCommand}"
@@ -1475,7 +1474,7 @@
                                 Cursor="Hand"
                                 Background="#F79BB5"
                                 Foreground="#504D85"
-                                Content="Add product"
+                                Content="Thêm sản phẩm"
                                 Style="{StaticResource MaterialDesignRaisedButton}"
                                 Command="{Binding AddProductWindowCommand}"
                                 CommandParameter="{Binding ElementName=wdHome}">
@@ -1513,7 +1512,7 @@
                             VerticalAlignment="Center"
                             Foreground="#504D85"/>
                         <TextBlock Grid.Column="1"
-                            Text="Items" 
+                            Text="Tên" 
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Margin="20 0 0 0"
@@ -1522,7 +1521,7 @@
                             FontWeight="SemiBold"
                             Foreground="#504D85"/>
                         <TextBlock Grid.Column="2"
-                            Text="Units" 
+                            Text="Đơn vị" 
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Margin="10 0 0 0"
@@ -1531,7 +1530,7 @@
                             FontWeight="SemiBold"
                             Foreground="#504D85"/>
                         <TextBlock Grid.Column="3"
-                            Text="Import Price" 
+                            Text="Giá nhập" 
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Margin="10 0 0 0"
@@ -1540,7 +1539,7 @@
                             FontSize="22"
                             Foreground="#504D85"/>
                         <TextBlock Grid.Column="4"
-                            Text="Export price" 
+                            Text="Giá xuất" 
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Margin="10 0 0 0"
@@ -1549,7 +1548,7 @@
                             FontSize="22"
                             Foreground="#504D85"/>
                         <TextBlock Grid.Column="5"
-                            Text="Count" 
+                            Text="Số lượng" 
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Margin="10 0 0 0"
@@ -1608,7 +1607,7 @@
                             CornerRadius="8">
                             <Grid>
                                 <TextBlock
-                                    Text="Product Chosen"
+                                    Text="Sản phẩm đã chọn"
                                     Foreground="#6F6C99"
                                     FontSize="20"
                                     FontWeight="Bold"
@@ -1626,7 +1625,7 @@
                                     HorizontalAlignment="Right"
                                     Margin="23,10"
                                     Padding="0"
-                                    ToolTip="Reload Business tag"
+                                    ToolTip="Bỏ chọn sản phẩm"
                                     Command="{Binding ReloadBusinessTagCommand}"
                                     CommandParameter="{Binding ElementName=wdHome}">
                                     <materialDesign:PackIcon
@@ -1654,7 +1653,7 @@
                                                     Background="#FF9CB9"
                                                     CornerRadius="8,8,0,0"/>
                                                 <TextBlock
-                                                    Text="NAME"
+                                                    Text="Tên"
                                                     FontSize="14"
                                                     FontWeight="SemiBold"
                                                     Foreground="#504D85"
@@ -1662,7 +1661,7 @@
                                                     HorizontalAlignment="Left"
                                                     Margin="80,10"/>
                                                 <TextBlock
-                                                    Text="UNIT"
+                                                    Text="Đơn vị"
                                                     FontSize="14"
                                                     FontWeight="SemiBold"
                                                     Foreground="#504D85"
@@ -1670,7 +1669,7 @@
                                                     HorizontalAlignment="Left"
                                                     Margin="250,10"/>
                                                 <TextBlock
-                                                    Text="PRICE"
+                                                    Text="Giá"
                                                     FontSize="14"
                                                     FontWeight="SemiBold"
                                                     Foreground="#504D85"
@@ -1678,7 +1677,7 @@
                                                     HorizontalAlignment="Right"
                                                     Margin="320,10"/>
                                                 <TextBlock
-                                                    Text="AMOUNT"
+                                                    Text="Số lượng"
                                                     FontSize="14"
                                                     FontWeight="SemiBold"
                                                     Foreground="#504D85"
@@ -1686,7 +1685,7 @@
                                                     HorizontalAlignment="Right"
                                                     Margin="170,10"/>
                                                 <TextBlock
-                                                    Text="TOTAL"
+                                                    Text="Tổng"
                                                     FontSize="14"
                                                     FontWeight="SemiBold"
                                                     Foreground="#504D85"
@@ -1723,12 +1722,12 @@
                                 CornerRadius="8">
                             <Grid>
                                 <TextBlock
-                                    Text="List products"
+                                    Text="Danh sách sản phẩm"
                                     Foreground="#6F6C99"
                                     FontSize="20"
                                     FontWeight="Bold"
                                     Height="28"
-                                    Width="150"
+                                    Width="200"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     Margin="15,20"/>
@@ -1741,17 +1740,17 @@
                                     RadiusX="5"
                                     RadiusY="5"
                                     StrokeThickness="2"
-                                    Margin="200,20">
+                                    Margin="250,20">
                                 </Rectangle>
                                 <TextBox
                                     x:Name="txbSearchProductsBusiness"
                                     Height="35"
                                     Width="230"
                                     BorderThickness="0"
-                                    materialDesign:HintAssist.Hint="Search..."
+                                    materialDesign:HintAssist.Hint="Tìm kiếm..."
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
-                                    Margin="210 20 0 0"
+                                    Margin="260 20 0 0"
                                     Padding="0 7 0 0"
                                     FontWeight="Regular"
                                     FontSize="16"
@@ -1822,7 +1821,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid>
                                     <TextBlock
-                                        Text="Agency"
+                                        Text="Đại lý"
                                         Foreground="#6F6C99"
                                         FontSize="20"
                                         FontWeight="Bold"
@@ -1851,7 +1850,7 @@
                                             Height="40"
                                             Width="240"
                                             BorderThickness="0"
-                                            materialDesign:HintAssist.Hint="Agency"
+                                            materialDesign:HintAssist.Hint="Đại lý"
                                             FontSize="17"
                                             Foreground="#504D85"
                                             Background="Transparent"
@@ -1893,7 +1892,7 @@
                                         Foreground="#504D85"
                                         BorderBrush="{x:Null}"
                                         materialDesign:ButtonAssist.CornerRadius="6"
-                                        Content="Add"
+                                        Content="Thêm"
                                         FontSize="20"
                                         FontWeight="SemiBold"
                                         Command="{Binding AddAgencytoPaymentCommand}"
@@ -1925,7 +1924,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid>
                                     <TextBlock
-                                        Text="Payment"
+                                        Text="Thanh toán"
                                         Foreground="#6F6C99"
                                         FontSize="20"
                                         FontWeight="Bold"
@@ -1942,7 +1941,7 @@
                                 <Grid
                                     Grid.Row="1">
                                     <TextBlock
-                                        Text="Agency"
+                                        Text="Đại lý"
                                         Foreground="#6F6C99"
                                         FontSize="16"
                                         FontWeight="SemiBold"
@@ -1964,7 +1963,7 @@
                                 <Grid
                                     Grid.Row="2">
                                     <TextBlock
-                                        Text="Address"
+                                        Text="Địa chỉ"
                                         Foreground="#6F6C99"
                                         FontSize="16"
                                         FontWeight="SemiBold"
@@ -1987,7 +1986,7 @@
                                 <Grid
                                     Grid.Row="3">
                                     <TextBlock
-                                        Text="Phone Number"
+                                        Text="Số điện thoại"
                                         Foreground="#6F6C99"
                                         FontSize="16"
                                         FontWeight="SemiBold"
@@ -2010,7 +2009,7 @@
                                 <Grid
                                     Grid.Row="4">
                                     <TextBlock
-                                        Text="Total"
+                                        Text="Tổng"
                                         Foreground="#263238"
                                         FontSize="16"
                                         FontWeight="SemiBold"
@@ -2042,7 +2041,7 @@
                                 <Grid
                                     Grid.Row="5">
                                     <TextBlock
-                                        Text="Retainer"
+                                        Text="Ứng trước"
                                         Foreground="#263238"
                                         FontSize="16"
                                         FontWeight="SemiBold"
@@ -2090,7 +2089,7 @@
                                     Grid.Row="6">
 
                                     <TextBlock
-                                        Text="Excess debt"
+                                        Text="Dư nợ"
                                         Foreground="#263238"
                                         FontSize="16"
                                         FontWeight="SemiBold"
@@ -2123,7 +2122,7 @@
                                     Grid.Row="7">
 
                                     <TextBlock
-                                        Text="Excess cash"
+                                        Text="Tiền thối"
                                         Foreground="#263238"
                                         FontSize="16"
                                         FontWeight="SemiBold"
@@ -2164,7 +2163,7 @@
                                         FontSize="20"
                                         FontWeight="SemiBold"
                                         BorderBrush="{x:Null}"
-                                        Content="Pay"
+                                        Content="Thanh toán"
                                         VerticalAlignment="Bottom"
                                         materialDesign:ButtonAssist.CornerRadius="6"
                                         Margin="14,20"
@@ -2226,7 +2225,7 @@
                             Width="250"
                             Margin="40 0 0 0"
                             BorderThickness="0"
-                            materialDesign:HintAssist.Hint="Search..."
+                            materialDesign:HintAssist.Hint="Tìm kiếm..."
                             MaxLines="1"
                             Height="35"
                             FontSize="22"
@@ -2259,7 +2258,7 @@
                             HorizontalAlignment="Left" 
                             VerticalAlignment="Center"
                             Background="#F79BB5"
-                            Content="Receipt"
+                            Content="Biên lai"
                             FontSize="18"
                             Foreground="#57548B"
                             FontWeight="Bold"
@@ -2281,7 +2280,7 @@
                             HorizontalAlignment="Right" 
                             VerticalAlignment="Center"
                             Background="#F79BB5"
-                            Content="Export Excel"
+                            Content="Xuất file Excel"
                             FontSize="18"
                             Foreground="#57548B"
                             FontWeight="Bold"
@@ -2325,7 +2324,7 @@
                                 FontWeight="Medium" 
                                 Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                                 Margin="10 0 0 0"
-                                materialDesign:HintAssist.Hint="Choosing bill"
+                                materialDesign:HintAssist.Hint="Chọn phiếu"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 FontFamily="Segoe UI"
@@ -2334,11 +2333,11 @@
                                 Height="55"
                                 materialDesign:HintAssist.Foreground="Gray">
                                 <ComboBoxItem
-                                    Content="Stock Receipt" />
+                                    Content="Phiếu nhập hàng" />
                                 <ComboBoxItem
-                                    Content="Releasing Bill" />
+                                    Content="Phiếu xuất" />
                                 <ComboBoxItem
-                                    Content="Receipt Bill" />
+                                    Content="Phiếu thu" />
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
                                         <i:InvokeCommandAction Command="{Binding ClearCommand}"
@@ -2373,7 +2372,7 @@
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
                                 <TextBlock 
-                                    Text="Get money"
+                                    Text="Tiền thu"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
                                     FontSize="16"
@@ -2386,7 +2385,7 @@
                             <Grid Grid.Row="1">
                                 <TextBlock 
                                     x:Name="textCollect"
-                                    Text="Total"
+                                    Text="Tổng"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
                                     FontSize="16"
@@ -2404,7 +2403,7 @@
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
                                 <TextBlock 
-                                    Text="Pay"
+                                    Text="Chi trả"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
                                     FontSize="16"
@@ -2418,7 +2417,7 @@
                             <Grid Grid.Row="1">
                                 <TextBlock 
                                     x:Name="textPay"
-                                    Text="Total"
+                                    Text="Tổng"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
                                     FontSize="16"
@@ -2460,7 +2459,7 @@
                         <Grid
                         Grid.Column="1">
                             <TextBlock
-                            Text="Agency Name"
+                            Text="Tên đại lý"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             FontSize="22"
@@ -2470,7 +2469,7 @@
                         <Grid
                         Grid.Column="2">
                             <TextBlock
-                            Text="Check Out(MM/DD/YYYY)"
+                            Text="Ngày(MM/DD/YYYY)"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             FontSize="22"
@@ -2481,7 +2480,7 @@
                         Grid.Column="3">
                             <TextBlock
                                 x:Name="LastBlock"
-                            Text="Debt"
+                            Text="Nợ"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             FontSize="22"
@@ -2600,7 +2599,7 @@
                             Width="250"
                             Margin="40 0 0 0"
                             BorderThickness="0"
-                            materialDesign:HintAssist.Hint="Search..."
+                            materialDesign:HintAssist.Hint="Tìm kiếm..."
                             MaxLines="1"
                             Height="35"
                             FontSize="22"
@@ -2633,7 +2632,7 @@
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center"
                             Background="#FBCCDA"
-                            Content="Sales Report"
+                            Content="Báo cáo doanh số"
                             FontSize="18"
                             Foreground="#57548B"
                             FontWeight="Bold" 
@@ -2662,7 +2661,7 @@
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center"
                             Background="#FBCCDA"
-                            Content="Debts Report"
+                            Content="Báo cáo nợ"
                             FontSize="18"
                             Foreground="#57548B"
                             FontWeight="Bold" 
@@ -2700,7 +2699,7 @@
                                     FontWeight="Medium" 
                                     Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                                     Margin="10 0 0 0"
-                                    materialDesign:HintAssist.Hint="Choosing report"
+                                    materialDesign:HintAssist.Hint="Chọn báo cáo"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     FontFamily="Segoe UI"
@@ -2709,9 +2708,9 @@
                                     Height="55"
                                     materialDesign:HintAssist.Foreground="Gray">
                                     <ComboBoxItem
-                                        Content="Sales Report" />
+                                        Content="Báo cáo doanh số" />
                                     <ComboBoxItem
-                                        Content="Debts Report" />
+                                        Content="Báo cáo nợ" />
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="SelectionChanged">
                                             <i:InvokeCommandAction Command="{Binding SwitchCommand}"
@@ -2784,7 +2783,7 @@
                                 </TextBlock>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <TextBlock Text="Agency"
+                                <TextBlock Text="Đại lý"
                                     FontFamily="Segoe UI"
                                     FontSize="25"
                                     FontWeight="DemiBold"
@@ -2795,7 +2794,7 @@
                             </Grid>
                             <Grid Grid.Column="2">
                                 <TextBlock 
-                                    Text="Number Of Bills"
+                                    Text="Số lượng hóa đơn"
                                     FontFamily="Segoe UI"
                                     FontSize="25"
                                     FontWeight="DemiBold"
@@ -2806,7 +2805,7 @@
                                 </TextBlock>
                             </Grid>
                             <Grid Grid.Column="3">
-                                <TextBlock Text="Total"
+                                <TextBlock Text="Tổng"
                                     FontFamily="Segoe UI"
                                     FontSize="25"
                                     FontWeight="DemiBold"
@@ -2817,7 +2816,7 @@
                             </Grid>
                             <Grid Grid.Column="4">
                                 <TextBlock 
-                                    Text="Ratio"
+                                    Text="Tỉ lệ"
                                     FontFamily="Segoe UI"
                                     FontSize="25"
                                     FontWeight="DemiBold"
@@ -2857,7 +2856,7 @@
                             </Grid>
                             <Grid Grid.Column="1">
                                 <TextBlock 
-                                    Text="Agency"
+                                    Text="Đại lý"
                                     FontFamily="Segoe UI"
                                     FontSize="25"
                                     FontWeight="DemiBold"
@@ -2868,7 +2867,7 @@
                             </Grid>
                             <Grid Grid.Column="2">
                                 <TextBlock
-                                    Text="Original Debt"
+                                    Text="Nợ ban đầu"
                                     FontFamily="Segoe UI"
                                     FontSize="25"
                                     FontWeight="DemiBold"
@@ -2880,7 +2879,7 @@
                             </Grid>
                             <Grid Grid.Column="3">
                                 <TextBlock
-                                    Text="Cost Overrun"
+                                    Text="Chi phí vượt mức"
                                     FontFamily="Segoe UI"
                                     FontSize="25"
                                     FontWeight="DemiBold"
@@ -2891,7 +2890,7 @@
                             </Grid>
                             <Grid Grid.Column="4">
                                 <TextBlock
-                                    Text="Total"
+                                    Text="Tổng"
                                     FontFamily="Segoe UI"
                                     FontSize="25"
                                     FontWeight="DemiBold"
@@ -2951,7 +2950,7 @@
                 Grid.Row="1"
                 x:Name="grdBody_AccountSetting"
                 DataContext="{StaticResource SettingVM}"
-                Visibility="Hidden">
+                Visibility="Visible">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Loaded">
                         <i:InvokeCommandAction Command="{Binding LoadSettingWindowCommand}" 
@@ -2972,7 +2971,7 @@
                         VerticalScrollBarVisibility="Auto">
                         <StackPanel>
                             <TextBlock
-                                Text="Type of Agency"
+                                Text="Đại lý"
                                 Foreground="#504D85"
                                 FontSize="30"
                                 VerticalAlignment="Bottom"
@@ -2981,13 +2980,13 @@
                                 FontWeight="SemiBold"/>
                             <Expander
                                 HorizontalAlignment="Stretch"
-                                Header="Rules"
+                                Header="Số lượng"
                                 Foreground="#F68D7D"
                                 FontSize="14"
                                 Margin="40,0"
                                 Background="Transparent">
                                 <Grid
-                                    Height="150">
+                                    Height="200">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="200"></ColumnDefinition>
                                         <ColumnDefinition Width="410"></ColumnDefinition>
@@ -3006,7 +3005,7 @@
                                                     <ColumnDefinition Width="246*"/>
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock 
-                                                    Text="Number of agency in district"
+                                                    Text="Số đại lý trong quận"
                                                     Foreground="#504D85"
                                                     HorizontalAlignment="Left"
                                                     VerticalAlignment="Top"
@@ -3016,7 +3015,7 @@
                                                 <Grid
                                                     Background="Gray"
                                                     Height="1"
-                                                    Width="300" Grid.ColumnSpan="2" Margin="24,74,24.8,73.8"/>
+                                                    Width="300" Grid.ColumnSpan="2" Margin="24,24,24.8,73.8"/>
                                                 <TextBox
                                                     x:Name="txtNumberAgencyinDistrict_Setting"
                                                     Height="40"
@@ -3024,7 +3023,7 @@
                                                     HorizontalAlignment="Right"
                                                     HorizontalContentAlignment="Center"
                                                     VerticalAlignment="Center"
-                                                    Margin="-1,84,-0.2,24.8"
+                                                    Margin="-1,34,-0.2,24.8"
                                                     BorderBrush="{x:Null}"
                                                     Validation.ErrorTemplate="{StaticResource textBoxErrorTemplate3}"
                                                     FontSize="18"
@@ -3044,7 +3043,7 @@
                                                     <TextBox.Text>
                                                         <Binding Path="Name" Source="{StaticResource Product}" UpdateSourceTrigger="PropertyChanged" Mode="OneWayToSource">
                                                             <Binding.ValidationRules>
-                                                                <vd:NotNullValidation ErrorMessage="Please enter number of agency"/>
+                                                                <vd:NotNullValidation ErrorMessage="Hãy nhập số đại lý"/>
                                                             </Binding.ValidationRules>
                                                         </Binding>
                                                     </TextBox.Text>
@@ -3052,13 +3051,13 @@
                                             </Grid>
                                         </Border>
                                     </Grid>
-                                    <Grid Grid.Column="2">
+                                    <Grid Grid.Column="1">
                                         <Button
                                         x:Name="btnSaveRulesType_Setting"
                                         Height="30"
                                         Width="110"
                                         Foreground="#57548B"
-                                        Content="Save"
+                                        Content="Lưu"
                                         Background="#F79BB5"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Bottom"
@@ -3070,7 +3069,7 @@
                             </Expander>
                             <Expander
                             HorizontalAlignment="Stretch"
-                            Header="List type"
+                            Header="Loại đại lý"
                             Foreground="#F68D7D"
                             FontSize="14"
                             Margin="40,0"
@@ -3083,19 +3082,19 @@
                                     <Button
                                     x:Name="btnOpenAddType_Setting"
                                     Height="40"
-                                    Width="1000"
+                                    Width="200"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    Content="Add new type"
-                                    Background="Transparent"
+                                    Content="Thêm loại mới"
+                                    Background="#FFB2C8"
                                     BorderBrush="{x:Null}"
-                                    Foreground="LightGray"
+                                    Foreground="#504D85"
                                     Visibility="Visible"
                                     Command="{Binding OpenAddTypeCommand}"/>
                                 </StackPanel>
                             </Expander>
-                            <!--<TextBlock
-                                Text="Product"
+                            <TextBlock
+                                Text="Sản phẩm"
                                 Foreground="#504D85"
                                 FontSize="30"
                                 VerticalAlignment="Bottom"
@@ -3104,19 +3103,19 @@
                                 FontWeight="SemiBold"/>
                             <Expander
                                 HorizontalAlignment="Stretch"
-                                Header="Rules"
+                                Header="Số lượng"
                                 Foreground="#F68D7D"
                                 FontSize="14"
                                 Margin="40,0"
                                 Background="Transparent">
                                 <Grid
-                                    Height="150">
+                                    Height="200">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="390"></ColumnDefinition>
+                                        <ColumnDefinition Width="200"></ColumnDefinition>
                                         <ColumnDefinition Width="410"></ColumnDefinition>
                                         <ColumnDefinition></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <Grid Grid.Column="0">
+                                    <Grid Grid.Column="1">
                                         <Border 
                                             BorderBrush="DarkGray"
                                             Background="White"
@@ -3125,7 +3124,7 @@
                                             Margin="20,0">
                                             <Grid>
                                                 <TextBlock 
-                                                    Text="Number of product"
+                                                    Text="Số lượng sản phẩm"
                                                     Foreground="#504D85"
                                                     FontWeight="SemiBold"
                                                     HorizontalAlignment="Left"
@@ -3135,7 +3134,8 @@
                                                 <Grid
                                                     Background="Gray"
                                                     Height="1"
-                                                    Width="300"/>
+                                                    Width="300" Margin="0,0,0,50"
+                                                    />
                                                 <TextBox
                                                     x:Name="txtNumberProduct_Setting"
                                                     Height="40"
@@ -3143,7 +3143,7 @@
                                                     HorizontalContentAlignment="Center"
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Center"
-                                                    Margin="0 60 0 0"
+                                                    Margin="0 10 0 0"
                                                     Validation.ErrorTemplate="{StaticResource textBoxErrorTemplate3}"
                                                     FontSize="18"
                                                     BorderBrush="{x:Null}"
@@ -3171,6 +3171,36 @@
                                             </Grid>
                                         </Border>
                                     </Grid>
+
+                                    <Grid Grid.Column="1">
+                                        <Button
+                                        x:Name="btnSaveRulesProduct_Setting"
+                                        Height="30"
+                                        Width="110"
+                                        Foreground="#57548B"
+                                        Content="Lưu"
+                                        Background="#F79BB5"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Bottom"
+                                        Margin="0,0,0,10"
+                                        Command="{Binding SaveRulesProduct_SettingCommand}"
+                                        CommandParameter="{Binding ElementName=wdHome}"/>
+                                    </Grid>
+                                </Grid>
+                            </Expander>
+                            <Expander
+                                HorizontalAlignment="Stretch"
+                                Header="Loại đơn vị"
+                                Foreground="#F68D7D"
+                                FontSize="14"
+                                Margin="40,0"
+                                Background="Transparent" IsExpanded="True">
+                                <Grid Height="200">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200"></ColumnDefinition>
+                                        <ColumnDefinition Width="410"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="1">
                                         <Border 
                                             BorderBrush="DarkGray"
@@ -3180,7 +3210,7 @@
                                             Margin="20,0">
                                             <Grid>
                                                 <TextBlock 
-                                                    Text="Number of units type"
+                                                    Text="Số loại đơn vị"
                                                     Foreground="#504D85"
                                                     FontWeight="SemiBold"
                                                     HorizontalAlignment="Left"
@@ -3190,7 +3220,7 @@
                                                 <Grid
                                                     Background="Gray"
                                                     Height="1"
-                                                    Width="300"/>
+                                                    Width="300" Margin="0,0,0,50"/>
                                                 <TextBox
                                                     x:Name="txtNumberUnit_Setting"
                                                     Height="40"
@@ -3198,7 +3228,7 @@
                                                     HorizontalContentAlignment="Center"
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Center"
-                                                    Margin="0 60 0 0"
+                                                    Margin="0 10 0 0"
                                                     FontSize="18"
                                                     Validation.ErrorTemplate="{StaticResource textBoxErrorTemplate3}"
                                                     BorderBrush="{x:Null}"
@@ -3226,22 +3256,22 @@
                                             </Grid>
                                         </Border>
                                     </Grid>
-                                    <Grid Grid.Column="2">
+                                    <Grid Grid.Column="1">
                                         <Button
-                                        x:Name="btnSaveRulesProduct_Setting"
+                                        x:Name="btnSaveRulesUnit_Setting"
                                         Height="30"
                                         Width="110"
                                         Foreground="#57548B"
-                                        Content="Save"
+                                        Content="Lưu"
                                         Background="#F79BB5"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Bottom"
-                                        Margin="0,10"
+                                        Margin="0,0,0,10"
                                         Command="{Binding SaveRulesProduct_SettingCommand}"
                                         CommandParameter="{Binding ElementName=wdHome}"/>
                                     </Grid>
                                 </Grid>
-                            </Expander>-->
+                            </Expander>
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>

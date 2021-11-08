@@ -1,13 +1,13 @@
-﻿<Window x:Class="StoreManagement.Views.InvoiceWindow"
+﻿<Window x:Class="BusinessManagement.Views.InvoiceWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:local="clr-namespace:StoreManagement.Views"
+        xmlns:local="clr-namespace:BusinessManagement.Views"
         mc:Ignorable="d"
         x:Name="wdInvoice"
-        Title="InvoiceWindow" Height="800" Width="900"
+        Title="Biên lai" Height="800" Width="900"
         WindowStartupLocation="CenterScreen"
         DataContext="{StaticResource BusinessVM}">
     <Grid>
@@ -23,9 +23,9 @@
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
                 Margin="30,0"
-                Source="\Resources\Images\logo.png"/>
+                Source="..\Resources\Images\logo.png"/>
             <TextBlock
-                Text="INVOICE"
+                Text="BIÊN LAI"
                 Foreground="#504D85"
                 FontSize="50"
                 FontWeight="Bold"
@@ -43,7 +43,7 @@
                   Width="800"/>
             <Grid Grid.Row="0">
                 <TextBlock
-                    Text="Agency"
+                    Text="Đại lý"
                     Foreground="#504D85"
                     FontSize="16"
                     FontWeight="SemiBold"
@@ -51,7 +51,7 @@
                     HorizontalAlignment="Left"
                     Margin="60,20"/>
                 <TextBlock
-                    Text="Address"
+                    Text="Địa chỉ"
                     Foreground="#504D85"
                     FontSize="16"
                     FontWeight="SemiBold"
@@ -59,7 +59,7 @@
                     HorizontalAlignment="Left"
                     Margin="60,50"/>
                 <TextBlock
-                    Text="Phone number"
+                    Text="Số điện thoại"
                     Foreground="#504D85"
                     FontSize="16"
                     FontWeight="SemiBold"
@@ -125,7 +125,7 @@
         </Grid>
         <Grid Grid.Row="3">
             <TextBlock 
-                Text="Invoice number"
+                Text="Số biên lai"
                 Foreground="#504D85"
                 FontSize="16"
                 FontWeight="SemiBold"
@@ -133,7 +133,7 @@
                 HorizontalAlignment="Left"
                 Margin="60,50"/>
             <TextBlock 
-                Text="Date"
+                Text="Ngày"
                 Foreground="#504D85"
                 FontSize="16"
                 FontWeight="SemiBold"
@@ -160,7 +160,7 @@
                 Margin="200,20"/>
 
             <TextBlock 
-                Text="Total"
+                Text="Tổng"
                 Width="80"
                 TextAlignment="Left"
                 Foreground="#263238"
@@ -170,7 +170,7 @@
                 HorizontalAlignment="Right"
                 Margin="230,25"/>
             <TextBlock 
-                Text="Retainer"
+                Text="Trả trước"
                 x:Name="txbRetainerText"
                 Width="80"
                 TextAlignment="Left"
@@ -181,7 +181,7 @@
                 HorizontalAlignment="Right"
                 Margin="230,48"/>
             <TextBlock 
-                Text="Excess debt"
+                Text="Dư nợ"
                 x:Name="txbChangeText"
                 Foreground="#263238"
                 Width="85"
