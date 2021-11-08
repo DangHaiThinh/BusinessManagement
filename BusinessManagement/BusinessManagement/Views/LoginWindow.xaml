@@ -1,4 +1,4 @@
-﻿<Window x:Class="StoreManagement.Views.LoginWindow"
+﻿<Window x:Class="BusinessManagement.Views.LoginWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -11,10 +11,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:StoreManagement.Views" 
+        xmlns:local="clr-namespace:BusinessManagement.Views" 
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
-        xmlns:vd="clr-namespace:StoreManagement.Validations"
-        xmlns:util="clr-namespace:StoreManagement"
+        xmlns:vd="clr-namespace:BusinessManagement.Validations"
+        xmlns:util="clr-namespace:BusinessManagement"
         mc:Ignorable="d"
         DataContext="{StaticResource LoginVM}"
         Title="Login"
@@ -65,7 +65,7 @@
             </Rectangle>
             <TextBlock
                 Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                Text="Hi There!"
+                Text="Xin Chào!"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Center"
                 FontFamily="Segoe UI"
@@ -93,7 +93,7 @@
                 HorizontalAlignment="Left"
                 VerticalContentAlignment="Center"
                 FontSize="30"
-                materialDesign:HintAssist.Hint="Username">
+                materialDesign:HintAssist.Hint="Tài khoản">
             </TextBox>
             <Rectangle
                 Fill="White" 
@@ -116,14 +116,14 @@
                 HorizontalAlignment="Left"
                 VerticalContentAlignment="Center"
                 FontSize="30"
-                materialDesign:HintAssist.Hint="Password">
+                materialDesign:HintAssist.Hint="Mật khẩu">
             </PasswordBox>
             <Button 
                 x:Name="btLogin" 
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 Height="80" 
                 Width="400" 
-                Content="Ready to sign in"
+                Content="Đăng nhập"
                 FontSize="30"
                 Foreground="#57548B"
                 Background="#F79BB5"
@@ -139,7 +139,7 @@
             </Button>
             <TextBlock
                 Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                Text="New around here ?"
+                Text="Chưa có tài khoản?"
                 Margin="80 485 0 0"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
@@ -154,7 +154,7 @@
                 Margin="290 480 0 0"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
-                Content="Sign Up" 
+                Content="Đăng ký" 
                 FontSize="25"
                 FontFamily="Segoe UI"
                 Cursor="Hand"
@@ -168,7 +168,7 @@
         </Grid>        
         <TextBlock
             Style="{StaticResource MaterialDesignHeadline4TextBlock}" 
-            Text="AGENCY MANAGEMENT"
+            Text="QUẢN LÝ ĐẠI LÝ"
             Margin="50 0 0 50"
             VerticalAlignment="Bottom"
             HorizontalAlignment="Left" 
