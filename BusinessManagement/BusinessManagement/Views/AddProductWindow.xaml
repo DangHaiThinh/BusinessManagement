@@ -1,0 +1,413 @@
+﻿<Window x:Class="BusinessManagement.Views.AddProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BusinessManagement.Views" 
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:vd="clr-namespace:BusinessManagement.Validations"
+        mc:Ignorable="d"
+        DataContext="{StaticResource ProductVM}"
+        Background="White"
+        Title="Add product window" 
+        Height="500" 
+        Width="950"
+        ResizeMode="CanMinimize"
+        x:Name="wdAddProduct"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid
+                    x:Name="grdImage"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Top"
+                    Height="200"
+                    Width="200"
+                    Margin="0 60 0 0">
+                    <Rectangle
+                        Stroke="#F79BB5"
+                        Opacity="0.7"
+                        Height="200"
+                        Width="200"
+                        RadiusX="10"
+                        RadiusY="10"
+                        StrokeThickness="4"
+                        StrokeDashArray="4 2" >
+                    </Rectangle>
+                    <materialDesign:PackIcon 
+                        Kind="ImageEdit" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" 
+                        Width="80"
+                        Height="80"
+                        Margin="60"
+                        Foreground="#F97299">
+                    </materialDesign:PackIcon>
+                </Grid>
+                <Button 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    BorderThickness="0"
+                    Margin="0 180 0 0"
+                    Height="35"
+                    Width="140"
+                    Content="Select image"
+                    Background="#F79BB5"
+                    Foreground="#57548B"
+                    FocusVisualStyle="{x:Null}"
+                    FontWeight="SemiBold"
+                    FontSize="18"
+                    Command="{Binding SelectImageCommand}"
+                    CommandParameter="{Binding ElementName=grdImage}">
+                </Button>
+            </Grid>
+            <Grid Grid.Column="1"
+                Margin="0 20 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.8*"></RowDefinition>
+                    <RowDefinition Height="0.8*"></RowDefinition>
+                    <RowDefinition Height="0.8*"></RowDefinition>
+                    <RowDefinition Height="0.8*"></RowDefinition>
+                    <RowDefinition Height="0.8*"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                    Width="550"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="30 0 0 0">
+                    <Label
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Content="ID"
+                        FontSize="22"
+                        FontWeight="SemiBold"
+                        Margin="0 0 0 0"
+                        Foreground="#57548B">
+                    </Label>
+                    <Rectangle
+                        HorizontalAlignment="Left"
+                        Width="400"
+                        Margin="150 0 0 0"
+                        StrokeThickness="2"
+                        RadiusX="5"
+                        RadiusY="5"
+                        Stroke="#E2D2DA"/>
+                    <TextBox
+                        Name="txtID"
+                        IsEnabled="False"
+                        materialDesign:HintAssist.Hint="Automatic"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Width="380"
+                        Margin="160 0 0 0"
+                        BorderThickness="0"
+                        MaxLines="1"
+                        Height="40"
+                        FontSize="17"
+                        FontWeight="SemiBold"
+                        Padding="0"
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Center" 
+                        Cursor="Arrow">
+                    </TextBox>
+                </Grid>
+                <Grid Grid.Row="1"
+                    Width="550"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="30 0 0 0">
+                    <Label
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Content="Name"
+                        FontSize="22"
+                        FontWeight="SemiBold"
+                        Foreground="#57548B">
+                    </Label>
+                    <Rectangle
+                        HorizontalAlignment="Left"
+                        Width="400"
+                        Margin="150 0 0 0"
+                        StrokeThickness="2"
+                        RadiusX="5"
+                        RadiusY="5"
+                        Stroke="#E2D2DA"/>
+                    <TextBox
+                        Name="txtName"
+                        Background="Transparent"
+                        materialDesign:HintAssist.Hint="Enter your product name"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Width="380"
+                        Margin="160 0 0 0"
+                        BorderThickness="0"
+                        MaxLines="1"
+                        Height="40"
+                        FontSize="17"
+                        FontWeight="SemiBold"
+                        Padding="0"
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Center" 
+                        Validation.ErrorTemplate="{StaticResource textBoxErrorTemplate}"
+                        >
+                        <TextBox.Text>
+                            <Binding Path="Name" Source="{StaticResource Product}" UpdateSourceTrigger="PropertyChanged" Mode="OneWayToSource">
+                                <Binding.ValidationRules>
+                                    <vd:NotNullValidation ErrorMessage="Please enter product name"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+                <Grid Grid.Row="2"
+                    Width="600" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="30 0 0 0">
+                    <Label
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="0 0 0 0"
+                        Content="Units"
+                        FontSize="22"
+                        FontWeight="SemiBold"
+                        Foreground="#57548B">
+                    </Label>
+                    <Border
+                        HorizontalAlignment="Left"
+                        Background="Transparent"
+                        BorderBrush="#E2D2DA"
+                        BorderThickness="2"
+                        Width="400"
+                        Margin="150 0 0 0"
+                        CornerRadius="5">
+                        <ComboBox
+                            Name="cbbUnits"
+                            IsEditable="False"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Background="{x:Null}"
+                            FocusVisualStyle="{x:Null}"
+                            Height="35"
+                            Width="380"
+                            Margin="10 0 0 0"
+                            Padding="0 0 15 0"
+                            BorderThickness="0"
+                            FontSize="17"
+                            FontWeight="SemiBold"
+                            materialDesign:ComboBoxAssist.ClassicMode="true"
+                            materialDesign:HintAssist.Hint="Select your units"
+                            DisplayMemberPath="Name"
+                            Visibility="Visible"
+                            Validation.ErrorTemplate="{StaticResource textBoxErrorTemplate}"
+                            ItemsSource="{Binding ItemsSourceUnits, Mode=TwoWay}"
+                            SelectedItem="{Binding SelectedUnits}">
+                            <ComboBox.Text>
+                                <Binding Path="Name" Source="{StaticResource Units}" UpdateSourceTrigger="PropertyChanged" Mode="OneWayToSource">
+                                    <Binding.ValidationRules>
+                                        <vd:NotNullValidation ErrorMessage="Please choose item"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </ComboBox.Text>
+                        </ComboBox>
+                    </Border>
+                    <materialDesign:PackIcon
+                        Background="Transparent"
+                        Foreground="#57548B"
+                        Opacity="0.85"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="10 0 18 1"
+                        Width="30"
+                        Height="30"
+                        Kind="PlusCircleOutline">
+                    </materialDesign:PackIcon>
+                    <Button
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Foreground="#57548B"
+                        Height="35"
+                        Width="35"
+                        Margin="10 0 15 0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Cursor="Hand"
+                        Command="{Binding OpenAddUnitsWindowCommand}"
+                        CommandParameter="{Binding ElementName=cbbUnits}">
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="3"
+                    Width="550"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="30 0 0 0">
+                    <Label
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Content="Import price"
+                        FontSize="22"
+                        FontWeight="SemiBold"
+                        Foreground="#57548B">
+                    </Label>
+                    <Rectangle
+                        HorizontalAlignment="Left"
+                        Width="400"
+                        Margin="150 0 0 0"
+                        StrokeThickness="2"
+                        RadiusX="5"
+                        RadiusY="5"
+                        Stroke="#E2D2DA"/>
+                    <TextBox
+                        x:Name="txtImportPrice"
+                        MaxLength="15"
+                        materialDesign:HintAssist.Hint="Enter your import price"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Width="380"
+                        Margin="160 0 0 0"
+                        BorderThickness="0"
+                        MaxLines="1"
+                        Height="40"
+                        FontSize="17"
+                        FontWeight="SemiBold"
+                        Padding="0"
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        Validation.ErrorTemplate="{StaticResource textBoxErrorTemplate}"
+                        >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TextChanged">
+                                <i:InvokeCommandAction
+                                    Command="{Binding SeparateThousandsCommand}" 
+                                    CommandParameter="{Binding ElementName=txtImportPrice}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="PreviewTextInput">
+                                <ei:CallMethodAction 
+                                    TargetObject="{Binding }" 
+                                    MethodName="NumberValidationTextBox" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <TextBox.Text>
+                            <Binding Path="ImportPrice" Source="{StaticResource Product}" UpdateSourceTrigger="PropertyChanged" Mode="OneWayToSource">
+                                <Binding.ValidationRules>
+                                    <vd:NotNullValidation ErrorMessage="Please enter import price"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+                <Grid Grid.Row="4"
+                    Width="550"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="30 0 0 0">
+                    <Label
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Content="Export price"
+                        FontSize="22"
+                        FontWeight="SemiBold"
+                        Foreground="#57548B">
+                    </Label>
+                    <Rectangle
+                        HorizontalAlignment="Left"
+                        Width="400"
+                        Margin="150 0 0 0"
+                        StrokeThickness="2"
+                        RadiusX="5"
+                        RadiusY="5"
+                        Stroke="#E2D2DA"/>
+                    <TextBox
+                        x:Name="txtPrice"
+                        MaxLength="15"
+                        materialDesign:HintAssist.Hint="Enter your export price"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Width="380"
+                        Margin="160 0 0 0"
+                        BorderThickness="0"
+                        MaxLines="1"
+                        Height="40"
+                        FontSize="17"
+                        FontWeight="SemiBold"
+                        Padding="0"
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        Validation.ErrorTemplate="{StaticResource textBoxErrorTemplate}"
+                        >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TextChanged">
+                                <i:InvokeCommandAction
+                                    Command="{Binding SeparateThousandsCommand}" 
+                                    CommandParameter="{Binding ElementName=txtPrice}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="PreviewTextInput">
+                                <ei:CallMethodAction 
+                                    TargetObject="{Binding }" 
+                                    MethodName="NumberValidationTextBox" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <TextBox.Text>
+                            <Binding Path="ExportPrice" Source="{StaticResource Product}" UpdateSourceTrigger="PropertyChanged" Mode="OneWayToSource">
+                                <Binding.ValidationRules>
+                                    <vd:NotNullValidation ErrorMessage="Please enter export price"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+                <Grid Grid.Row="5">
+                    <Button 
+                        x:Name="btnSave"
+                        IsDefault="True"
+                        HorizontalAlignment="Left"
+                        HorizontalContentAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="110"
+                        Height="35"
+                        Margin="250 0 0 0"
+                        Content="Save"
+                        BorderThickness="0"
+                        Foreground="#57548B"
+                        Background="#F79BB5"
+                        FontSize="22"
+                        Cursor="Hand"
+                        FocusVisualStyle="{x:Null}"
+                        FontWeight="SemiBold"
+                        Visibility="Visible"
+                        Command="{Binding AddProduct_SaveCommand}"
+                        CommandParameter="{Binding ElementName=wdAddProduct}">
+                    </Button>
+                    <Button 
+                        x:Name="btnClose"
+                        HorizontalAlignment="Left"
+                        HorizontalContentAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="110"
+                        Height="35"
+                        Margin="400 0 0 0"
+                        Content="Close"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Background="#F0F0F0"
+                        FocusVisualStyle="{x:Null}"
+                        Foreground="#57548B"
+                        FontSize="22"
+                        FontWeight="SemiBold"
+                        Command="{Binding CloseWindowCommand}"
+                        CommandParameter="{Binding ElementName=wdAddProduct}">
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
