@@ -71,37 +71,37 @@ namespace BusinessManagement.ViewModels
             }
             if (string.IsNullOrEmpty(parameter.displayname.Text))
             {
-                CustomMessageBox.Show("Please enter your display name!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Hãy nhập tên người dùng!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 parameter.displayname.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(parameter.txtUsername.Text))
             {
-                CustomMessageBox.Show("Please enter your username!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Hãy nhập tên tài khoản!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 parameter.txtUsername.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(parameter.pwbPassword.Password))
             {
-                CustomMessageBox.Show("Please enter your password!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Hãy nhập mật khẩu!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 parameter.pwbPassword.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(parameter.pwbPasswordConfirm.Password))
             {
-                CustomMessageBox.Show("Please enter your confirm password!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Hãy nhập lại mật khẩu!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 parameter.pwbPasswordConfirm.Focus();
                 return;
             }
             if (parameter.grdImage.Background == null)
             {
-                CustomMessageBox.Show("Please select your avatar", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Hãy chọn ảnh đại diện", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (parameter.pwbPassword.Password != parameter.pwbPasswordConfirm.Password)
             {
-                CustomMessageBox.Show("Password does not match!", "Notify", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox.Show("Mật khẩu không khớp!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
                 parameter.pwbPasswordConfirm.Focus();
                 return;
             }
@@ -123,12 +123,12 @@ namespace BusinessManagement.ViewModels
                 DataProvider.Instance.DB.SaveChanges();
                 this.IsSucceed = true;
 
-                CustomMessageBox.Show("Successful account registration!", "Notify", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                CustomMessageBox.Show("Đăng ký tài khoản thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
             else
             {
                 this.IsSucceed = false;
-                CustomMessageBox.Show("Username already exists! Please enter other account", "Notify", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox.Show("Tài khoản đã tồn tại! Hãy chọn tài khoản khác.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
                 parameter.txtUsername.Focus();
                 return;
             }

@@ -71,7 +71,7 @@ namespace BusinessManagement.ViewModels
             int id = int.Parse(para.txbID.Text);
             if (DataProvider.Instance.DB.Products.Where(x => x.ID == id).First().Count < int.Parse(para.tb_main.Text))
             {
-                CustomMessageBox.Show("Not enough product", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Không đủ sản phẩm", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 para.tb_main.Text = DataProvider.Instance.DB.Products.Where(x => x.ID == id).First().Count.ToString();
                 return;
             }
@@ -122,16 +122,17 @@ namespace BusinessManagement.ViewModels
 
         private void PayBusiness(HomeWindow para)
         {
+            if (ListProductChosen.Count < 1)
+            {
+                CustomMessageBox.Show("Hãy chọn sản phẩm!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             if (para.txbIDAgencyPayment.Text == "-1")
             {
-                CustomMessageBox.Show("Please choose agency!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Hãy chọn đại lý!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (ListProductChosen.Count == 0)
-            {
-                CustomMessageBox.Show("Please choose product!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+
 
             int idAgency = int.Parse(this.HomeWindow.txbIDAgencyPayment.Text);
             Agency agency = DataProvider.Instance.DB.Agencies.Where(x => x.ID == idAgency).First();
@@ -139,11 +140,11 @@ namespace BusinessManagement.ViewModels
             TypeOfAgency type = DataProvider.Instance.DB.TypeOfAgencies.Where(x => x.ID == agency.TypeOfAgency).First();
             if ((excess + agency.Debt > type.MaxOfDebt))
             {
-                CustomMessageBox.Show("Debt limit!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox.Show("Nợ quá mức!", "Lỗi!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            MessageBoxResult mes = CustomMessageBox.Show("Are you sure?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult mes = CustomMessageBox.Show("Bạn có chắc không?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (mes != MessageBoxResult.Yes)
             {
@@ -280,7 +281,7 @@ namespace BusinessManagement.ViewModels
 
             if (String.IsNullOrEmpty(para.Text))
             {
-                CustomMessageBox.Show("Please choose agency!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Hãy chọn đại lý!", "DB.Districts.ToList().Count", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -349,7 +350,7 @@ namespace BusinessManagement.ViewModels
 
             if (DataProvider.Instance.DB.Products.Where(x => x.ID == id).First().Count < 1)
             {
-                CustomMessageBox.Show("No inventory in stock", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Không có hàng trong kho", "DB.Districts.ToList().Count", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -392,7 +393,7 @@ namespace BusinessManagement.ViewModels
                     {
                         if (DataProvider.Instance.DB.Products.Where(x => x.ID == id).First().Count == int.Parse(item.tb_main.Text))
                         {
-                            CustomMessageBox.Show("Not enough product", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            CustomMessageBox.Show("Không đủ sản phẩm", "DB.Districts.ToList().Count", MessageBoxButton.OK, MessageBoxImage.Warning);
                             return;
                         }
                         int amount = int.Parse(item.tb_main.Text) + 1;

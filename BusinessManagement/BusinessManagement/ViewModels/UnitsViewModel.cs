@@ -25,7 +25,7 @@ namespace BusinessManagement.ViewModels
         private void AddUnits(AddUnitsWindow para)
         {
 
-            StreamReader sr = new StreamReader("../../cache.txt");
+/*            StreamReader sr = new StreamReader("../../cache.txt");
             string cache = sr.ReadToEnd();
             sr.Close();
             string[] rulesSetting = cache.Split(' ');
@@ -34,7 +34,7 @@ namespace BusinessManagement.ViewModels
             {
                 CustomMessageBox.Show("Unit limit!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
-            }
+            }*/
 
             if (string.IsNullOrEmpty(para.txtName.Text))
             {

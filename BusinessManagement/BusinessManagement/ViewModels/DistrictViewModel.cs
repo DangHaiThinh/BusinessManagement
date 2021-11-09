@@ -32,7 +32,7 @@ namespace BusinessManagement.ViewModels
 
             try
             {
-                if (DataProvider.Instance.DB.Districts.ToList().Count < 20)
+                if (DataProvider.Instance.DB.Districts.ToList().Count < 40)
                 {
                     District district = new District();
                     district.Name = para.txtName.Text;
@@ -45,7 +45,7 @@ namespace BusinessManagement.ViewModels
                 }
                 else
                 {
-                    CustomMessageBox.Show("Exceed the number of districts limit: 20", "Notify", MessageBoxButton.OK, MessageBoxImage.Error);
+                    CustomMessageBox.Show("Vượt quá giới hạn số lượng quận: 40", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
                     para.isSucceed = false;
                     return;
                 }
@@ -53,7 +53,7 @@ namespace BusinessManagement.ViewModels
             }
             catch
             {
-                CustomMessageBox.Show("District name already exists!", "Notify", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox.Show("Tên quận bị trùng!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
                 para.txtName.Clear();
                 para.isSucceed = false;
             }

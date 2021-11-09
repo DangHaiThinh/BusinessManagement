@@ -134,11 +134,11 @@ namespace BusinessManagement.ViewModels
             this.Window = para;
             if (para.stkImportProducts.Children.Count == 0)
             {
-                CustomMessageBox.Show("There are currently no products being imported!", "Notify", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox.Show("Hiện tại không có sản phẩm nào được nhập!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            MessageBoxResult res = CustomMessageBox.Show("Are you sure?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult res = CustomMessageBox.Show("Bạn có chắc không?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
                 InvoiceWindow invoiceWindow = new InvoiceWindow();
@@ -149,9 +149,9 @@ namespace BusinessManagement.ViewModels
 
                 DataProvider.Instance.DB.StockReceipts.Add(stockReceipt);
 
-                invoiceWindow.txbName.Text = "Our company";
-                invoiceWindow.txbAddress.Text = "University of Infomation Technology";
-                invoiceWindow.txbPhone.Text = "0xxxxxxxxx";
+                invoiceWindow.txbName.Text = "Công ty này";
+                invoiceWindow.txbAddress.Text = "khu phố 6, Thủ Đức, Thành phố Hồ Chí Minh";
+                invoiceWindow.txbPhone.Text = "+84 28 3725 2002";
                 invoiceWindow.txbIDinvoice.Text = stockReceipt.ID.ToString();
                 invoiceWindow.txbDate.Text = DateTime.Now.ToShortDateString();
                 invoiceWindow.txbRetainer.Visibility = System.Windows.Visibility.Hidden;
@@ -205,7 +205,7 @@ namespace BusinessManagement.ViewModels
 
         private void DeleteProduct(StockReceiptControlUC control)
         {
-            MessageBoxResult res = CustomMessageBox.Show("Are you sure?", "Notify", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult res = CustomMessageBox.Show("Bạn có chắc không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
                 this.Window.stkImportProducts.Children.Remove(control);
@@ -269,7 +269,7 @@ namespace BusinessManagement.ViewModels
         {
             this.ItemSourceUnits.Clear();
             Unit unit = new Unit();
-            unit.Name = "All";
+            unit.Name = "Tất cả";
             this.ItemSourceUnits.Add(unit);
 
             List<Unit> listUnits = DataProvider.Instance.DB.Units.Select(p => p).ToList();

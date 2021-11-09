@@ -158,7 +158,7 @@ namespace BusinessManagement.ViewModels
             else
             {
                 para.txb_yesterday_compare.Text = ConvertToString(sumInvoicesTotal) + " VND";
-                para.yesterday_compare.Text = "There were no bills yesterday";
+                para.yesterday_compare.Text = "Hôm qua không có hóa đơn nào";
             }
             //compare with last month
             try
@@ -185,7 +185,7 @@ namespace BusinessManagement.ViewModels
             else
             {
                 para.txb_month_compare.Text = ConvertToString(sumInvoicesThisMonth) + " VND";
-                para.month_compare.Text = "There were no bills last month";
+                para.month_compare.Text = "Tháng trước không có hóa đơn nào";
             }
         }
 
@@ -380,9 +380,9 @@ namespace BusinessManagement.ViewModels
 
             para.cboSelectTypeOfChart.IsEnabled = true;
 
-            para.cboSelectTypeOfChart.Text = "Total And Debt";
+            para.cboSelectTypeOfChart.Text = "Doanh thu và nợ";
 
-            para.cboSelectPeriod.Text = "Monthly";
+            para.cboSelectPeriod.Text = "Hàng tháng";
 
             para.cboSelectTime.Text = month;
 
@@ -398,12 +398,12 @@ namespace BusinessManagement.ViewModels
         {
             string currenYear = DateTime.Now.Year.ToString();
             string currentMonth = DateTime.Now.Month.ToString();
-            AxisXTitle = "Agency";
+            AxisXTitle = "Đại lý";
             SeriesCollection = new SeriesCollection
             {
                 new ColumnSeries
                 {
-                    Title = "Total",
+                    Title = "Tổng",
                     Values = this.GetTotalOfTop5AgenciesByMonth(currentMonth, currenYear)
                 }
             };
@@ -412,12 +412,12 @@ namespace BusinessManagement.ViewModels
         }
         public void LoadChartByAgencyAndYear(string year)
         {
-            AxisXTitle = "Agency";
+            AxisXTitle = "Đại lý";
             SeriesCollection = new SeriesCollection
             {
                 new ColumnSeries
                 {
-                    Title = "Total",
+                    Title = "Tổng",
                     Values = this.GetTotalOfTop5AgenciesByYear(year)
                 }
             };
@@ -426,12 +426,12 @@ namespace BusinessManagement.ViewModels
         }
         public void LoadChartByAgencyAndYearMonth(string month, string year)
         {
-            AxisXTitle = "Agency";
+            AxisXTitle = "Đại lý";
             SeriesCollection = new SeriesCollection
             {
                 new ColumnSeries
                 {
-                    Title = "Total",
+                    Title = "Tổng",
                     Values = this.GetTotalOfTop5AgenciesByMonth(month, year)
                 }
             };
@@ -440,12 +440,12 @@ namespace BusinessManagement.ViewModels
         }
         public void LoadChartByAgencyAndYearQuater(string quarter, string year)
         {
-            AxisXTitle = "Agency";
+            AxisXTitle = "Đại lý";
             SeriesCollection = new SeriesCollection
             {
                 new ColumnSeries
                 {
-                    Title = "Total",
+                    Title = "Tổng",
                     Values = this.GetTotalOfTop5AgenciesByQuarter(quarter, year)
                 }
             };
@@ -457,12 +457,12 @@ namespace BusinessManagement.ViewModels
         {
             string currenYear = DateTime.Now.Year.ToString();
             string currentMonth = DateTime.Now.Month.ToString();
-            AxisXTitle = "Prodcut";
+            AxisXTitle = "Sản phẩm";
             SeriesCollection = new SeriesCollection
             {
                 new ColumnSeries
                 {
-                    Title = "Total",
+                    Title = "Tổng",
                     Values = this.GetTotalOfTop5ProductsByMonth(currentMonth, currenYear)
                 }
             };
@@ -471,12 +471,12 @@ namespace BusinessManagement.ViewModels
         }
         public void LoadChartByProductYearMonth(string month, string year)
         {
-            AxisXTitle = "Prodcut";
+            AxisXTitle = "Sản phẩm";
             SeriesCollection = new SeriesCollection
             {
                 new ColumnSeries
                 {
-                    Title = "Total",
+                    Title = "Tổng",
                     Values = this.GetTotalOfTop5ProductsByMonth(month, year)
                 }
             };
@@ -485,12 +485,12 @@ namespace BusinessManagement.ViewModels
         }
         public void LoadChartByProductYear(string year)
         {
-            AxisXTitle = "Prodcut";
+            AxisXTitle = "Sản phẩm";
             SeriesCollection = new SeriesCollection
             {
                 new ColumnSeries
                 {
-                    Title = "Total",
+                    Title = "Tổng",
                     Values = this.GetTotalOfTop5ProductsByYear(year)
                 }
             };
@@ -499,12 +499,12 @@ namespace BusinessManagement.ViewModels
         }
         public void LoadChartByProductYearQuarter(string quarter, string year)
         {
-            AxisXTitle = "Prodcut";
+            AxisXTitle = "Sản phẩm";
             SeriesCollection = new SeriesCollection
             {
                 new ColumnSeries
                 {
-                    Title = "Total",
+                    Title = "Tổng",
                     Values = this.GetTotalOfTop5ProductsByQuarter(quarter, year)
                 }
             };
@@ -514,22 +514,22 @@ namespace BusinessManagement.ViewModels
 
         public void LoadChartByMonth(string month, string year)
         {
-            AxisXTitle = "Day";
+            AxisXTitle = "Ngày";
             SeriesCollection = new SeriesCollection
             {
                 new ColumnSeries
                 {
-                    Title = "Total",
+                    Title = "Tổng",
                     Values = this.GetTotalByMonth(month, year)
                 },
                 new ColumnSeries
                 {
-                    Title  = "Debt",
+                    Title  = "Nợ",
                     Values = this.GetDebtByMonth(month, year)
                 },
                 new ColumnSeries
                 {
-                    Title = "Cost",
+                    Title = "Phí tổn",
                     Values = this.GetCostByMonth(month, year)
                 }
             };
@@ -538,22 +538,22 @@ namespace BusinessManagement.ViewModels
         }
         public void LoadChartByYear(string year)
         {
-            AxisXTitle = "Month";
+            AxisXTitle = "Tháng";
             SeriesCollection = new SeriesCollection
             {
                 new ColumnSeries
                 {
-                    Title = "Total",
+                    Title = "Tổng",
                     Values = this.GetTotalByYear(year)
                 },
                 new ColumnSeries
                 {
-                    Title  = "Debt",
+                    Title  = "Nợ",
                     Values = this.GetDebtByYear(year)
                 },
                 new ColumnSeries
                 {
-                    Title  = "Cost",
+                    Title  = "Phí tổn",
                     Values = this.GetCostByYear(year)
                 }
             };
@@ -562,22 +562,22 @@ namespace BusinessManagement.ViewModels
         }
         public void LoadChartByQuarter(string year)
         {
-            AxisXTitle = "Quarter";
+            AxisXTitle = "Quý";
             SeriesCollection = new SeriesCollection
             {
                 new ColumnSeries
                 {
-                    Title = "Total",
+                    Title = "Tổng",
                     Values = this.GetTotalByQuarter(year)
                 },
                 new ColumnSeries
                 {
-                    Title  = "Debt",
+                    Title  = "Nợ",
                     Values = this.GetDebtByQuarter(year)
                 },
                 new ColumnSeries
                 {
-                    Title  = "Cost",
+                    Title  = "Phí tổn",
                     Values = this.GetCostByQuarter(year)
                 }
             };

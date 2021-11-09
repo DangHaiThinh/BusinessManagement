@@ -42,14 +42,14 @@ namespace BusinessManagement.ViewModels
             //check username
             if (String.IsNullOrEmpty(parameter.txtUser.Text))
             {
-                CustomMessageBox.Show("Please enter your username!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Hãy nhập tên tài khoản!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 parameter.txtUser.Focus();
                 return;
             }
             //check password
             if (String.IsNullOrEmpty(parameter.txtPassword.Password))
             {
-                CustomMessageBox.Show("Please enter your password!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Hãy nhập mật khẩu!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 parameter.txtPassword.Focus();
                 return;
             }
@@ -78,7 +78,7 @@ namespace BusinessManagement.ViewModels
             }
             else
             {
-                CustomMessageBox.Show("Username or password is not valid!", "Notify", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox.Show("Tài khoản hoặc mật khẩu sai!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

@@ -159,7 +159,7 @@ namespace BusinessManagement.ViewModels
         {
             if (DateTime.Compare(DateTime.Now, (DateTime)para.dpCheckin.SelectedDate) < 0)
             {
-                CustomMessageBox.Show("Could not select the month at the future!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Không thể chọn tháng trong tương lai", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 para.dpCheckin.Text = DateTime.Now.ToString();
             }
         }
@@ -195,7 +195,7 @@ namespace BusinessManagement.ViewModels
 
             if (this.ListStores.Count == 0)
             {
-                CustomMessageBox.Show("List agency is empty!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                CustomMessageBox.Show("Danh sách đại lý đang trống", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
@@ -276,8 +276,8 @@ namespace BusinessManagement.ViewModels
                 para.grdList3Store_Store.Visibility = Visibility.Hidden;
                 if (para.cbbSearch.Items.Count == 3)
                 {
-                    para.cbbSearch.Items.Add("Debt - Upper");
-                    para.cbbSearch.Items.Add("Debt - Lower");
+                    para.cbbSearch.Items.Add("Nợ - Thấp hơn");
+                    para.cbbSearch.Items.Add("Nợ - Cao hơn");
                 }
                 para.cbbSearch.SelectedIndex = 0;
             }
@@ -288,8 +288,8 @@ namespace BusinessManagement.ViewModels
                 para.grdList3Store_Store.Visibility = Visibility.Visible;
                 if (para.cbbSearch.Items.Count == 5)
                 {
-                    para.cbbSearch.Items.Remove("Debt - Upper");
-                    para.cbbSearch.Items.Remove("Debt - Lower");
+                    para.cbbSearch.Items.Remove("Nợ - Thấp hơn");
+                    para.cbbSearch.Items.Remove("Nợ - Cao hơn");
                 }
                 para.cbbSearch.SelectedIndex = 0;
             }
@@ -568,10 +568,10 @@ namespace BusinessManagement.ViewModels
         {
             if (ConvertToNumber(para.txtDebt.Text) > 0)
             {
-                CustomMessageBox.Show("Debt must be equal 0!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Chưa trả hết nợ!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            MessageBoxResult res = CustomMessageBox.Show("Are you sure?", "Notify", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult res = CustomMessageBox.Show("Bạn có chắc không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
                 Agency store = new Agency();
@@ -589,7 +589,7 @@ namespace BusinessManagement.ViewModels
                 DataProvider.Instance.DB.SaveChanges();
 
                 this.HomeWindow.stkStore_Store.Children.Remove(para);
-            }            
+            }
         }
 
         private void SaveStore(AddStoreWindow para)
@@ -651,7 +651,7 @@ namespace BusinessManagement.ViewModels
             int? number = DataProvider.Instance.DB.Districts.Where(x => x.Name == district).First().NumberAgencyInDistrict;
             int setting = DataProvider.Instance.DB.Settings.First().NumberStoreInDistrict;
 
-            if (para.Title == "Edit agency")
+            if (para.Title == "Sửa thông tin đại lý")
             {
                 int id = int.Parse(para.txtID.Text.ToString());
                 Agency agency = DataProvider.Instance.DB.Agencies.Where(x => x.ID == id).First();
@@ -661,7 +661,7 @@ namespace BusinessManagement.ViewModels
                 {
                     if (setting <= number)
                     {
-                        CustomMessageBox.Show("Number of agency in this district is full!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        CustomMessageBox.Show("Số lượng đại lý trong quận này đã đủ!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
                 }
@@ -670,7 +670,7 @@ namespace BusinessManagement.ViewModels
             {
                 if (setting <= number)
                 {
-                    CustomMessageBox.Show("Number of agency in this district is full!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    CustomMessageBox.Show("Số lượng đại lý trong quận này đã đủ!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
             }
@@ -679,7 +679,7 @@ namespace BusinessManagement.ViewModels
 
             if (type.MaxOfDebt < ConvertToNumber(para.txtDebt.Text))
             {
-                CustomMessageBox.Show("Debt limit!", "Notify", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox.Show("Nợ quá nhiều!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             try
@@ -721,7 +721,7 @@ namespace BusinessManagement.ViewModels
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show(ex.Message, "Notify", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox.Show(ex.Message, "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
@@ -775,7 +775,7 @@ namespace BusinessManagement.ViewModels
 
             wd.cbbSpecies.SelectedIndex = pos;
             wd.txtDebt.Text = SeparateThousands(store.Debt.ToString());
-            wd.Title = "Edit agency";
+            wd.Title = "Sửa thông tin đại lý";
             wd.txtDebt.IsEnabled = false;
             wd.dpCheckin.IsEnabled = false;
             wd.ShowDialog();

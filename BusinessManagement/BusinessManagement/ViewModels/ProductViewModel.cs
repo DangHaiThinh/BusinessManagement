@@ -119,7 +119,7 @@ namespace BusinessManagement.ViewModels
 
             if (list.Count == 0)
             {
-                CustomMessageBox.Show("List product is empty!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                CustomMessageBox.Show("Danh sách sản phẩm đang trống!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
@@ -215,7 +215,7 @@ namespace BusinessManagement.ViewModels
                 return;
             }
 
-            StreamReader sr = new StreamReader("../../cache.txt");
+/*            StreamReader sr = new StreamReader("../../cache.txt");
             string cache = sr.ReadToEnd();
             sr.Close();
             string[] rulesSetting = cache.Split(' ');
@@ -224,7 +224,7 @@ namespace BusinessManagement.ViewModels
             {
                 CustomMessageBox.Show("Sản phẩm vượt mức!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
-            }
+            }*/
 
             try
             {
@@ -236,7 +236,7 @@ namespace BusinessManagement.ViewModels
 
                 Product product;
                 //update product
-                if (para.Title == "Update info product")
+                if (para.Title == "Cập nhật thông tin sản phẩm")
                 {
                     if (imageFileName == null)
                     {
@@ -283,7 +283,7 @@ namespace BusinessManagement.ViewModels
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show(ex.Message, "Notify", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox.Show(ex.Message, "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
@@ -341,7 +341,7 @@ namespace BusinessManagement.ViewModels
             window.txtPrice.Text = ConvertToString(product.ExportPrice);
             window.txtPrice.SelectionStart = window.txtPrice.Text.Length;
 
-            window.Title = "Update info product";
+            window.Title = "Cập nhật thông tin sản phẩm";
             window.grdImage.Background = imageBrush;
             if (window.grdImage.Children.Count != 0)
             {
@@ -353,7 +353,7 @@ namespace BusinessManagement.ViewModels
         }
         private void DeleteProduct(ProductControlUC para)
         {
-            MessageBoxResult res = CustomMessageBox.Show("Are you sure?", "Notify", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult res = CustomMessageBox.Show("Bạn có chắc không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
                 Product product = new Product();
@@ -461,7 +461,7 @@ namespace BusinessManagement.ViewModels
             this.ItemsSourceUnits.Clear();
 
             Unit unit = new Unit();
-            unit.Name = "All";
+            unit.Name = "Tất cả";
             this.ItemsSourceUnits.Add(unit);
 
             List<Unit> listUnits = DataProvider.Instance.DB.Units.Select(p => p).ToList();

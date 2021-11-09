@@ -108,7 +108,7 @@ namespace BusinessManagement.ViewModels
 
         private void DeleteType(TypeOfAgencyUC para)
         {
-            MessageBoxResult mes = CustomMessageBox.Show("Are you sure?", "Confirm", MessageBoxButton.YesNo);
+            MessageBoxResult mes = CustomMessageBox.Show("Bạn có chắc không?", "Xác nhận", MessageBoxButton.YesNo);
 
             if (mes != MessageBoxResult.Yes)
             {
@@ -123,7 +123,7 @@ namespace BusinessManagement.ViewModels
             {
                 if (item.TypeOfAgency == this.ListType[stt - 1].ID)
                 {
-                    CustomMessageBox.Show("You must delete all agencies of this type!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    CustomMessageBox.Show("Bạn phải xóa hết tất cả đại lý loại này!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
             }
@@ -172,21 +172,21 @@ namespace BusinessManagement.ViewModels
 
             if (ConvertToNumber(para.txtNumberAgencyinDistrict_Setting.Text) == count)
             {
-                CustomMessageBox.Show("Setting is not change...!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Cài đặt chưa thay đổi...!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (limit > ConvertToNumber(para.txtNumberAgencyinDistrict_Setting.Text))
             {
-                string show = string.Format("Number of agency in district must be greater than or equal to than {0}!", limit);
-                CustomMessageBox.Show(show, "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                string show = string.Format("Số đại lý trong quận phải lớn hơn số đại lý hiện hữu!", limit);
+                CustomMessageBox.Show(show, "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             Setting setting = DataProvider.Instance.DB.Settings.Where(x => x.ID == 1).First();
             setting.NumberStoreInDistrict = (int)ConvertToNumber(para.txtNumberAgencyinDistrict_Setting.Text);
             DataProvider.Instance.DB.Settings.AddOrUpdate(setting);
             DataProvider.Instance.DB.SaveChanges();
-            CustomMessageBox.Show("Success", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+            CustomMessageBox.Show("Thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         public void LoadSettingWindow(HomeWindow para)

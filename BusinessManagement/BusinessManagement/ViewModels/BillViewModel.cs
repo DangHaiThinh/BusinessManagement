@@ -227,7 +227,7 @@ namespace BusinessManagement.ViewModels
             this.HomeWindow.ScrollInvoice.Visibility = System.Windows.Visibility.Visible;
             this.HomeWindow.ScrollReceipt.Visibility = System.Windows.Visibility.Hidden;
             this.HomeWindow.ScrollStockReceipt.Visibility = System.Windows.Visibility.Hidden;
-            this.HomeWindow.LastBlock.Text = "Debt";
+            this.HomeWindow.LastBlock.Text = "Nợ";
         }
 
         public void Clear(HomeWindow para)
@@ -240,7 +240,7 @@ namespace BusinessManagement.ViewModels
         {
             if (status == 0)
             {
-                CustomMessageBox.Show("Click Releasing Bill, Receipt Bill or Stock Receipt first!", "Notify", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Chọn loại hóa đơn trước!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" };
@@ -314,7 +314,7 @@ namespace BusinessManagement.ViewModels
         }
         private void OpenInvoiceWindow(InvoiceUC para)
         {
-            if (para.AgencyName.Text == "Our company")
+            if (para.AgencyName.Text == "Công ty này")
             {
                 int no = 1;
                 StockReceipt stockReceipt = new StockReceipt();
@@ -322,8 +322,9 @@ namespace BusinessManagement.ViewModels
                 stockReceipt = (StockReceipt)DataProvider.Instance.DB.StockReceipts.Where(x => x.ID == id).First();
                 List<StockReceiptInfo> stockReceiptInfos = stockReceipt.StockReceiptInfoes.ToList();
                 InvoiceWindow invoiceWindow = new InvoiceWindow();
-                invoiceWindow.txbName.Text = "Our company";
-                invoiceWindow.txbAddress.Text = "University of Infomation Technology";
+                invoiceWindow.txbName.Text = "Công ty này";
+                invoiceWindow.txbAddress.Text = "khu phố 6, Thủ Đức, Thành phố Hồ Chí Minh";
+                invoiceWindow.txbPhone.Text = "+84 28 3725 2002";
                 invoiceWindow.txbIDinvoice.Text = stockReceipt.ID.ToString();
                 invoiceWindow.txbDate.Text = stockReceipt.CheckIn.Value.ToShortDateString();
 
@@ -459,7 +460,7 @@ namespace BusinessManagement.ViewModels
             {
                 InvoiceUC invoiceUC = new InvoiceUC();
                 invoiceUC.InvoiceID.Text = stockReceipt.ID.ToString();
-                invoiceUC.AgencyName.Text = "Our company";
+                invoiceUC.AgencyName.Text = "Công ty này";
                 invoiceUC.CheckOut.Text = stockReceipt.CheckIn.Value.ToShortDateString();
                 invoiceUC.Debt.Text = ConvertToString(stockReceipt.Total);
                 pay += stockReceipt.Total;
@@ -480,7 +481,7 @@ namespace BusinessManagement.ViewModels
                 para.ScrollInvoice.Visibility = System.Windows.Visibility.Visible;
                 para.ScrollReceipt.Visibility = System.Windows.Visibility.Hidden;
                 para.ScrollStockReceipt.Visibility = System.Windows.Visibility.Hidden;
-                para.LastBlock.Text = "Debt";
+                para.LastBlock.Text = "Nợ";
             }
             if (para.comboBoxBill.SelectedIndex == 2)
             {
@@ -493,7 +494,7 @@ namespace BusinessManagement.ViewModels
                 para.ScrollReceipt.Visibility = System.Windows.Visibility.Visible;
                 para.ScrollInvoice.Visibility = System.Windows.Visibility.Hidden;
                 para.ScrollStockReceipt.Visibility = System.Windows.Visibility.Hidden;
-                para.LastBlock.Text = "Amount";
+                para.LastBlock.Text = "Số lượng";
             }
             if (para.comboBoxBill.SelectedIndex == 0)
             {
@@ -506,7 +507,7 @@ namespace BusinessManagement.ViewModels
                 para.ScrollInvoice.Visibility = System.Windows.Visibility.Hidden;
                 para.ScrollReceipt.Visibility = System.Windows.Visibility.Hidden;
                 para.ScrollStockReceipt.Visibility = System.Windows.Visibility.Visible;
-                para.LastBlock.Text = "Total";
+                para.LastBlock.Text = "Tổng";
             }
 
         }
