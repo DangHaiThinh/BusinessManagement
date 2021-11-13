@@ -20,7 +20,6 @@
 ## Tác giả:
   - Đặng Hải Thịnh - 19520976
   - Hoàng Minh Anh - 16520035
-  - Đoàn Võ Hữu Khang - 20520210
   - Ngô Quang Khoa - 20521468
   - Nguyễn Thành Trung - 20521015
 ## Giảng viên hướng dẫn:
