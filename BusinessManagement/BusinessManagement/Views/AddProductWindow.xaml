@@ -11,7 +11,7 @@
         mc:Ignorable="d"
         DataContext="{StaticResource ProductVM}"
         Background="White"
-        Title="Add product window" 
+        Title="THÊM SẢN PHẨM" 
         Height="500" 
         Width="950"
         ResizeMode="CanMinimize"
