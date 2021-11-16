@@ -17,7 +17,7 @@
         xmlns:util="clr-namespace:BusinessManagement"
         mc:Ignorable="d"
         DataContext="{StaticResource LoginVM}"
-        Title="Login"
+        Title="ĐĂNG NHẬP"
         ResizeMode="CanMinimize"
         Height="810" 
         Width="1440" 
