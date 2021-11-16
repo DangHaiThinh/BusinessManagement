@@ -11,7 +11,7 @@
         DataContext="{StaticResource BillVM}"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
-        Title="Hóa đơn thu tiền" Height="600" Width="700">
+        Title="PHIẾU THU" Height="600" Width="700">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"></RowDefinition>
@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <TextBlock
-                Text="Hóa đơn thu tiền" 
+                Text="Phiếu thu" 
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Center" 
                 FontFamily="Segoe UI"

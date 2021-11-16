@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:BusinessManagement.Views"
         mc:Ignorable="d"
         x:Name="wdInvoice"
-        Title="Biên lai" Height="800" Width="900"
+        Title="BIÊN LAI" Height="800" Width="900"
         WindowStartupLocation="CenterScreen"
         DataContext="{StaticResource BusinessVM}">
     <Grid>

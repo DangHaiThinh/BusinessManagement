@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         x:Name="wdInfoAcc"
         DataContext="{StaticResource AccountVM}"
-        Title="Thông tin tài khoản"
+        Title="THÔNG TIN TÀI KHOẢN"
         WindowStartupLocation="CenterScreen"
         Height="500" 
         Width="1000">
