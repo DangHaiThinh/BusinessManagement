@@ -2980,7 +2980,7 @@
                                 FontWeight="SemiBold"/>
                             <Expander
                                 HorizontalAlignment="Stretch"
-                                Header="Số lượng"
+                                Header="Đại lý trong quận"
                                 Foreground="#F68D7D"
                                 FontSize="14"
                                 Margin="40,0"
@@ -3103,7 +3103,7 @@
                                 FontWeight="SemiBold"/>
                             <Expander
                                 HorizontalAlignment="Stretch"
-                                Header="Số lượng"
+                                Header="Loại sản phẩm"
                                 Foreground="#F68D7D"
                                 FontSize="14"
                                 Margin="40,0"
@@ -3124,7 +3124,7 @@
                                             Margin="20,0">
                                             <Grid>
                                                 <TextBlock 
-                                                    Text="Số lượng sản phẩm"
+                                                    Text="Số loại sản phẩm"
                                                     Foreground="#504D85"
                                                     FontWeight="SemiBold"
                                                     HorizontalAlignment="Left"
