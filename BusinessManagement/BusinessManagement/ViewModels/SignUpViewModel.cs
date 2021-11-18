@@ -118,6 +118,7 @@ namespace BusinessManagement.ViewModels
                 account.Username = username;
                 account.Password = password;
                 account.Image = imgByteArr;
+                account.Role = "34";
 
                 DataProvider.Instance.DB.Accounts.Add(account);
                 DataProvider.Instance.DB.SaveChanges();

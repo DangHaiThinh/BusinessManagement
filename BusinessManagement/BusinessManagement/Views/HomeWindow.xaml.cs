@@ -23,5 +23,42 @@ namespace BusinessManagement.Views
         {
             InitializeComponent();
         }
+
+        private void grdWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (CurrentAccount.Role.Contains("1"))
+            {
+                grdMenu_Stores.Visibility = Visibility.Visible;
+            }
+            if (CurrentAccount.Role.Contains("2"))
+            {
+                grdMenu_Products.Visibility = Visibility.Visible;
+            }
+            if (CurrentAccount.Role.Contains("3"))
+            {
+                grdMenu_Business.Visibility = Visibility.Visible;
+            }
+            if (CurrentAccount.Role.Contains("4"))
+            {
+                grdMenu_Bills.Visibility = Visibility.Visible;
+            }
+            if (CurrentAccount.Role.Contains("5"))
+            {
+                grdMenu_Report.Visibility = Visibility.Visible;
+            }
+            if (CurrentAccount.Role.Contains("6"))
+            {
+                grdMenu_Setting.Visibility = Visibility.Visible;
+            }
+            if (CurrentAccount.Role.Contains("7"))
+            {
+
+            }
+        }
+
+        private void MenuItem_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

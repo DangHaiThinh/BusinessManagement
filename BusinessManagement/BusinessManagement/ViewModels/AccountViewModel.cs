@@ -40,6 +40,7 @@ namespace BusinessManagement.ViewModels
         public ICommand InfoAcc_CloseWindowCommand { get; set; }
         //home window
         public ICommand ShowProfileCommand { get; set; }
+        public ICommand ShowAccountManagement { get; set; }
         public ICommand ShowChangePasswordCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
 
@@ -58,6 +59,7 @@ namespace BusinessManagement.ViewModels
             InfoAcc_CloseWindowCommand = new RelayCommand<InfoAccountWindow>((para) => true, para => InfoAcc_CloseWindow(para));
             //home window
             ShowProfileCommand = new RelayCommand<HomeWindow>((para) => true, para => ShowProfileAccountWindow(para));
+            ShowAccountManagement = new RelayCommand<HomeWindow>((para) => true, para => ShowAccountManagementWindow(para));
             ShowChangePasswordCommand = new RelayCommand<HomeWindow>((para) => true, para => ShowChangePasswordWindow(para));
             LogOutCommand = new RelayCommand<HomeWindow>((para) => true, para => LogOut(para));
         }
@@ -106,7 +108,13 @@ namespace BusinessManagement.ViewModels
                 this.HomeWindow.grdAcc_Image.Background = imageBrush;
                 this.HomeWindow.menu_Acc_DisplayName.Header = CurrentAccount.DisplayName;
             }
-        }        
+        }
+        private void ShowAccountManagementWindow(HomeWindow para)
+        {
+            this.HomeWindow = para;
+            ChangePasswordWindow window = new ChangePasswordWindow();
+            window.ShowDialog();
+        }
         //info account window
         private void InfoAcc_Save(InfoAccountWindow para)
         {

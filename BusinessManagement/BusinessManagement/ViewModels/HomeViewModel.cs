@@ -51,6 +51,8 @@ namespace BusinessManagement.ViewModels
             para.rec_btn_Menu_Setting.Fill = transparent;
             para.rec_btn_Menu_Business.Fill = transparent;
 
+            
+
             switch (index)
             {
                 case 0:

@@ -12,6 +12,7 @@ namespace BusinessManagement
         private static CurrentAccount instance;
 
         public static string Username { get; set; }
+        public static string Role { get; set; }
         public static string Password { get; set; }
         public static string DisplayName { get; set; }
         public static byte[] Image { get; set; }
@@ -45,6 +46,7 @@ namespace BusinessManagement
             account = DataProvider.Instance.DB.Accounts.Where(p => p.Username == username).First();
 
             Username = account.Username;
+            Role = account.Role;
             Password = account.Password;
             DisplayName = account.DisplayName;
             Image = account.Image;
@@ -54,6 +56,7 @@ namespace BusinessManagement
         public void ConvertAccToCurrentAcc(Account account)
         {            
             Username = account.Username;
+            Role = account.Role;
             Password = account.Password;
             DisplayName = account.DisplayName;
             Image = account.Image;

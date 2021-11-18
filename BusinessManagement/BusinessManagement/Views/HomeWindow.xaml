@@ -14,9 +14,9 @@
         WindowStartupLocation="CenterScreen"
         x:Name="wdHome"        
         DataContext="{StaticResource HomeVM}"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize" Visibility="Visible">
     <Grid
-        x:Name="grdWindow">
+        x:Name="grdWindow" Loaded="grdWindow_Loaded">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -114,7 +114,7 @@
                     HorizontalAlignment="Left"
                     Height="60" 
                     Margin="0" 
-                    Width="300">
+                    Width="300" Visibility="Collapsed">
                     <Rectangle
                         Name="rec_btn_Menu_Store"
                         Height="45"
@@ -169,7 +169,7 @@
                     HorizontalAlignment="Center"
                     Height="60" 
                     Margin="0" 
-                    Width="300">
+                    Width="300" Visibility="Collapsed">
                     <Rectangle
                         Name="rec_btn_Menu_Product"
                         Height="45"
@@ -225,7 +225,7 @@
                     HorizontalAlignment="Center"
                     Height="60" 
                     Margin="0" 
-                    Width="300">
+                    Width="300" Visibility="Collapsed">
                     <Rectangle
                         Name="rec_btn_Menu_Business"
                         Height="45"
@@ -283,7 +283,7 @@
                     HorizontalAlignment="Center"
                     Height="60" 
                     Margin="0" 
-                    Width="300">
+                    Width="300" Visibility="Collapsed">
                     <Rectangle
                         Name="rec_btn_Menu_Bill"
                         Height="45"
@@ -340,7 +340,7 @@
                     HorizontalAlignment="Center"
                     Height="60" 
                     Margin="0" 
-                    Width="300">
+                    Width="300" Visibility="Collapsed">
                     <Rectangle
                         Name="rec_btn_Menu_Report"
                         Height="45"
@@ -396,7 +396,7 @@
                     HorizontalAlignment="Left"
                     Height="60" 
                     Margin="0" 
-                    Width="300">
+                    Width="300" Visibility="Collapsed">
                     <Rectangle
                         Name="rec_btn_Menu_Setting"
                         Height="45"
@@ -520,6 +520,19 @@
                                     <i:EventTrigger EventName="Click">
                                         <i:InvokeCommandAction 
                                             Command="{Binding ShowProfileCommand}"
+                                            CommandParameter="{Binding ElementName=wdHome}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </MenuItem>
+                            <MenuItem 
+                                Header="Quản lý tài khoản"
+                                FontWeight="Normal"
+                                Cursor="Hand" Height="32"
+                                Visibility="Collapsed">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:InvokeCommandAction 
+                                            Command="{Binding ShowAccountManagement}"
                                             CommandParameter="{Binding ElementName=wdHome}"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>

@@ -649,7 +649,7 @@ namespace BusinessManagement.ViewModels
 
             district = para.cbDistrict.Text;
             int? number = DataProvider.Instance.DB.Districts.Where(x => x.Name == district).First().NumberAgencyInDistrict;
-            int setting = DataProvider.Instance.DB.Settings.First().NumberStoreInDistrict;
+            int? setting = DataProvider.Instance.DB.Settings.First().NumberStoreInDistrict;
 
             if (para.Title == "SỬA THÔNG TIN ĐẠI LÝ")
             {
