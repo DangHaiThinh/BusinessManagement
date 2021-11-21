@@ -528,7 +528,7 @@
                                 Header="Quản lý tài khoản"
                                 FontWeight="Normal"
                                 Cursor="Hand" Height="32"
-                                Visibility="Collapsed">
+                                Visibility="Visible">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <i:InvokeCommandAction 
@@ -570,7 +570,7 @@
             <Grid Grid.Row="1"
                 x:Name="grdBody_Main"
                 DataContext="{StaticResource ReportVM}"
-                Visibility="Visible">
+                Visibility="Hidden">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2"></RowDefinition>
                     <RowDefinition Height="210"></RowDefinition>
@@ -2568,7 +2568,7 @@
             <!--Body report-->
             <Grid Grid.Row="1"
                 x:Name="grdBody_Report"
-                Visibility="Hidden"
+                Visibility="Visible"
                 DataContext="{StaticResource AgencyReportVM}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Loaded">

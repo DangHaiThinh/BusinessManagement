@@ -40,9 +40,11 @@ namespace BusinessManagement.ViewModels
         public ICommand InfoAcc_CloseWindowCommand { get; set; }
         //home window
         public ICommand ShowProfileCommand { get; set; }
-        public ICommand ShowAccountManagement { get; set; }
         public ICommand ShowChangePasswordCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
+        public ICommand ShowAccountManagement { get; set; }
+        public ICommand SearchAccountCommand { get; set; }
+        
 
         public AccountViewModel()
         {
@@ -59,9 +61,11 @@ namespace BusinessManagement.ViewModels
             InfoAcc_CloseWindowCommand = new RelayCommand<InfoAccountWindow>((para) => true, para => InfoAcc_CloseWindow(para));
             //home window
             ShowProfileCommand = new RelayCommand<HomeWindow>((para) => true, para => ShowProfileAccountWindow(para));
-            ShowAccountManagement = new RelayCommand<HomeWindow>((para) => true, para => ShowAccountManagementWindow(para));
             ShowChangePasswordCommand = new RelayCommand<HomeWindow>((para) => true, para => ShowChangePasswordWindow(para));
             LogOutCommand = new RelayCommand<HomeWindow>((para) => true, para => LogOut(para));
+
+            ShowAccountManagement = new RelayCommand<HomeWindow>((para) => true, para => ShowAccountManagementWindow(para));
+            SearchAccountCommand = new RelayCommand<HomeWindow>((para) => true, para => ShowAccountManagementWindow(para));
         }
 
         //home window
@@ -112,7 +116,7 @@ namespace BusinessManagement.ViewModels
         private void ShowAccountManagementWindow(HomeWindow para)
         {
             this.HomeWindow = para;
-            ChangePasswordWindow window = new ChangePasswordWindow();
+            AccountManagementWindow window = new AccountManagementWindow();
             window.ShowDialog();
         }
         //info account window
