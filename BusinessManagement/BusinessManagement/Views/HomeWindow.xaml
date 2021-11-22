@@ -392,6 +392,62 @@
                     </Button>
                 </Grid>
                 <Grid
+                    x:Name="grdMenu_AccountManagement"
+                    HorizontalAlignment="Left"
+                    Height="60" 
+                    Margin="0" 
+                    Width="300" Visibility="Collapsed">
+                    <Rectangle
+                        Name="rec_btn_Menu_Account_Management"
+                        Height="45"
+                        Width="260"
+                        RadiusX="10"
+                        RadiusY="10"
+                        Fill="Transparent">
+                    </Rectangle>
+                    <materialDesign:PackIcon
+                        x:Name="icnAccount"
+                        Kind="AccountMultiple"
+                        Foreground="#504D85"
+                        Width="30" 
+                        Height="30" 
+                        VerticalAlignment="Center" 
+                        Cursor="Hand" 
+                        Margin="55 0 0 0">
+                    </materialDesign:PackIcon>
+                    <Button 
+                        x:Name="btnAccount" 
+                        Uid="6"
+                        Content="Tài khoản"
+                        Foreground="#504D85"
+                        HorizontalAlignment="Center" 
+                        Margin="0" 
+                        Height="45" 
+                        Width="260" 
+                        BorderThickness="10"
+                        VerticalAlignment="Center"
+                        BorderBrush="{x:Null}"
+                        Background="{x:Null}" 
+                        FontSize="22" 
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Left" 
+                        FontWeight="SemiBold" 
+                        Padding="75,0,0,0" 
+                        Cursor="Hand" 
+                        FocusVisualStyle="{x:Null}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction Command="{Binding SwitchTabCommand}"
+                                                       CommandParameter="{Binding ElementName = wdHome}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="MouseMove">
+                                <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                       CommandParameter="{Binding ElementName=btnAccount}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </Grid>
+                <Grid
                     x:Name="grdMenu_Setting"
                     HorizontalAlignment="Left"
                     Height="60" 
@@ -417,7 +473,7 @@
                     </materialDesign:PackIcon>
                     <Button 
                         x:Name="btnSetting" 
-                        Uid="6"
+                        Uid="7"
                         Content="Cài đặt"
                         Foreground="#504D85"
                         HorizontalAlignment="Center" 
@@ -524,11 +580,11 @@
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </MenuItem>
-                            <MenuItem 
+                            <!-- <MenuItem x:Name="menu_Acc_AccountManagement" 
                                 Header="Quản lý tài khoản"
                                 FontWeight="Normal"
                                 Cursor="Hand" Height="32"
-                                Visibility="Visible">
+                                Visibility="Collapsed">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <i:InvokeCommandAction 
@@ -536,7 +592,7 @@
                                             CommandParameter="{Binding ElementName=wdHome}"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
-                            </MenuItem>
+                            </MenuItem> -->
                             <MenuItem
                                 Header="Đổi mật khẩu"
                                 FontWeight="Normal"
@@ -2568,7 +2624,7 @@
             <!--Body report-->
             <Grid Grid.Row="1"
                 x:Name="grdBody_Report"
-                Visibility="Visible"
+                Visibility="Hidden"
                 DataContext="{StaticResource AgencyReportVM}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Loaded">
@@ -2958,6 +3014,189 @@
                     </ScrollViewer>
                 </Grid>
             </Grid>
+            <!--Body account management-->
+            <Grid Grid.Row="1"
+                x:Name="grdBody_Account"
+                Visibility="Visible"
+                DataContext="{StaticResource AccountVM}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Loaded">
+                        <i:InvokeCommandAction Command="{Binding InitCommand}"
+                                               CommandParameter="{Binding ElementName=wdHome}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                      Background="#FBA1BB" >
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Rectangle
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Width="300"
+                            Height="40"
+                            Margin="30 10 0 0"
+                            StrokeThickness="2"
+                            RadiusX="5"
+                            RadiusY="5"
+                            Stroke="#E2D2DA"/>
+                        <TextBox
+                            x:Name="txtSearchAccount"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Width="250"
+                            Margin="40 0 0 0"
+                            BorderThickness="0"
+                            materialDesign:HintAssist.Hint="Tìm kiếm..."
+                            MaxLines="1"
+                            Height="35"
+                            FontSize="22"
+                            FontWeight="Regular"
+                            Padding="0"
+                            HorizontalContentAlignment="Left"
+                            VerticalContentAlignment="Center" >
+                            <!-- <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <i:InvokeCommandAction Command="{Binding SearchAgencyCommand}" 
+                                                       CommandParameter="{Binding ElementName=wdHome}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers> -->
+                        </TextBox>
+                        <materialDesign:PackIcon Kind="Magnify"
+                                             Height="40"
+                                             Width="35"
+                                             HorizontalAlignment="Left"
+                                             VerticalAlignment="Top"
+                                             Margin="280 10 0 0"/>
+                    </Grid>
+                    <Grid
+                        x:Name="ColumnHeaderAccount"
+                        Background="#FF9CB9"
+                        Height="45"
+                        Width="1124"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Margin="0 75 0 0"
+                        Visibility="Visible">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="220"/>
+                            <ColumnDefinition Width="220"/>
+                            <ColumnDefinition Width="220"/>
+                            <ColumnDefinition Width="60"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <TextBlock
+                            Text="Tài khoản"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            FontSize="22"
+                            Foreground="#504D85"
+                            FontWeight="SemiBold"/>
+                        </Grid>
+                        <Grid
+                        Grid.Column="1">
+                            <TextBlock
+                            Text="Tên người dùng"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            FontSize="22"
+                            Foreground="#504D85"
+                            FontWeight="SemiBold"/>
+                        </Grid>
+                        <Grid
+                        Grid.Column="2">
+                            <TextBlock
+                            Text="Địa chỉ"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            FontSize="22"
+                            Foreground="#504D85"
+                            FontWeight="SemiBold"/>
+                        </Grid>
+                        <Grid
+                        Grid.Column="3">
+                            <TextBlock
+                            Text="Email"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            FontSize="22"
+                            Foreground="#504D85"
+                            FontWeight="SemiBold"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2"
+                        VerticalAlignment="Top"
+                        Margin="0 120 0 0"
+                        Background="WhiteSmoke">
+                        <ScrollViewer 
+                            x:Name="ScrollAccounts"
+                            HorizontalScrollBarVisibility="Disabled" 
+                            Grid.Row="2"
+                            Margin="0 0 0 0"
+                            HorizontalAlignment="Left" 
+                            Background="WhiteSmoke"
+                            Style="{StaticResource FavsScrollViewer}"
+                            VerticalScrollBarVisibility="Auto"
+                            Visibility="Hidden"
+                            Height="480">
+                            <StackPanel x:Name="stkAccounts"
+                                Width="1060"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Margin="0 0 0 0" 
+                                Visibility="Hidden"
+                                Background="WhiteSmoke"/>
+                        </ScrollViewer>
+                        <ScrollViewer 
+                            x:Name="ScrollAccountManager"
+                            HorizontalScrollBarVisibility="Disabled" 
+                            Grid.Row="2"
+                            Margin="0 0 0 0"
+                            HorizontalAlignment="Left" 
+                            Background="WhiteSmoke"
+                            Style="{StaticResource FavsScrollViewer}"
+                            VerticalScrollBarVisibility="Auto"
+                            Visibility="Hidden"
+                            Height="480">
+                            <StackPanel x:Name="stkAccountManager"
+                                Width="1060"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Margin="0 0 0 0"
+                                Background="WhiteSmoke"
+                                Visibility="Hidden"/>
+                        </ScrollViewer>
+                        <ScrollViewer 
+                            x:Name="ScrollAccount"
+                            HorizontalScrollBarVisibility="Disabled" 
+                            Grid.Row="2"
+                            Margin="0 0 0 0"
+                            HorizontalAlignment="Left" 
+                            Background="WhiteSmoke"
+                            Style="{StaticResource FavsScrollViewer}"
+                            VerticalScrollBarVisibility="Auto"
+                            Visibility="Hidden"
+                            Height="480">
+                            <StackPanel x:Name="stkAccount"
+                                Width="1060"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Margin="0 0 0 0"
+                                Background="WhiteSmoke"
+                                Visibility="Hidden"/>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </Grid>
+
             <!--Body setting-->
             <Grid
                 Grid.Row="1"

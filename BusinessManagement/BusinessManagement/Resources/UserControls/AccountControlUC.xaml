@@ -66,7 +66,7 @@
                 FontSize="18" 
                 FontWeight="SemiBold" />
             <Button
-                x:Name="btnEditAgency"
+                x:Name="btnEditAccount"
                 Grid.Column="6"
                 ToolTip="Edit"
                 Height="30"
@@ -80,8 +80,8 @@
                 Background="{x:Null}" 
                 BorderBrush="{x:Null}" 
                 Foreground="#57548B" 
-                Command="{Binding EditAgencyCommand}"
-                CommandParameter="{Binding ElementName=txtID}">
+                Command="{Binding EditAccountCommand}"
+                CommandParameter="{Binding ElementName=txtAccount}">
                 <materialDesign:PackIcon
                     Kind="SquareEditOutline"
                     Height="24"
@@ -90,9 +90,9 @@
             </Button>
             <Button 
                 Grid.Column="6"
-                x:Name="btnDeleteAgency"
-                Command="{Binding DeleteAgencyCommand}"
-                CommandParameter="{Binding ElementName=ucAgency}"
+                x:Name="btnDeleteAccount"
+                Command="{Binding DeleteAccountCommand}"
+                CommandParameter="{Binding ElementName=ucAccount}"
                 ToolTip="Delete" 
                 Height="30"
                 Margin="0,0,15,5" 

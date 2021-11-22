@@ -42,7 +42,9 @@ namespace BusinessManagement.ViewModels
         public ICommand ShowProfileCommand { get; set; }
         public ICommand ShowChangePasswordCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
+
         public ICommand ShowAccountManagement { get; set; }
+        public ICommand LoadAccountManagementCommand { get; set; }
         public ICommand SearchAccountCommand { get; set; }
         
 
@@ -65,6 +67,7 @@ namespace BusinessManagement.ViewModels
             LogOutCommand = new RelayCommand<HomeWindow>((para) => true, para => LogOut(para));
 
             ShowAccountManagement = new RelayCommand<HomeWindow>((para) => true, para => ShowAccountManagementWindow(para));
+            DeleteAccountCommand = new RelayCommand<AccountControlUC>((para) => true, (para) => DeleteAccount(para));
             SearchAccountCommand = new RelayCommand<HomeWindow>((para) => true, para => ShowAccountManagementWindow(para));
         }
 
@@ -117,7 +120,19 @@ namespace BusinessManagement.ViewModels
         {
             this.HomeWindow = para;
             AccountManagementWindow window = new AccountManagementWindow();
+            
             window.ShowDialog();
+        }
+        private void DeleteAccount(AccountControlUC para)
+        {
+            MessageBoxResult res = CustomMessageBox.Show("Bạn có chắc không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (res == MessageBoxResult.Yes)
+            {
+                Account acc = new Account();
+                string username = para.txtAccount.Text;
+                acc = (Account)DataProvider.Instance.DB.Accounts.Where(x => x.Username == username).First();
+
+            }
         }
         //info account window
         private void InfoAcc_Save(InfoAccountWindow para)

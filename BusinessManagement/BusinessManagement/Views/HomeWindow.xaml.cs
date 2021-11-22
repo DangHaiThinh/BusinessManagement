@@ -48,17 +48,13 @@ namespace BusinessManagement.Views
             }
             if (CurrentAccount.Role.Contains("6"))
             {
-                grdMenu_Setting.Visibility = Visibility.Visible;
+                grdMenu_AccountManagement.Visibility = Visibility.Visible;
             }
             if (CurrentAccount.Role.Contains("7"))
             {
-
+                grdMenu_Setting.Visibility = Visibility.Visible;
             }
         }
 
-        private void MenuItem_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
