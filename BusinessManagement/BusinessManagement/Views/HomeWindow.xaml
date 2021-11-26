@@ -626,7 +626,7 @@
             <Grid Grid.Row="1"
                 x:Name="grdBody_Main"
                 DataContext="{StaticResource ReportVM}"
-                Visibility="Hidden">
+                Visibility="Visible">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2"></RowDefinition>
                     <RowDefinition Height="210"></RowDefinition>
@@ -3017,7 +3017,7 @@
             <!--Body account management-->
             <Grid Grid.Row="1"
                 x:Name="grdBody_Account"
-                Visibility="Visible"
+                Visibility="Hidden"
                 DataContext="{StaticResource AccountVM}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Loaded">
@@ -3049,10 +3049,8 @@
                             Stroke="#E2D2DA"/>
                         <TextBox
                             x:Name="txtSearchAccount"
-                            HorizontalAlignment="Left"
                             VerticalAlignment="Center"
-                            Width="250"
-                            Margin="40 0 0 0"
+                            Margin="40,-305,843.6,331.6"
                             BorderThickness="0"
                             materialDesign:HintAssist.Hint="Tìm kiếm..."
                             MaxLines="1"
@@ -3061,7 +3059,7 @@
                             FontWeight="Regular"
                             Padding="0"
                             HorizontalContentAlignment="Left"
-                            VerticalContentAlignment="Center" >
+                            VerticalContentAlignment="Center" RenderTransformOrigin="0.405,-8.286" >
                             <!-- <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="TextChanged">
                                     <i:InvokeCommandAction Command="{Binding SearchAgencyCommand}" 
@@ -3076,21 +3074,43 @@
                                              VerticalAlignment="Top"
                                              Margin="280 10 0 0"/>
                     </Grid>
+                    <Grid Grid.Column="1">
+                        <Button 
+                            x:Name="btnOpenRegisterWindow" 
+                            x:Uid="3"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Height="35" 
+                            Width="160" 
+                            Margin="40,-305,200,331.6"
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Center"
+                            Background="#F79BB5"
+                            Content="Tạo tài khoản"
+                            FontSize="18"
+                            Foreground="#57548B"
+                            FontWeight="Bold"
+                            Visibility="Visible" 
+                            FocusVisualStyle="{x:Null}"
+                            BorderBrush="{x:Null}"
+                            Command="{Binding CreateAccountCommand}"
+                            CommandParameter="{Binding ElementName=wdHome}">
+                        </Button>
+                    </Grid>
                     <Grid
                         x:Name="ColumnHeaderAccount"
                         Background="#FF9CB9"
                         Height="45"
-                        Width="1124"
+                        Width="1074"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Margin="0 75 0 0"
+                        Margin="30,75,0,0"
                         Visibility="Visible">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"/>
-                            <ColumnDefinition Width="220"/>
-                            <ColumnDefinition Width="220"/>
-                            <ColumnDefinition Width="220"/>
-                            <ColumnDefinition Width="60"></ColumnDefinition>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="350"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid>
                             <TextBlock
@@ -3124,7 +3144,7 @@
                         <Grid
                         Grid.Column="3">
                             <TextBlock
-                            Text="Email"
+                            Text="Sđt"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             FontSize="22"
@@ -3132,48 +3152,10 @@
                             FontWeight="SemiBold"/>
                         </Grid>
                     </Grid>
-                    <Grid Grid.Row="2"
+                    <Grid
                         VerticalAlignment="Top"
-                        Margin="0 120 0 0"
+                        Margin="30,120,21.6,0"
                         Background="WhiteSmoke">
-                        <ScrollViewer 
-                            x:Name="ScrollAccounts"
-                            HorizontalScrollBarVisibility="Disabled" 
-                            Grid.Row="2"
-                            Margin="0 0 0 0"
-                            HorizontalAlignment="Left" 
-                            Background="WhiteSmoke"
-                            Style="{StaticResource FavsScrollViewer}"
-                            VerticalScrollBarVisibility="Auto"
-                            Visibility="Hidden"
-                            Height="480">
-                            <StackPanel x:Name="stkAccounts"
-                                Width="1060"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                Margin="0 0 0 0" 
-                                Visibility="Hidden"
-                                Background="WhiteSmoke"/>
-                        </ScrollViewer>
-                        <ScrollViewer 
-                            x:Name="ScrollAccountManager"
-                            HorizontalScrollBarVisibility="Disabled" 
-                            Grid.Row="2"
-                            Margin="0 0 0 0"
-                            HorizontalAlignment="Left" 
-                            Background="WhiteSmoke"
-                            Style="{StaticResource FavsScrollViewer}"
-                            VerticalScrollBarVisibility="Auto"
-                            Visibility="Hidden"
-                            Height="480">
-                            <StackPanel x:Name="stkAccountManager"
-                                Width="1060"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                Margin="0 0 0 0"
-                                Background="WhiteSmoke"
-                                Visibility="Hidden"/>
-                        </ScrollViewer>
                         <ScrollViewer 
                             x:Name="ScrollAccount"
                             HorizontalScrollBarVisibility="Disabled" 
@@ -3184,14 +3166,14 @@
                             Style="{StaticResource FavsScrollViewer}"
                             VerticalScrollBarVisibility="Auto"
                             Visibility="Hidden"
-                            Height="480">
+                            Height="530">
                             <StackPanel x:Name="stkAccount"
-                                Width="1060"
+                                Width="1074"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
-                                Margin="0 0 0 0"
-                                Background="WhiteSmoke"
-                                Visibility="Hidden"/>
+                                Margin="0 0 0 0" 
+                                Visibility="Hidden"
+                                Background="WhiteSmoke"/>
                         </ScrollViewer>
                     </Grid>
                 </Grid>

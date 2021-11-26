@@ -10,7 +10,7 @@
              Foreground="{DynamicResource Gray1}"
              DataContext="{StaticResource AccountVM}"
              d:DesignHeight="45" 
-             d:DesignWidth="920"
+             d:DesignWidth="1074"
              Padding="0"
              Margin="1 0 1 0">
     <Grid 
@@ -24,7 +24,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"></ColumnDefinition>
                 <ColumnDefinition Width="250"></ColumnDefinition>
-                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="350"></ColumnDefinition>
                 <ColumnDefinition Width="150"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -51,7 +51,7 @@
                 FontWeight="SemiBold" />
             <TextBlock Grid.Column="2"
                 x:Name="txtAddress"
-                Text="Address" 
+                Text="*" 
                 HorizontalAlignment="Center"
                 TextWrapping="Wrap" 
                 FontSize="18" 
@@ -59,7 +59,7 @@
                 VerticalAlignment="Center"/>
             <TextBlock Grid.Column="3"
                 x:Name="txtPhone"
-                Text="Phone" 
+                Text="*" 
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 TextWrapping="Wrap" 
@@ -81,7 +81,7 @@
                 BorderBrush="{x:Null}" 
                 Foreground="#57548B" 
                 Command="{Binding EditAccountCommand}"
-                CommandParameter="{Binding ElementName=txtAccount}">
+                CommandParameter="{Binding ElementName=ucAccount}">
                 <materialDesign:PackIcon
                     Kind="SquareEditOutline"
                     Height="24"

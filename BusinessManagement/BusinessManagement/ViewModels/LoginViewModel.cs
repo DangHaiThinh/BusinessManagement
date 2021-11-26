@@ -18,20 +18,12 @@ namespace BusinessManagement.ViewModels
     class LoginViewModel : BaseViewModel
     {
         public ICommand LoginCommand { get; set; }
-        public ICommand OpenSignUpWindowCommand { get; set; }
         
         public LoginViewModel()
         {
             LoginCommand = new RelayCommand<LoginWindow>((p) => { return true; }, (p) => { Login(p); });
-            OpenSignUpWindowCommand = new RelayCommand<LoginWindow>((parameter) => true, (parameter) => OpenSignUpWindow(parameter));
         }
 
-        public void OpenSignUpWindow(LoginWindow parameter)
-        {
-            SignUpWindow window = new SignUpWindow();
-
-            window.ShowDialog();
-        }
 
         void Login(LoginWindow parameter)
         {

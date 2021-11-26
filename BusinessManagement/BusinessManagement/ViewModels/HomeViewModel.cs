@@ -88,7 +88,7 @@ namespace BusinessManagement.ViewModels
                     para.rec_btn_Menu_Report.Fill = (Brush)new BrushConverter().ConvertFrom("#FF9E9F");
                     break;
                 case 6:
-                    para.grdBody_Report.Visibility = System.Windows.Visibility.Visible;
+                    para.grdBody_Account.Visibility = System.Windows.Visibility.Visible;
                     para.rec_btn_Menu_Account_Management.Fill = (Brush)new BrushConverter().ConvertFrom("#FF9E9F");
                     break;
                 case 7:
