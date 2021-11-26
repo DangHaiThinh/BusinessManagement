@@ -11,7 +11,7 @@ create table Account
 	Image image,
 	Location nvarchar(100),
 	PhoneNumber nvarchar(10),
-
+	Role nvarchar(7),
 	constraint PK_Account primary key(Username)
 )
 go
