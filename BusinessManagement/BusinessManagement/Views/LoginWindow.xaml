@@ -129,7 +129,7 @@
                 Background="#F79BB5"
                 materialDesign:ButtonAssist.CornerRadius="7"
                 BorderThickness="0"
-                Margin="35 365 0 0"
+                Margin="35,440,0,0"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
                 IsDefault="True"
@@ -139,8 +139,8 @@
             </Button>
             <TextBlock
                 Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                Text="Chưa có tài khoản?"
-                Margin="80 485 0 0"
+                Text="Tự động đăng nhập"
+                Margin="103,362,0,0"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
                 TextAlignment="Left"
@@ -148,23 +148,6 @@
                 FontSize="25"
                 Foreground="Gray">
             </TextBlock>
-            <Button
-                x:Name="btSignUp"
-                Height="45"
-                Margin="290 480 0 0"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Left"
-                Content="Đăng ký" 
-                FontSize="25"
-                FontFamily="Segoe UI"
-                Cursor="Hand"
-                BorderThickness="0"
-                Foreground="#F97299"  
-                Background="Transparent"
-                FocusVisualStyle="{x:Null}"
-                Command="{Binding OpenSignUpWindowCommand}"
-                CommandParameter="{Binding ElementName=SignUp}">
-            </Button>
         </Grid>        
         <TextBlock
             Style="{StaticResource MaterialDesignHeadline4TextBlock}" 
