@@ -183,7 +183,17 @@ namespace BusinessManagement.ViewModels
                     invoiceUC.Debt.Text = ConvertToString(item.Debt);
                     this.HomeWindow.stkBill.Children.Add(invoiceUC);
                 }
-                this.HomeWindow.textCollect.Text = ConvertToString(total);
+                foreach (InvoiceUC control in this.HomeWindow.stkBill.Children)
+                {
+                    if (!control.AgencyName.Text.ToLower().Contains(this.HomeWindow.txtSearchAgencyinBill.Text))
+                    {
+                        control.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        control.Visibility = Visibility.Visible;
+                    }
+                }
             }
             if (tab == 2)
             {
@@ -257,6 +267,17 @@ namespace BusinessManagement.ViewModels
                     receiptBillUC.CheckOut.Text = item.CheckOut.ToShortDateString();
                     receiptBillUC.Amount.Text = ConvertToString(item.Amount);
                     this.HomeWindow.stkReceiptBill.Children.Add(receiptBillUC);
+                }                
+                foreach (ReceiptBillUC control in this.HomeWindow.stkReceiptBill.Children)
+                {
+                    if (!control.AgencyName.Text.ToLower().Contains(this.HomeWindow.txtSearchAgencyinBill.Text))
+                    {
+                        control.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        control.Visibility = Visibility.Visible;
+                    }
                 }
             }
             if (tab == 3)
