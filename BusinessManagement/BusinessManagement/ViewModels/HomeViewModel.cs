@@ -40,6 +40,7 @@ namespace BusinessManagement.ViewModels
             para.grdBody_Business.Visibility = System.Windows.Visibility.Hidden;
             para.grdBody_Bill.Visibility = System.Windows.Visibility.Hidden;
             para.grdBody_Report.Visibility = System.Windows.Visibility.Hidden;
+            para.grdBody_Account.Visibility = System.Windows.Visibility.Hidden;
             para.grdBody_AccountSetting.Visibility = System.Windows.Visibility.Hidden;
 
             para.rec_btn_Menu_Main.Fill = transparent;
@@ -48,8 +49,11 @@ namespace BusinessManagement.ViewModels
             para.rec_btn_Menu_Business.Fill = transparent;
             para.rec_btn_Menu_Bill.Fill = transparent;
             para.rec_btn_Menu_Report.Fill = transparent;
+            para.rec_btn_Menu_Account_Management.Fill = transparent;
             para.rec_btn_Menu_Setting.Fill = transparent;
             para.rec_btn_Menu_Business.Fill = transparent;
+
+            
 
             switch (index)
             {
@@ -84,6 +88,10 @@ namespace BusinessManagement.ViewModels
                     para.rec_btn_Menu_Report.Fill = (Brush)new BrushConverter().ConvertFrom("#FF9E9F");
                     break;
                 case 6:
+                    para.grdBody_Account.Visibility = System.Windows.Visibility.Visible;
+                    para.rec_btn_Menu_Account_Management.Fill = (Brush)new BrushConverter().ConvertFrom("#FF9E9F");
+                    break;
+                case 7:
                     para.grdBody_AccountSetting.Visibility = System.Windows.Visibility.Visible;
                     para.rec_btn_Menu_Setting.Fill = (Brush)new BrushConverter().ConvertFrom("#FF9E9F");
                     SettingViewModel settingViewModel = new SettingViewModel();

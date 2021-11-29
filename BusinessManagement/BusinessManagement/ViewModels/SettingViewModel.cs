@@ -161,7 +161,7 @@ namespace BusinessManagement.ViewModels
         private void SaveRulesType_Setting(HomeWindow para)
         {
             int limit= LimitOfAgencyinDistrict();
-            int count = DataProvider.Instance.DB.Settings.First().NumberStoreInDistrict;
+            int? count = DataProvider.Instance.DB.Settings.First().NumberStoreInDistrict;
 
             if (string.IsNullOrEmpty(para.txtNumberAgencyinDistrict_Setting.Text))
             {
@@ -206,7 +206,7 @@ namespace BusinessManagement.ViewModels
             }
 
 
-            int count = DataProvider.Instance.DB.Settings.First().NumberStoreInDistrict;
+            int? count = DataProvider.Instance.DB.Settings.First().NumberStoreInDistrict;
             para.txtNumberAgencyinDistrict_Setting.Text = ConvertToString(count);
             para.txtNumberAgencyinDistrict_Setting.SelectionStart = para.txtNumberAgencyinDistrict_Setting.Text.Length;
 
@@ -220,7 +220,7 @@ namespace BusinessManagement.ViewModels
         {
             this.HomeWindow = para;
 
-            int count = DataProvider.Instance.DB.Settings.First().NumberStoreInDistrict;
+            int? count = DataProvider.Instance.DB.Settings.First().NumberStoreInDistrict;
             para.txtNumberAgencyinDistrict_Setting.Text = ConvertToString(count);
             para.txtNumberAgencyinDistrict_Setting.SelectionStart = para.txtNumberAgencyinDistrict_Setting.Text.Length;
         }

@@ -73,6 +73,7 @@ namespace BusinessManagement.ViewModels
                 txt.Select(txt.Text.Length, 0);
             }
         }
+        //Chia nhỏ số
         public string SeparateThousands(String text)
         {
             if (!string.IsNullOrEmpty(text))

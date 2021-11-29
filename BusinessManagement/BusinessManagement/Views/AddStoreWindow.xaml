@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         DataContext="{StaticResource StoreVM}"
         Background="White"
-        Title="Thêm đại lý" 
+        Title="THÊM ĐẠI LÝ" 
         Height="620" 
         Width="1100"
         ResizeMode="CanMinimize"

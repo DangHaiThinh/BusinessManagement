@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterScreen"
         x:Name="wdAddDistrict"
         ResizeMode="CanMinimize"
-        Title="Add district window" 
+        Title="THÊM QUẬN" 
         DataContext="{StaticResource DistrictVM}"
         Height="350" 
         Width="580">

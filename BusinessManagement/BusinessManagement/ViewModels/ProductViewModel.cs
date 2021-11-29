@@ -236,7 +236,7 @@ namespace BusinessManagement.ViewModels
 
                 Product product;
                 //update product
-                if (para.Title == "Cập nhật thông tin sản phẩm")
+                if (para.Title == "CẬP NHẬT THÔNG TIN SẢN PHẨM")
                 {
                     if (imageFileName == null)
                     {
@@ -341,7 +341,7 @@ namespace BusinessManagement.ViewModels
             window.txtPrice.Text = ConvertToString(product.ExportPrice);
             window.txtPrice.SelectionStart = window.txtPrice.Text.Length;
 
-            window.Title = "Cập nhật thông tin sản phẩm";
+            window.Title = "CẬP NHẬT THÔNG TIN SẢN PHẨM";
             window.grdImage.Background = imageBrush;
             if (window.grdImage.Children.Count != 0)
             {

@@ -1,0 +1,428 @@
+﻿<Window x:Class="BusinessManagement.Views.AccountManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BusinessManagement.Views"
+        xmlns:vd="clr-namespace:BusinessManagement.Validations"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        x:Name="wdAccount"
+        DataContext="{StaticResource AccountVM}"
+        Title="QUẢN LÝ TÀI KHOẢN"
+        WindowStartupLocation="CenterScreen"
+        Height="660" 
+        Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2.5*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.2*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.Row="0"
+                x:Name="grdImage"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top"
+                Height="200"
+                Width="200"
+                Margin="0 60 0 0">
+                <Ellipse x:Name="EImage"
+                    Stroke="#FCE5EC"
+                    Fill="#FCE5EC"
+                    Height="200"
+                    Width="200"
+                    StrokeDashArray="4 2" >
+                </Ellipse>
+                <materialDesign:PackIcon x:Name="IImage" 
+                    Kind="ImageEdit" 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center" 
+                    Width="80"
+                    Height="80"
+                    Margin="60"
+                    Foreground="#F97299">
+                </materialDesign:PackIcon>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Height="40"
+                    Width="531">
+                    <Button 
+                        x:Name="btnSave"
+                        IsDefault="True"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Width="110"
+                        Height="35"
+                        Margin="200,-70,0,69"
+                        Content="Lưu"
+                        BorderThickness="0"
+                        Foreground="#57548B"
+                        Background="#F79BB5"
+                        FontSize="22"
+                        Cursor="Hand"
+                        FocusVisualStyle="{x:Null}"
+                        FontWeight="SemiBold"
+                        Command="{Binding AccountManagement_SaveCommand}"
+                        CommandParameter="{Binding ElementName=wdAccount}">
+                    </Button>
+                    <Button 
+                        x:Name="btnClose"
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="110"
+                        Height="35"
+                        Content="Hủy"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Background="#F0F0F0"
+                        FocusVisualStyle="{x:Null}"
+                        Foreground="#57548B"
+                        FontSize="22"
+                        FontWeight="SemiBold"
+                        Command="{Binding AccountManagement_CloseCommand}"
+                        CommandParameter="{Binding ElementName=wdAccount}" 
+                        Margin="200,12,221,-7" 
+                        RenderTransformOrigin="0.545,-0.56">
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="0"
+              Margin="0 20 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                Width="550" 
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+                <Label
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Content="Tài khoản"
+                    FontSize="22"
+                    FontWeight="SemiBold"
+                    Foreground="#57548B">
+                </Label>
+                <Rectangle
+                    HorizontalAlignment="Left"
+                    Width="350"
+                    Margin="180 0 0 0"
+                    StrokeThickness="2"
+                    RadiusX="5"
+                    RadiusY="5"
+                    Stroke="#E2D2DA">
+                </Rectangle>
+                <TextBox
+                    Name="txtUsername"
+                    IsEnabled="False"
+                    materialDesign:HintAssist.Hint="Tự động"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Width="330"
+                    Margin="190 0 0 0"
+                    BorderThickness="0"
+                    MaxLines="1"
+                    Height="40"
+                    FontSize="17"
+                    FontWeight="SemiBold"
+                    Padding="0"
+                    HorizontalContentAlignment="Left"
+                    VerticalContentAlignment="Center" 
+                    Cursor="Arrow">
+                </TextBox>
+            </Grid>
+            <Grid Grid.Row="1"
+                Width="550" 
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+                <Label
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Content="Tên người dùng"
+                    FontSize="22"
+                    FontWeight="SemiBold"
+                    Foreground="#57548B">
+                </Label>
+                <Rectangle
+                    HorizontalAlignment="Left"
+                    Width="350"
+                    Margin="180 0 0 0"
+                    StrokeThickness="2"
+                    RadiusX="5"
+                    RadiusY="5"
+                    Stroke="#E2D2DA">
+                </Rectangle>
+                <TextBox
+                    Name="txtDisplayName"
+                    IsEnabled="False"
+                    materialDesign:HintAssist.Hint="Tự động"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Width="330"
+                    Margin="190 0 0 0"
+                    BorderThickness="0"
+                    MaxLines="1"
+                    Height="40"
+                    FontSize="17"
+                    FontWeight="SemiBold"
+                    Padding="0"
+                    HorizontalContentAlignment="Left"
+                    VerticalContentAlignment="Center" 
+                    Cursor="Arrow">
+                </TextBox>
+            </Grid>
+            <Grid Grid.Row="2"
+                Width="550" 
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+                <Label
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Content="Địa chỉ"
+                    FontSize="22"
+                    FontWeight="SemiBold"
+                    Foreground="#57548B">
+                </Label>
+                <Rectangle
+                    HorizontalAlignment="Left"
+                    Width="350"
+                    Margin="180 0 0 0"
+                    StrokeThickness="2"
+                    RadiusX="5"
+                    RadiusY="5"
+                    Stroke="#E2D2DA">
+                </Rectangle>
+                <TextBox
+                    Name="txtLocation"
+                    IsEnabled="False"
+                    materialDesign:HintAssist.Hint="Trống"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Width="330"
+                    Margin="190 0 0 0"
+                    BorderThickness="0"
+                    MaxLines="1"
+                    Height="40"
+                    FontSize="17"
+                    FontWeight="SemiBold"
+                    Padding="0"
+                    HorizontalContentAlignment="Left"
+                    VerticalContentAlignment="Center" 
+                    Cursor="Arrow">
+                </TextBox>
+            </Grid>
+            <Grid Grid.Row="3"
+                Width="550" 
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+                <Label
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Content="SĐT"
+                    FontSize="22"
+                    FontWeight="SemiBold"
+                    Foreground="#57548B">
+                </Label>
+                <Rectangle
+                    HorizontalAlignment="Left"
+                    Width="350"
+                    Margin="180 0 0 0"
+                    StrokeThickness="2"
+                    RadiusX="5"
+                    RadiusY="5"
+                    Stroke="#E2D2DA">
+                </Rectangle>
+                <TextBox
+                    Name="txtPhoneNumber"
+                    IsEnabled="False"
+                    materialDesign:HintAssist.Hint="Trống"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Width="330"
+                    Margin="190 0 0 0"
+                    BorderThickness="0"
+                    MaxLines="1"
+                    Height="40"
+                    FontSize="17"
+                    FontWeight="SemiBold"
+                    Padding="0"
+                    HorizontalContentAlignment="Left"
+                    VerticalContentAlignment="Center" 
+                    Cursor="Arrow">
+                </TextBox>
+            </Grid>
+            <Grid Grid.Row="4">
+                <Grid HorizontalAlignment="Left" 
+                      Height="260" Margin="80,60,0,0" 
+                      VerticalAlignment="Top" 
+                      Width="550">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.25*"></RowDefinition>
+                        <RowDefinition Height="0.25*"></RowDefinition>
+                        <RowDefinition Height="0.25*"></RowDefinition>
+                        <RowDefinition Height="0.25*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0"
+                    Width="550" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0"
+                              Height="40">
+                            <CheckBox x:Name="chk_agency" 
+                                      Content="Quản lý đại lý"
+                                      HorizontalAlignment="Left" 
+                                      Margin="10,10,0,0" 
+                                      VerticalAlignment="Top"
+                                      Foreground="#57548B"
+                                      FontWeight="SemiBold">
+                                <CheckBox.LayoutTransform>
+                                    <ScaleTransform ScaleX="1.8" ScaleY="1.8" />
+                                </CheckBox.LayoutTransform>
+                            </CheckBox>
+                        </Grid>
+                        <Grid Grid.Column="1"
+                              Height="40">
+                            <CheckBox x:Name="chk_product"
+                                      Content="Quản lý sản phẩm"
+                                      HorizontalAlignment="Left" 
+                                      Margin="10,10,0,0" 
+                                      VerticalAlignment="Top"
+                                      Foreground="#57548B"
+                                      FontWeight="SemiBold">
+                                <CheckBox.LayoutTransform>
+                                    <ScaleTransform ScaleX="1.8" ScaleY="1.8" />
+                                </CheckBox.LayoutTransform>
+                            </CheckBox>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1"
+                    Width="550" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0"
+                              Height="40">
+                            <CheckBox x:Name="chk_business" 
+                                      Content="Quản lý kinh doanh"
+                                      HorizontalAlignment="Left" 
+                                      Margin="10,10,0,0" 
+                                      VerticalAlignment="Top"
+                                      Foreground="#57548B"
+                                      FontWeight="SemiBold">
+                                <CheckBox.LayoutTransform>
+                                    <ScaleTransform ScaleX="1.8" ScaleY="1.8" />
+                                </CheckBox.LayoutTransform>
+                            </CheckBox>
+                        </Grid>
+                        <Grid Grid.Column="1"
+                              Height="40">
+                            <CheckBox x:Name="chk_receipt" 
+                                      Content="Quản lý hóa đơn"
+                                      HorizontalAlignment="Left" 
+                                      Margin="10,10,0,0" 
+                                      VerticalAlignment="Top"
+                                      Foreground="#57548B"
+                                      FontWeight="SemiBold">
+                                <CheckBox.LayoutTransform>
+                                    <ScaleTransform ScaleX="1.8" ScaleY="1.8" />
+                                </CheckBox.LayoutTransform>
+                            </CheckBox>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2"
+                    Width="550" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0"
+                              Height="40">
+                            <CheckBox x:Name="chk_report" 
+                                      Content="Quản lý báo cáo"
+                                      HorizontalAlignment="Left" 
+                                      Margin="10,10,0,0" 
+                                      VerticalAlignment="Top"
+                                      Foreground="#57548B"
+                                      FontWeight="SemiBold">
+                                <CheckBox.LayoutTransform>
+                                    <ScaleTransform ScaleX="1.8" ScaleY="1.8" />
+                                </CheckBox.LayoutTransform>
+                            </CheckBox>
+                        </Grid>
+                        <Grid Grid.Column="1"
+                              Height="40">
+                            <CheckBox x:Name="chk_setting"
+                                      Content="Quản lý cài đặt"
+                                      HorizontalAlignment="Left" 
+                                      Margin="10,10,0,0" 
+                                      VerticalAlignment="Top"
+                                      Foreground="#57548B"
+                                      FontWeight="SemiBold">
+                                <CheckBox.LayoutTransform>
+                                    <ScaleTransform ScaleX="1.8" ScaleY="1.8" />
+                                </CheckBox.LayoutTransform>
+                            </CheckBox>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="3"
+                    Width="550" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                        <Grid Grid.Column="0"
+                              Height="40">
+                            <CheckBox x:Name="chk_account_management" 
+                                      Content="Quản lý tài khoản"
+                                      HorizontalAlignment="Center" 
+                                      Margin="-70,10,0,0" 
+                                      VerticalAlignment="Top"
+                                      Foreground="#57548B"
+                                      FontWeight="SemiBold">
+                                <CheckBox.LayoutTransform>
+                                    <ScaleTransform ScaleX="1.8" ScaleY="1.8" />
+                                </CheckBox.LayoutTransform>
+                            </CheckBox>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid HorizontalAlignment="Left" 
+                      Height="45" 
+                      Margin="79,15,0,0" 
+                      VerticalAlignment="Top" 
+                      Width="530">
+                    <Label
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Content="Phân quyền"
+                    FontSize="22"
+                    FontWeight="SemiBold"
+                    Foreground="#57548B">
+                    </Label>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

@@ -108,7 +108,7 @@ namespace BusinessManagement.ViewModels
 
             string displayName = parameter.displayname.Text;
             string username = parameter.txtUsername.Text;
-            string password = MD5Hash(parameter.pwbPassword.Password);
+            string password = MD5Hash(parameter.pwbPassword.Password); 
             byte[] imgByteArr = Converter.Instance.ConvertImageToBytes(imageFileName);
 
             if (DataProvider.Instance.DB.Accounts.Where(p=>p.Username == username).Count() == 0)
@@ -118,6 +118,7 @@ namespace BusinessManagement.ViewModels
                 account.Username = username;
                 account.Password = password;
                 account.Image = imgByteArr;
+                account.Role = "34";
 
                 DataProvider.Instance.DB.Accounts.Add(account);
                 DataProvider.Instance.DB.SaveChanges();

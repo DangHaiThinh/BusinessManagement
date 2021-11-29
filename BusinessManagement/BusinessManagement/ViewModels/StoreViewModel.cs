@@ -649,9 +649,9 @@ namespace BusinessManagement.ViewModels
 
             district = para.cbDistrict.Text;
             int? number = DataProvider.Instance.DB.Districts.Where(x => x.Name == district).First().NumberAgencyInDistrict;
-            int setting = DataProvider.Instance.DB.Settings.First().NumberStoreInDistrict;
+            int? setting = DataProvider.Instance.DB.Settings.First().NumberStoreInDistrict;
 
-            if (para.Title == "Sửa thông tin đại lý")
+            if (para.Title == "SỬA THÔNG TIN ĐẠI LÝ")
             {
                 int id = int.Parse(para.txtID.Text.ToString());
                 Agency agency = DataProvider.Instance.DB.Agencies.Where(x => x.ID == id).First();
@@ -696,7 +696,7 @@ namespace BusinessManagement.ViewModels
                 item.Email = para.txtEmail.Text;
                 item.IsDelete = false;
 
-                if (para.Title == "Add agency")
+                if (para.Title == "THÊM ĐẠI LÝ")
                 {
                     District updateDistrict = DataProvider.Instance.DB.Districts.Where(x => x.Name == district).First();
                     updateDistrict.NumberAgencyInDistrict += 1;
@@ -775,7 +775,7 @@ namespace BusinessManagement.ViewModels
 
             wd.cbbSpecies.SelectedIndex = pos;
             wd.txtDebt.Text = SeparateThousands(store.Debt.ToString());
-            wd.Title = "Sửa thông tin đại lý";
+            wd.Title = "SỬA THÔNG TIN ĐẠI LÝ";
             wd.txtDebt.IsEnabled = false;
             wd.dpCheckin.IsEnabled = false;
             wd.ShowDialog();

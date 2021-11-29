@@ -12,7 +12,7 @@
         WindowStartupLocation="CenterScreen"
         x:Name="wdShellOut"
         ResizeMode="CanMinimize"
-        Title="Chi trả" 
+        Title="BIÊN LAI" 
         DataContext="{StaticResource BillVM}"
         Height="550" 
         Width="550">
@@ -30,18 +30,19 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Grid.ColumnSpan="5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="48*"/>
+                <ColumnDefinition Width="39*"/>
+                <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="67*"/>
                 <ColumnDefinition Width="429*"/>
             </Grid.ColumnDefinitions>
             <TextBlock
-                Text="Chi trả"
+                Text="Biên lai"
                 FontSize="30"
                 FontWeight="SemiBold"
                 Foreground="#504D85"
                 TextAlignment="Center"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center" Grid.Column="2" Margin="111.8,20,224,20" Width="96">
+                VerticalAlignment="Center" Grid.Column="3" Margin="110.8,20,222,20" Width="96">
             </TextBlock>
         </Grid>
         <Grid Grid.Row="1" Grid.ColumnSpan="5" Margin="0,0,0,-0.2">
@@ -343,10 +344,10 @@
                         HorizontalAlignment="Left"
                         HorizontalContentAlignment="Center"
                         VerticalAlignment="Center"
-                        Width="110"
+                        Width="151"
                         Height="36"
-                        Margin="182,2,0,2"
-                        Content="Chi trả"
+                        Margin="141,2,0,2"
+                        Content="Thanh toán"
                         BorderThickness="0"
                         Foreground="#57548B"
                         Background="#F79BB5"
