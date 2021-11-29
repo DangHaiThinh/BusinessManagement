@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BusinessManagement.Resources.UserControls;
 
 namespace BusinessManagement.Views
 {
@@ -23,7 +24,6 @@ namespace BusinessManagement.Views
         {
             InitializeComponent();
         }
-
         private void grdWindow_Loaded(object sender, RoutedEventArgs e)
         {
             if (CurrentAccount.Role.Contains("1"))
@@ -55,6 +55,5 @@ namespace BusinessManagement.Views
                 grdMenu_Setting.Visibility = Visibility.Visible;
             }
         }
-
     }
 }
