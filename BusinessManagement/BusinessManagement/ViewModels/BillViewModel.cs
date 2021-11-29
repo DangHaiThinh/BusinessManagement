@@ -45,7 +45,10 @@ namespace BusinessManagement.ViewModels
         public ICommand PayCommand { get; set; }
         public ICommand CloseWindowCommand { get; set; }
         public ICommand CloseReceiptBillWindowCommand { get; set; }
-
+        public ICommand IDSortCommand { get; set; }
+        public ICommand AgencySortCommand { get; set; }
+        public ICommand CheckOutSortCommand { get; set; }
+        public ICommand LastBoxSortCommand { get; set; }
         public BillViewModel()
         {
             LoadBillCommand = new RelayCommand<HomeWindow>((para) => true, (para) => LoadBill(para));
@@ -70,8 +73,268 @@ namespace BusinessManagement.ViewModels
             PayCommand = new RelayCommand<ShellOutWindow>((para) => true, (para) => PayReceiptBill(para));
             CloseWindowCommand = new RelayCommand<ShellOutWindow>((para) => true, (para) => para.Close());
             CloseReceiptBillWindowCommand = new RelayCommand<ReceiptBillWindow>((para) => true, (para) => para.Close());
+            IDSortCommand = new RelayCommand<HomeWindow>((para) => true, (para) => Sort(para, 1));
+            AgencySortCommand = new RelayCommand<HomeWindow>((para) => true, (para) => Sort(para, 2));
+            CheckOutSortCommand = new RelayCommand<HomeWindow>((para) => true, (para) => Sort(para, 3));
+            LastBoxSortCommand = new RelayCommand<HomeWindow>((para) => true, (para) => Sort(para, 4));
+        }
+        public class BillContentHolder
+        {
+            public int ID { get; set; }
+            public string AgencyName { get; set; }
+            public DateTime CheckOut { get; set; }
+            public long? Debt { get; set; }
+            public BillContentHolder()
+            { }
+        }
+        public class ReceiptContentHolder
+        {
+            public int ID { get; set; }
+            public string AgencyName { get; set; }
+            public DateTime CheckOut { get; set; }
+            public long? Amount { get; set; }
+            public ReceiptContentHolder()
+            { }
+        }
+        public class StockContentHolder
+        {
+            public int ID { get; set; }
+            public string AgencyName { get; set; }
+            public DateTime? CheckIn { get; set; }
+            public long? Total { get; set; }
+            public StockContentHolder()
+            { }
         }
 
+        bool IsSort = false;
+        public void Sort(HomeWindow para, int temp)
+        {
+            this.HomeWindow = para;
+            if (tab == 1)
+            {
+                this.HomeWindow.stkBill.Children.Clear();
+                List<Invoice> invoices = new List<Invoice>();
+                invoices = DataProvider.Instance.DB.Invoices.ToList<Invoice>();
+                List<BillContentHolder> Holder = new List<BillContentHolder>();
+                foreach (Invoice invoice in invoices)
+                {
+                    BillContentHolder holder = new BillContentHolder();
+                    holder.ID = invoice.ID;
+                    holder.AgencyName = invoice.Agency.Name.ToString();
+                    holder.CheckOut = invoice.Checkout.Value;
+                    holder.Debt = invoice.Debt;
+                    Holder.Add(holder);
+                }
+                List<BillContentHolder> SortHolder = new List<BillContentHolder>();
+                if (temp==1)
+                {
+                    if (IsSort)
+                    {
+                        SortHolder = Holder.OrderByDescending(p => p.ID).ToList();
+                    }
+                    else
+                    {
+                        SortHolder = Holder.OrderBy(p => p.ID).ToList();
+                    }
+                    IsSort = !IsSort;
+                }
+                if (temp == 2)
+                {
+                    if (IsSort)
+                    {
+                        SortHolder = Holder.OrderByDescending(p => p.AgencyName).ToList();
+                    }
+                    else
+                    {
+                        SortHolder = Holder.OrderBy(p => p.AgencyName).ToList();
+                    }
+                    IsSort = !IsSort;
+                }
+                if (temp == 3)
+                {
+                    if (IsSort)
+                    {
+                        SortHolder = Holder.OrderByDescending(p => p.CheckOut).ToList();
+                    }
+                    else
+                    {
+                        SortHolder = Holder.OrderBy(p => p.CheckOut).ToList();
+                    }
+                    IsSort = !IsSort;
+                }
+                if (temp == 4)
+                {
+                    if (IsSort)
+                    {
+                        SortHolder = Holder.OrderByDescending(p => p.Debt).ToList();
+                    }
+                    else
+                    {
+                        SortHolder = Holder.OrderBy(p => p.Debt).ToList();
+                    }
+                    IsSort = !IsSort;
+                }
+                foreach (BillContentHolder item in SortHolder)
+                {
+                    InvoiceUC invoiceUC = new InvoiceUC();
+                    invoiceUC.InvoiceID.Text = item.ID.ToString();
+                    invoiceUC.AgencyName.Text = item.AgencyName;
+                    invoiceUC.CheckOut.Text = item.CheckOut.ToShortDateString();
+                    invoiceUC.Debt.Text = ConvertToString(item.Debt);
+                    this.HomeWindow.stkBill.Children.Add(invoiceUC);
+                }
+                this.HomeWindow.textCollect.Text = ConvertToString(total);
+            }
+            if (tab == 2)
+            {
+                this.HomeWindow.stkReceiptBill.Children.Clear();
+                List<Receipt> receipts = new List<Receipt>();
+                receipts = DataProvider.Instance.DB.Receipts.ToList<Receipt>();
+                List<ReceiptContentHolder> Holder = new List<ReceiptContentHolder>();
+                foreach (Receipt receipt in receipts)
+                {
+                    ReceiptContentHolder holder = new ReceiptContentHolder();
+                    holder.ID = receipt.ID;
+                    holder.AgencyName = receipt.Agency.Name;
+                    holder.CheckOut = receipt.Date.Value;
+                    holder.Amount = receipt.Amount;
+                    Holder.Add(holder);
+                }
+                List<ReceiptContentHolder> SortHolder = new List<ReceiptContentHolder>();
+                if (temp == 1)
+                {
+                    if (IsSort)
+                    {
+                        SortHolder = Holder.OrderByDescending(p => p.ID).ToList();
+                    }
+                    else
+                    {
+                        SortHolder = Holder.OrderBy(p => p.ID).ToList();
+                    }
+                    IsSort = !IsSort;
+                }
+                if (temp == 2)
+                {
+                    if (IsSort)
+                    {
+                        SortHolder = Holder.OrderByDescending(p => p.AgencyName).ToList();
+                    }
+                    else
+                    {
+                        SortHolder = Holder.OrderBy(p => p.AgencyName).ToList();
+                    }
+                    IsSort = !IsSort;
+                }
+                if (temp == 3)
+                {
+                    if (IsSort)
+                    {
+                        SortHolder = Holder.OrderByDescending(p => p.CheckOut).ToList();
+                    }
+                    else
+                    {
+                        SortHolder = Holder.OrderBy(p => p.CheckOut).ToList();
+                    }
+                    IsSort = !IsSort;
+                }
+                if (temp == 4)
+                {
+                    if (IsSort)
+                    {
+                        SortHolder = Holder.OrderByDescending(p => p.Amount).ToList();
+                    }
+                    else
+                    {
+                        SortHolder = Holder.OrderBy(p => p.Amount).ToList();
+                    }
+                    IsSort = !IsSort;
+                }
+                foreach (ReceiptContentHolder item in SortHolder)
+                {
+                    ReceiptBillUC receiptBillUC = new ReceiptBillUC();
+                    receiptBillUC.ReceiptID.Text = item.ID.ToString();
+                    receiptBillUC.AgencyName.Text = item.AgencyName.ToString();
+                    receiptBillUC.CheckOut.Text = item.CheckOut.ToShortDateString();
+                    receiptBillUC.Amount.Text = ConvertToString(item.Amount);
+                    this.HomeWindow.stkReceiptBill.Children.Add(receiptBillUC);
+                }
+            }
+            if (tab == 3)
+            {
+                this.HomeWindow.stkStockReceipt.Children.Clear();
+                List<StockReceipt> stockReceipts = new List<StockReceipt>();
+                stockReceipts = DataProvider.Instance.DB.StockReceipts.ToList<StockReceipt>();
+                List<StockContentHolder> Holder = new List<StockContentHolder>();
+                foreach (StockReceipt stock in stockReceipts)
+                {
+                    StockContentHolder holder = new StockContentHolder();
+                    holder.ID = stock.ID;
+                    holder.AgencyName = "Công ty này";
+                    holder.CheckIn = stock.CheckIn;
+                    holder.Total = stock.Total;
+                    Holder.Add(holder);
+                }
+                List<StockContentHolder> SortHolder = new List<StockContentHolder>();
+                if (temp == 1)
+                {
+                    if (IsSort)
+                    {
+                        SortHolder = Holder.OrderByDescending(p => p.ID).ToList();
+                    }
+                    else
+                    {
+                        SortHolder = Holder.OrderBy(p => p.ID).ToList();
+                    }
+                    IsSort = !IsSort;
+                }
+                if (temp == 2)
+                {
+                    if (IsSort)
+                    {
+                        SortHolder = Holder.OrderByDescending(p => p.AgencyName).ToList();
+                    }
+                    else
+                    {
+                        SortHolder = Holder.OrderBy(p => p.AgencyName).ToList();
+                    }
+                    IsSort = !IsSort;
+                }
+                if (temp == 3)
+                {
+                    if (IsSort)
+                    {
+                        SortHolder = Holder.OrderByDescending(p => p.CheckIn).ToList();
+                    }
+                    else
+                    {
+                        SortHolder = Holder.OrderBy(p => p.CheckIn).ToList();
+                    }
+                    IsSort = !IsSort;
+                }
+                if (temp == 4)
+                {
+                    if (IsSort)
+                    {
+                        SortHolder = Holder.OrderByDescending(p => p.Total).ToList();
+                    }
+                    else
+                    {
+                        SortHolder = Holder.OrderBy(p => p.Total).ToList();
+                    }
+                    IsSort = !IsSort;
+                }
+                
+                foreach (StockContentHolder item in SortHolder)
+                {
+                    InvoiceUC invoiceUC = new InvoiceUC();
+                    invoiceUC.InvoiceID.Text = item.ID.ToString();
+                    invoiceUC.AgencyName.Text = "Công ty này";
+                    invoiceUC.CheckOut.Text = item.CheckIn.Value.ToShortDateString();
+                    invoiceUC.Debt.Text = ConvertToString(item.Total);
+                    this.HomeWindow.stkStockReceipt.Children.Add(invoiceUC);
+                }
+            }
+        }
         private void PayReceiptBill(ShellOutWindow para)
         {
             if (string.IsNullOrWhiteSpace(para.cbbName.Text))
@@ -214,7 +477,7 @@ namespace BusinessManagement.ViewModels
                 invoiceUC.CheckOut.Text = invoice.Checkout.Value.ToShortDateString();
                 invoiceUC.Debt.Text = ConvertToString(invoice.Debt);
                 total += invoice.Total;
-                this.HomeWindow.stkBill.Children.Add(invoiceUC);
+                this.HomeWindow.stkBill.Children.Add(invoiceUC);             
             }
             this.HomeWindow.textCollect.Text = ConvertToString(total);
             this.HomeWindow.comboBoxBill.Text = "Releasing Bill";
@@ -429,7 +692,7 @@ namespace BusinessManagement.ViewModels
                 invoiceUC.Debt.Text = ConvertToString(invoice.Debt);
                 total += invoice.Total;
                 this.HomeWindow.stkBill.Children.Add(invoiceUC);
-            }
+            }           
             this.HomeWindow.textCollect.Text = ConvertToString(total);
         }
         public void LoadReceiptBill(HomeWindow para)
@@ -468,6 +731,7 @@ namespace BusinessManagement.ViewModels
             }
             this.HomeWindow.textPay.Text = ConvertToString(pay);
         }
+        int tab = 1;
         private void Switch(HomeWindow para)
         {
             if (para.comboBoxBill.SelectedIndex == 1)
@@ -482,6 +746,8 @@ namespace BusinessManagement.ViewModels
                 para.ScrollReceipt.Visibility = System.Windows.Visibility.Hidden;
                 para.ScrollStockReceipt.Visibility = System.Windows.Visibility.Hidden;
                 para.LastBlock.Text = "Nợ";
+                tab = 1;
+                IsSort = false;
             }
             if (para.comboBoxBill.SelectedIndex == 2)
             {
@@ -495,6 +761,8 @@ namespace BusinessManagement.ViewModels
                 para.ScrollInvoice.Visibility = System.Windows.Visibility.Hidden;
                 para.ScrollStockReceipt.Visibility = System.Windows.Visibility.Hidden;
                 para.LastBlock.Text = "Số lượng";
+                tab = 2;
+                IsSort = false;
             }
             if (para.comboBoxBill.SelectedIndex == 0)
             {
@@ -508,6 +776,8 @@ namespace BusinessManagement.ViewModels
                 para.ScrollReceipt.Visibility = System.Windows.Visibility.Hidden;
                 para.ScrollStockReceipt.Visibility = System.Windows.Visibility.Visible;
                 para.LastBlock.Text = "Tổng";
+                tab = 3;
+                IsSort = false;
             }
 
         }
