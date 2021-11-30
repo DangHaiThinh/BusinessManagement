@@ -74,6 +74,7 @@ namespace BusinessManagement.ViewModels
             EditAccountCommand = new RelayCommand<AccountControlUC>((para) => true, para => ShowEditAccountWindow(para));
             AccountManagement_SaveCommand = new RelayCommand<AccountManagementWindow>((para) => true, para => AccountMan_Save(para));
             AccountManagement_CloseCommand = new RelayCommand<AccountManagementWindow>((para) => true, para => AccountMan_CloseWindow(para));
+            SearchAccountCommand = new RelayCommand<HomeWindow>((para) => true, (para) => SearchAccount(para));
             DeleteAccountCommand = new RelayCommand<AccountControlUC>((para) => true, (para) => DeleteAccount(para));
 
         }
@@ -146,6 +147,29 @@ namespace BusinessManagement.ViewModels
             }
             this.HomeWindow.ScrollAccount.Visibility = System.Windows.Visibility.Visible;
             this.HomeWindow.stkAccount.Visibility = System.Windows.Visibility.Visible;
+        }
+        private void SearchAccount(HomeWindow para)
+        {
+            this.HomeWindow = para;
+            foreach (AccountControlUC control in HomeWindow.stkAccount.Children)
+            {
+                if (control.txtAccount.Text.ToLower().Contains(this.HomeWindow.txtSearchAccount.Text))
+                {
+                    control.Visibility = Visibility.Visible;
+                }
+                else if(control.textName.Text.ToLower().Contains(this.HomeWindow.txtSearchAccount.Text))
+                {
+                    control.Visibility = Visibility.Visible;
+                }
+                else if(control.txtPhone.Text.ToLower().Contains(this.HomeWindow.txtSearchAccount.Text))
+                {
+                    control.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    control.Visibility = Visibility.Collapsed;
+                }
+            }
         }
         private void CreateAccount(HomeWindow para)
         {
