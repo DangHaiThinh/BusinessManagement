@@ -43,6 +43,14 @@ namespace BusinessManagement.ViewModels
         public ICommand ShowChangePasswordCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
 
+        public ICommand InitCommand { get; set; }
+        public ICommand CreateAccountCommand { get; set; }
+        public ICommand EditAccountCommand { get; set; }
+        public ICommand AccountManagement_SaveCommand { get; set; }
+        public ICommand AccountManagement_CloseCommand { get; set; }
+        public ICommand SearchAccountCommand { get; set; }
+        
+
         public AccountViewModel()
         {
             UpdateAccountCommand = new RelayCommand<HomeWindow>((para) => true, (para) => UpdateAccount(para));
@@ -60,6 +68,14 @@ namespace BusinessManagement.ViewModels
             ShowProfileCommand = new RelayCommand<HomeWindow>((para) => true, para => ShowProfileAccountWindow(para));
             ShowChangePasswordCommand = new RelayCommand<HomeWindow>((para) => true, para => ShowChangePasswordWindow(para));
             LogOutCommand = new RelayCommand<HomeWindow>((para) => true, para => LogOut(para));
+
+            InitCommand = new RelayCommand<HomeWindow>((para) => true, (para) => Init(para));
+            CreateAccountCommand = new RelayCommand<HomeWindow>((para) => true, (para) => CreateAccount(para));
+            EditAccountCommand = new RelayCommand<AccountControlUC>((para) => true, para => ShowEditAccountWindow(para));
+            AccountManagement_SaveCommand = new RelayCommand<AccountManagementWindow>((para) => true, para => AccountMan_Save(para));
+            AccountManagement_CloseCommand = new RelayCommand<AccountManagementWindow>((para) => true, para => AccountMan_CloseWindow(para));
+            DeleteAccountCommand = new RelayCommand<AccountControlUC>((para) => true, (para) => DeleteAccount(para));
+
         }
 
         //home window
@@ -106,7 +122,162 @@ namespace BusinessManagement.ViewModels
                 this.HomeWindow.grdAcc_Image.Background = imageBrush;
                 this.HomeWindow.menu_Acc_DisplayName.Header = CurrentAccount.DisplayName;
             }
-        }        
+        }
+        private void Init(HomeWindow para)
+        {
+            this.HomeWindow = para;
+            this.HomeWindow.stkAccount.Children.Clear();
+            List<Account> accounts = new List<Account>();
+            accounts = DataProvider.Instance.DB.Accounts.ToList<Account>();
+            foreach (Account account in accounts)
+            {
+                AccountControlUC accountUC = new AccountControlUC();
+                accountUC.txtAccount.Text = account.Username.ToString();
+                accountUC.textName.Text = account.DisplayName.ToString();
+                if(account.Location != null)
+                {
+                    accountUC.txtAddress.Text = account.Location.ToString();
+                }
+                if(account.PhoneNumber != null)
+                {
+                    accountUC.txtPhone.Text = account.PhoneNumber.ToString();
+                }
+                this.HomeWindow.stkAccount.Children.Add(accountUC);
+            }
+            this.HomeWindow.ScrollAccount.Visibility = System.Windows.Visibility.Visible;
+            this.HomeWindow.stkAccount.Visibility = System.Windows.Visibility.Visible;
+        }
+        private void CreateAccount(HomeWindow para)
+        {
+            SignUpWindow window = new SignUpWindow();
+
+            window.ShowDialog();
+        }
+        private void ShowEditAccountWindow(AccountControlUC para)
+        {
+            AccountManagementWindow window = new AccountManagementWindow();
+
+            Account account = new Account();
+            string username = para.txtAccount.Text;
+            account = (Account)DataProvider.Instance.DB.Accounts.Where(x => x.Username == username).First();
+
+            ImageBrush imageBrush = new ImageBrush();
+            imageBrush.ImageSource = Converter.Instance.ConvertByteToBitmapImage(account.Image);
+            window.grdImage.Background = imageBrush;
+            window.EImage.Visibility = Visibility.Hidden;
+            window.IImage.Visibility = Visibility.Hidden;
+
+            window.txtUsername.Text = account.Username;
+            window.txtDisplayName.Text = account.DisplayName;
+            if(account.Location != null)
+            {
+                window.txtLocation.Text = account.Location;
+            }
+            if (account.PhoneNumber != null)
+            {
+                window.txtPhoneNumber.Text = account.PhoneNumber;
+            }
+            //Role checkboxes
+            if (account.Role.Contains("1"))
+            {
+                window.chk_agency.IsChecked = true;
+            }
+            if (account.Role.Contains("2"))
+            {
+                window.chk_product.IsChecked = true;
+            }
+            if (account.Role.Contains("3"))
+            {
+                window.chk_business.IsChecked = true;
+            }
+            if (account.Role.Contains("4"))
+            {
+                window.chk_receipt.IsChecked = true;
+            }
+            if (account.Role.Contains("5"))
+            {
+                window.chk_report.IsChecked = true;
+            }
+            if (account.Role.Contains("6"))
+            {
+                window.chk_account_management.IsChecked = true;
+            }
+            if (account.Role.Contains("7"))
+            {
+                window.chk_setting.IsChecked = true;
+            }
+
+            window.ShowDialog();
+        }
+        private void AccountMan_Save(AccountManagementWindow para)
+        {
+            if(para.txtUsername.Text == "admin" && para.chk_account_management.IsChecked == false)
+            {
+                CustomMessageBox.Show("Phải có ít nhất 1 tài khoản quản lý các tài khoản khác!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (para.chk_agency.IsChecked != true && para.chk_product.IsChecked != true && para.chk_business.IsChecked != true && para.chk_receipt.IsChecked != true && para.chk_report.IsChecked != true && para.chk_account_management.IsChecked != true && para.chk_setting.IsChecked != true)
+            {
+                CustomMessageBox.Show("Tài khoản chưa có quyền hạn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            Account account = new Account();
+            string username = para.txtUsername.Text;
+            account = (Account)DataProvider.Instance.DB.Accounts.Where(x => x.Username == username).First();
+
+            string role = "";
+            if(para.chk_agency.IsChecked == true)
+            {
+                role += "1";
+            }
+            if (para.chk_product.IsChecked == true)
+            {
+                role += "2";
+            }
+            if (para.chk_business.IsChecked == true)
+            {
+                role += "3";
+            }
+            if (para.chk_receipt.IsChecked == true)
+            {
+                role += "4";
+            }
+            if (para.chk_report.IsChecked == true)
+            {
+                role += "5";
+            }
+            if (para.chk_setting.IsChecked == true)
+            {
+                role += "7";
+            }
+            if (para.chk_account_management.IsChecked == true)
+            {
+                role += "6";
+            }
+            account.Role = role;
+            DataProvider.Instance.DB.SaveChanges();
+
+            para.Close();
+        }
+        private void AccountMan_CloseWindow(AccountManagementWindow para)
+        {
+            para.Close();
+        }
+        private void DeleteAccount(AccountControlUC para)
+        {
+            MessageBoxResult res = CustomMessageBox.Show("Bạn có chắc không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (res == MessageBoxResult.Yes)
+            {
+                Account acc = new Account();
+                string username = para.txtAccount.Text;
+                acc = (Account)DataProvider.Instance.DB.Accounts.Where(x => x.Username == username).First();
+                DataProvider.Instance.DB.Accounts.Remove(acc);
+                DataProvider.Instance.DB.SaveChanges();
+
+                this.HomeWindow.stkAccount.Children.Remove(para);
+            }
+        }
         //info account window
         private void InfoAcc_Save(InfoAccountWindow para)
         {

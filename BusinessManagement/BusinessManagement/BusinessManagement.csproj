@@ -95,6 +95,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -168,14 +169,14 @@
     <Compile Include="Models\StockReceiptInfo.cs">
       <DependentUpon>AgencyManagement_Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>AgencyManagement_Entities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TypeOfAgency.cs">
       <DependentUpon>AgencyManagement_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Unit.cs">
       <DependentUpon>AgencyManagement_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\AccountControlUC.xaml.cs">
+      <DependentUpon>AccountControlUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\UserControls\AgencyControlUC.xaml.cs">
       <DependentUpon>AgencyControlUC.xaml</DependentUpon>
@@ -246,6 +247,9 @@
     <Compile Include="ViewModels\SQLConnection.cs" />
     <Compile Include="ViewModels\StoreViewModel.cs" />
     <Compile Include="ViewModels\UnitsViewModel.cs" />
+    <Compile Include="Views\AccountManagementWindow.xaml.cs">
+      <DependentUpon>AccountManagementWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddDistrictWindow.xaml.cs">
       <DependentUpon>AddDistrictWindow.xaml</DependentUpon>
     </Compile>
@@ -351,6 +355,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\UserControls\AccountControlUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\UserControls\AgencyControlUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -404,6 +412,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\UserControls\StoreControlUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AccountManagementWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
