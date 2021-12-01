@@ -55,5 +55,10 @@ namespace BusinessManagement.Views
                 grdMenu_Setting.Visibility = Visibility.Visible;
             }
         }
+
+        private void wdHome_Closed(object sender, EventArgs e)
+        {
+            //Environment.Exit(0);
+        }
     }
 }

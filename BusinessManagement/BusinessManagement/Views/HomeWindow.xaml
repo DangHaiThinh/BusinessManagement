@@ -14,9 +14,13 @@
         WindowStartupLocation="CenterScreen"
         x:Name="wdHome"        
         DataContext="{StaticResource HomeVM}"
-        ResizeMode="CanMinimize" Visibility="Visible">
+        ResizeMode="CanMinimize" Visibility="Visible" Closed="wdHome_Closed">
     <Grid
         x:Name="grdWindow" Loaded="grdWindow_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="343*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -27,7 +31,7 @@
             Height="780" 
             Margin="0" 
             VerticalAlignment="Top" 
-            Width="300">
+            Width="300" Grid.RowSpan="2">
             <Border Grid.Column="0" Margin="0,0,0,0" >
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
@@ -507,7 +511,7 @@
         </Grid>
         <Grid
             x:Name="Main"
-            Grid.Column="1">
+            Grid.Column="1" Margin="0,0,-0.4,0" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -613,6 +617,18 @@
                                     <i:EventTrigger EventName="Click">
                                         <i:InvokeCommandAction 
                                             Command="{Binding LogOutCommand}"
+                                            CommandParameter="{Binding ElementName=wdHome}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </MenuItem>
+                            <MenuItem
+                                Header="Thoát"
+                                Cursor="Hand"
+                                FontWeight="Normal">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:InvokeCommandAction 
+                                            Command="{Binding ShutDownCommand}"
                                             CommandParameter="{Binding ElementName=wdHome}"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
@@ -3113,7 +3129,7 @@
                             Padding="0"
                             HorizontalContentAlignment="Left"
                             VerticalContentAlignment="Center" RenderTransformOrigin="0.405,-8.286" >
-                             <i:Interaction.Triggers>
+                            <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="TextChanged">
                                     <i:InvokeCommandAction Command="{Binding SearchAccountCommand}" 
                                                        CommandParameter="{Binding ElementName=wdHome}"/>

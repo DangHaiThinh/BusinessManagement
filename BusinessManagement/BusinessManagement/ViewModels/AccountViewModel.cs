@@ -42,6 +42,7 @@ namespace BusinessManagement.ViewModels
         public ICommand ShowProfileCommand { get; set; }
         public ICommand ShowChangePasswordCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
+        public ICommand ShutDownCommand { get; set; }
 
         public ICommand InitCommand { get; set; }
         public ICommand CreateAccountCommand { get; set; }
@@ -68,6 +69,7 @@ namespace BusinessManagement.ViewModels
             ShowProfileCommand = new RelayCommand<HomeWindow>((para) => true, para => ShowProfileAccountWindow(para));
             ShowChangePasswordCommand = new RelayCommand<HomeWindow>((para) => true, para => ShowChangePasswordWindow(para));
             LogOutCommand = new RelayCommand<HomeWindow>((para) => true, para => LogOut(para));
+            ShutDownCommand = new RelayCommand<HomeWindow>((para) => true, para => ShutDown(para));
 
             InitCommand = new RelayCommand<HomeWindow>((para) => true, (para) => Init(para));
             CreateAccountCommand = new RelayCommand<HomeWindow>((para) => true, (para) => CreateAccount(para));
@@ -83,6 +85,10 @@ namespace BusinessManagement.ViewModels
         private void LogOut(HomeWindow para)
         {
             para.Close();
+        }
+        private void ShutDown(HomeWindow para)
+        {
+            Environment.Exit(0);
         }
 
         private void ShowChangePasswordWindow(HomeWindow para)

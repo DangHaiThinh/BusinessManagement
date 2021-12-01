@@ -11,7 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Security.Cryptography;
 using System.Windows;
-
+using System.IO;
 
 namespace BusinessManagement.ViewModels
 {
@@ -64,7 +64,20 @@ namespace BusinessManagement.ViewModels
                     homeWindow.grdAcc_Image.Children.Remove(homeWindow.grdAcc_Image.Children[0]);
                 }
 
+                //add auto login
+                string[] autoLogin = new string[3];
+                if (parameter.autoLogin.IsChecked == true)
+                {
+                    autoLogin[0] = "True";
+                    autoLogin[1] = parameter.txtUser.Text;
+                    autoLogin[2] = codedPassword;
+
+                    File.WriteAllLines("cache.alg", autoLogin);
+                }
+                
                 homeWindow.ShowDialog();
+
+                parameter.autoLogin.IsChecked = false;
                 parameter.txtPassword.Password = "";
                 parameter.Show();
             }

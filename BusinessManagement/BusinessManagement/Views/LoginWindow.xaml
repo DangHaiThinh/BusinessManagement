@@ -137,6 +137,15 @@
                 Command="{Binding LoginCommand}"
                 CommandParameter="{Binding ElementName=wdLogin}">
             </Button>
+            <CheckBox x:Name="autoLogin" 
+                      HorizontalAlignment="Left" 
+                      Margin="65,368,0,0" 
+                      VerticalAlignment="Top" 
+                      Unchecked="autoLogin_Unchecked" >
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
             <TextBlock
                 Style="{StaticResource MaterialDesignHeadline4TextBlock}"
                 Text="Tự động đăng nhập"
