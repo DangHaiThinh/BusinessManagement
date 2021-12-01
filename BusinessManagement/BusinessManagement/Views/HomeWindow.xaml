@@ -2517,6 +2517,20 @@
                             <ColumnDefinition Width="60"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid>
+                            <Image
+                                Name="DesSortImage1"
+                                Source="../Resources/Images/DescendingSortArrow.png"
+                                Visibility="Hidden"
+                                Margin="75,20,10,15"
+                                Stretch="Fill">
+                            </Image>
+                            <Image
+                                Name="AscSortImage1"
+                                Source="../Resources/Images/AscendingSortArrow.png"
+                                Visibility="Hidden"
+                                Margin="75,20,10,15"
+                                Stretch="Fill">
+                            </Image>
                             <TextBlock
                             Text="ID"
                             VerticalAlignment="Center"
@@ -2560,6 +2574,20 @@
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </Button>
+                            <Image
+                                Name="AscSortImage2"
+                                Source="../Resources/Images/AscendingSortArrow.png"
+                                Visibility="Hidden"
+                                Margin="195,20,10,15"
+                                Stretch="Fill">
+                            </Image>
+                            <Image
+                                Name="DesSortImage2"
+                                Source="../Resources/Images/DescendingSortArrow.png"
+                                Visibility="Hidden"
+                                Margin="195,20,10,15"
+                                Stretch="Fill">
+                            </Image>
                         </Grid>
                         <Grid Grid.Column="1" Margin="218,0,0,0" Background="#504D85"/>
                         <Grid Grid.Column="1" Margin="563,0,0,0" Background="#504D85" Grid.ColumnSpan="2"/>
@@ -2585,6 +2613,20 @@
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </Button>
+                            <Image
+                                Name="DesSortImage3"
+                                Source="../Resources/Images/DescendingSortArrow.png"
+                                Visibility="Hidden"
+                                Margin="320,20,10,15"
+                                Stretch="Fill">
+                            </Image>
+                            <Image
+                                Name="AscSortImage3"
+                                Source="../Resources/Images/AscendingSortArrow.png"
+                                Visibility="Hidden"
+                                Margin="320,20,10,15"
+                                Stretch="Fill">
+                            </Image>
                         </Grid>
                         <Grid
                         Grid.Column="3">
@@ -2608,6 +2650,20 @@
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </Button>
+                            <Image
+                                Name="AscSortImage4"
+                                Source="../Resources/Images/AscendingSortArrow.png"
+                                Visibility="Hidden"
+                                Margin="320,20,10,15"
+                                Stretch="Fill">
+                            </Image>
+                            <Image
+                                Name="DesSortImage4"
+                                Source="../Resources/Images/DescendingSortArrow.png"
+                                Visibility="Hidden"
+                                Margin="320,20,10,15"
+                                Stretch="Fill">
+                            </Image>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="2"

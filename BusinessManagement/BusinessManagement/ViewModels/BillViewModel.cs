@@ -105,14 +105,24 @@ namespace BusinessManagement.ViewModels
             public StockContentHolder()
             { }
         }
-
+        private void SetSortImageToHidden(HomeWindow para)
+        {
+            para.DesSortImage1.Visibility = Visibility.Hidden;
+            para.DesSortImage2.Visibility = Visibility.Hidden;
+            para.DesSortImage3.Visibility = Visibility.Hidden;
+            para.DesSortImage4.Visibility = Visibility.Hidden;
+            para.AscSortImage1.Visibility = Visibility.Hidden;
+            para.AscSortImage2.Visibility = Visibility.Hidden;
+            para.AscSortImage3.Visibility = Visibility.Hidden;
+            para.AscSortImage4.Visibility = Visibility.Hidden;
+        }
         bool IsSort = false;
         public void Sort(HomeWindow para, int temp)
         {
-            this.HomeWindow = para;
-            if (tab == 1)
+            SetSortImageToHidden(para);
+            if (para.comboBoxBill.SelectedIndex == 1 || para.comboBoxBill.SelectedIndex == -1)
             {
-                this.HomeWindow.stkBill.Children.Clear();
+                para.stkBill.Children.Clear();
                 List<Invoice> invoices = new List<Invoice>();
                 invoices = DataProvider.Instance.DB.Invoices.ToList<Invoice>();
                 List<BillContentHolder> Holder = new List<BillContentHolder>();
@@ -126,15 +136,17 @@ namespace BusinessManagement.ViewModels
                     Holder.Add(holder);
                 }
                 List<BillContentHolder> SortHolder = new List<BillContentHolder>();
-                if (temp==1)
+                if (temp == 1)
                 {
                     if (IsSort)
                     {
                         SortHolder = Holder.OrderByDescending(p => p.ID).ToList();
+                        para.DesSortImage1.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         SortHolder = Holder.OrderBy(p => p.ID).ToList();
+                        para.AscSortImage1.Visibility = Visibility.Visible;
                     }
                     IsSort = !IsSort;
                 }
@@ -143,10 +155,12 @@ namespace BusinessManagement.ViewModels
                     if (IsSort)
                     {
                         SortHolder = Holder.OrderByDescending(p => p.AgencyName).ToList();
+                        para.DesSortImage2.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         SortHolder = Holder.OrderBy(p => p.AgencyName).ToList();
+                        para.AscSortImage2.Visibility = Visibility.Visible;
                     }
                     IsSort = !IsSort;
                 }
@@ -155,10 +169,12 @@ namespace BusinessManagement.ViewModels
                     if (IsSort)
                     {
                         SortHolder = Holder.OrderByDescending(p => p.CheckOut).ToList();
+                        para.DesSortImage3.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         SortHolder = Holder.OrderBy(p => p.CheckOut).ToList();
+                        para.AscSortImage3.Visibility = Visibility.Visible;
                     }
                     IsSort = !IsSort;
                 }
@@ -167,10 +183,12 @@ namespace BusinessManagement.ViewModels
                     if (IsSort)
                     {
                         SortHolder = Holder.OrderByDescending(p => p.Debt).ToList();
+                        para.DesSortImage4.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         SortHolder = Holder.OrderBy(p => p.Debt).ToList();
+                        para.AscSortImage4.Visibility = Visibility.Visible;
                     }
                     IsSort = !IsSort;
                 }
@@ -195,9 +213,9 @@ namespace BusinessManagement.ViewModels
                     }
                 }
             }
-            if (tab == 2)
+            if (para.comboBoxBill.SelectedIndex == 2)
             {
-                this.HomeWindow.stkReceiptBill.Children.Clear();
+                para.stkReceiptBill.Children.Clear();
                 List<Receipt> receipts = new List<Receipt>();
                 receipts = DataProvider.Instance.DB.Receipts.ToList<Receipt>();
                 List<ReceiptContentHolder> Holder = new List<ReceiptContentHolder>();
@@ -216,10 +234,12 @@ namespace BusinessManagement.ViewModels
                     if (IsSort)
                     {
                         SortHolder = Holder.OrderByDescending(p => p.ID).ToList();
+                        para.DesSortImage1.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         SortHolder = Holder.OrderBy(p => p.ID).ToList();
+                        para.AscSortImage1.Visibility = Visibility.Visible;
                     }
                     IsSort = !IsSort;
                 }
@@ -228,10 +248,12 @@ namespace BusinessManagement.ViewModels
                     if (IsSort)
                     {
                         SortHolder = Holder.OrderByDescending(p => p.AgencyName).ToList();
+                        para.DesSortImage2.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         SortHolder = Holder.OrderBy(p => p.AgencyName).ToList();
+                        para.AscSortImage2.Visibility = Visibility.Visible;
                     }
                     IsSort = !IsSort;
                 }
@@ -240,10 +262,12 @@ namespace BusinessManagement.ViewModels
                     if (IsSort)
                     {
                         SortHolder = Holder.OrderByDescending(p => p.CheckOut).ToList();
+                        para.DesSortImage3.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         SortHolder = Holder.OrderBy(p => p.CheckOut).ToList();
+                        para.AscSortImage3.Visibility = Visibility.Visible;
                     }
                     IsSort = !IsSort;
                 }
@@ -252,10 +276,12 @@ namespace BusinessManagement.ViewModels
                     if (IsSort)
                     {
                         SortHolder = Holder.OrderByDescending(p => p.Amount).ToList();
+                        para.DesSortImage4.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         SortHolder = Holder.OrderBy(p => p.Amount).ToList();
+                        para.AscSortImage4.Visibility = Visibility.Visible;
                     }
                     IsSort = !IsSort;
                 }
@@ -280,7 +306,7 @@ namespace BusinessManagement.ViewModels
                     }
                 }
             }
-            if (tab == 3)
+            if (para.comboBoxBill.SelectedIndex == 0)
             {
                 this.HomeWindow.stkStockReceipt.Children.Clear();
                 List<StockReceipt> stockReceipts = new List<StockReceipt>();
@@ -300,11 +326,13 @@ namespace BusinessManagement.ViewModels
                 {
                     if (IsSort)
                     {
-                        SortHolder = Holder.OrderByDescending(p => p.ID).ToList();
+                        SortHolder = Holder.OrderByDescending(p => p.ID).ToList(); 
+                        para.DesSortImage1.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         SortHolder = Holder.OrderBy(p => p.ID).ToList();
+                        para.AscSortImage1.Visibility = Visibility.Visible;
                     }
                     IsSort = !IsSort;
                 }
@@ -312,11 +340,13 @@ namespace BusinessManagement.ViewModels
                 {
                     if (IsSort)
                     {
-                        SortHolder = Holder.OrderByDescending(p => p.AgencyName).ToList();
+                        SortHolder = Holder.OrderByDescending(p => p.AgencyName).ToList(); 
+                        para.DesSortImage2.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         SortHolder = Holder.OrderBy(p => p.AgencyName).ToList();
+                        para.AscSortImage2.Visibility = Visibility.Visible;
                     }
                     IsSort = !IsSort;
                 }
@@ -325,10 +355,12 @@ namespace BusinessManagement.ViewModels
                     if (IsSort)
                     {
                         SortHolder = Holder.OrderByDescending(p => p.CheckIn).ToList();
+                        para.DesSortImage3.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         SortHolder = Holder.OrderBy(p => p.CheckIn).ToList();
+                        para.AscSortImage3.Visibility = Visibility.Visible;
                     }
                     IsSort = !IsSort;
                 }
@@ -337,10 +369,12 @@ namespace BusinessManagement.ViewModels
                     if (IsSort)
                     {
                         SortHolder = Holder.OrderByDescending(p => p.Total).ToList();
+                        para.DesSortImage4.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         SortHolder = Holder.OrderBy(p => p.Total).ToList();
+                        para.AscSortImage4.Visibility = Visibility.Visible;
                     }
                     IsSort = !IsSort;
                 }
@@ -752,7 +786,6 @@ namespace BusinessManagement.ViewModels
             }
             this.HomeWindow.textPay.Text = ConvertToString(pay);
         }
-        int tab = 1;
         private void Switch(HomeWindow para)
         {
             if (para.comboBoxBill.SelectedIndex == 1)
@@ -767,8 +800,8 @@ namespace BusinessManagement.ViewModels
                 para.ScrollReceipt.Visibility = System.Windows.Visibility.Hidden;
                 para.ScrollStockReceipt.Visibility = System.Windows.Visibility.Hidden;
                 para.LastBlock.Text = "Nợ";
-                tab = 1;
                 IsSort = false;
+                SetSortImageToHidden(para);
             }
             if (para.comboBoxBill.SelectedIndex == 2)
             {
@@ -782,8 +815,8 @@ namespace BusinessManagement.ViewModels
                 para.ScrollInvoice.Visibility = System.Windows.Visibility.Hidden;
                 para.ScrollStockReceipt.Visibility = System.Windows.Visibility.Hidden;
                 para.LastBlock.Text = "Số lượng";
-                tab = 2;
                 IsSort = false;
+                SetSortImageToHidden(para);
             }
             if (para.comboBoxBill.SelectedIndex == 0)
             {
@@ -797,8 +830,8 @@ namespace BusinessManagement.ViewModels
                 para.ScrollReceipt.Visibility = System.Windows.Visibility.Hidden;
                 para.ScrollStockReceipt.Visibility = System.Windows.Visibility.Visible;
                 para.LastBlock.Text = "Tổng";
-                tab = 3;
                 IsSort = false;
+                SetSortImageToHidden(para);
             }
 
         }
