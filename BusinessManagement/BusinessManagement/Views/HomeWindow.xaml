@@ -3309,7 +3309,7 @@
                 Grid.Row="1"
                 x:Name="grdBody_AccountSetting"
                 DataContext="{StaticResource SettingVM}"
-                Visibility="Hidden">
+                Visibility="Visible">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Loaded">
                         <i:InvokeCommandAction Command="{Binding LoadSettingWindowCommand}" 
@@ -3626,7 +3626,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Bottom"
                                         Margin="0,0,0,10"
-                                        Command="{Binding SaveRulesProduct_SettingCommand}"
+                                        Command="{Binding SaveRulesUnit_SettingCommand}"
                                         CommandParameter="{Binding ElementName=wdHome}"/>
                                     </Grid>
                                 </Grid>
