@@ -64,7 +64,7 @@
     <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="Role" Type="String" />
+    <Property Name="Role" Type="String" MaxLength="7" Unicode="true" FixedLength="false" />
   </EntityType>
   <EntityType Name="Agency">
     <Key>
@@ -296,6 +296,7 @@
     </Key>
     <Property Name="NumberStoreInDistrict" Type="Int32" />
     <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NumberProductType" Type="Int32" />
   </EntityType>
   <Association Name="FK_District1">
     <End Type="AgencyManagementModel.District" Role="District" Multiplicity="0..1" />

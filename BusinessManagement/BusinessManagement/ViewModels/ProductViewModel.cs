@@ -214,18 +214,6 @@ namespace BusinessManagement.ViewModels
                 para.txtPrice.Text = "";
                 return;
             }
-
-/*            StreamReader sr = new StreamReader("../../cache.txt");
-            string cache = sr.ReadToEnd();
-            sr.Close();
-            string[] rulesSetting = cache.Split(' ');
-
-            if (DataProvider.Instance.DB.Products.Where(x => x.IsDelete == false).Count() >= int.Parse(rulesSetting[2]))
-            {
-                CustomMessageBox.Show("Sản phẩm vượt mức!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }*/
-
             try
             {
                 int id = int.Parse(para.txtID.Text);
@@ -234,6 +222,8 @@ namespace BusinessManagement.ViewModels
                 long price = ConvertToNumber(para.txtPrice.Text);
                 byte[] imgByteArr;
 
+                int number = NumberOfProduct();
+                int? setting = DataProvider.Instance.DB.Settings.First().NumberProductType;
                 Product product;
                 //update product
                 if (para.Title == "CẬP NHẬT THÔNG TIN SẢN PHẨM")
@@ -258,6 +248,11 @@ namespace BusinessManagement.ViewModels
                 //add product                
                 else
                 {
+                    if (setting <= number)
+                    {
+                        CustomMessageBox.Show("Số lượng sản phẩm đã đạt giới hạn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
                     if (imageFileName == null)
                     {
                         imgByteArr = Converter.Instance.ConvertImageToBytes(@"..\..\Resources\Images\default.jpg");
@@ -435,6 +430,17 @@ namespace BusinessManagement.ViewModels
 
                 LoadListProduct(products);
             }
+        }
+        private int NumberOfProduct()
+        {
+            int max = 0;
+            List<Product> listProduct = DataProvider.Instance.DB.Products.Where(x => x.IsDelete == false).ToList();
+
+            foreach (Product item in listProduct)
+            {
+                max++;
+            }
+            return max;
         }
         #endregion
 

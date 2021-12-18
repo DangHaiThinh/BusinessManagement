@@ -16,5 +16,6 @@ namespace BusinessManagement.Models
     {
         public Nullable<int> NumberStoreInDistrict { get; set; }
         public int ID { get; set; }
+        public Nullable<int> NumberProductType { get; set; }
     }
 }

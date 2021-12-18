@@ -83,6 +83,7 @@
     </Key>
     <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="NumberStoreInDistrict" Type="int" />
+    <Property Name="NumberProductType" Type="int" />
   </EntityType>
   <EntityType Name="StockReceipt">
     <Key>

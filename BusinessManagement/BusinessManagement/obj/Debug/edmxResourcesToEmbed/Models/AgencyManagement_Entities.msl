@@ -123,6 +123,7 @@
     <EntitySetMapping Name="Settings">
       <EntityTypeMapping TypeName="AgencyManagementModel.Setting">
         <MappingFragment StoreEntitySet="Setting">
+          <ScalarProperty Name="NumberProductType" ColumnName="NumberProductType" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NumberStoreInDistrict" ColumnName="NumberStoreInDistrict" />
         </MappingFragment>

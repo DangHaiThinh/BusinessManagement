@@ -136,7 +136,7 @@ create table Setting
 (
 	ID int,
 	NumberStoreInDistrict int default 0,
-
+	NumberProductType int default 0,
 	constraint PK_Setting primary key(ID)
 )
 go
