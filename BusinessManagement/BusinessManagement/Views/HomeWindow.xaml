@@ -3309,7 +3309,7 @@
                 Grid.Row="1"
                 x:Name="grdBody_AccountSetting"
                 DataContext="{StaticResource SettingVM}"
-                Visibility="Visible">
+                Visibility="Hidden">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Loaded">
                         <i:InvokeCommandAction Command="{Binding LoadSettingWindowCommand}" 

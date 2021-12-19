@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Accounts">
       <EntityTypeMapping TypeName="AgencyManagementModel.Account">
         <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="Ban" ColumnName="Ban" />
           <ScalarProperty Name="Role" ColumnName="Role" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="Location" ColumnName="Location" />
@@ -126,6 +127,15 @@
           <ScalarProperty Name="NumberProductType" ColumnName="NumberProductType" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NumberStoreInDistrict" ColumnName="NumberStoreInDistrict" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AutoLogins">
+      <EntityTypeMapping TypeName="AgencyManagementModel.AutoLogin">
+        <MappingFragment StoreEntitySet="AutoLogin">
+          <ScalarProperty Name="AutoLogin1" ColumnName="AutoLogin" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

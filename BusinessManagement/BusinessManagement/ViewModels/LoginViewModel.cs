@@ -50,14 +50,21 @@ namespace BusinessManagement.ViewModels
             var checkACC = DataProvider.Instance.DB.Accounts.Where(x => x.Username == parameter.txtUser.Text && x.Password == codedPassword).Count();
             if (checkACC > 0)
             {
-                HomeWindow homeWindow = new HomeWindow();
                 CurrentAccount.Instance.ConvertAccToCurrentAcc(parameter.txtUser.Text);
+                if (CurrentAccount.Ban == true)
+                {
+                    CustomMessageBox.Show("Tài khoản đã bị khóa!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                HomeWindow homeWindow = new HomeWindow();
                 parameter.Hide();
 
                 ImageBrush imageBrush = new ImageBrush();
                 imageBrush.ImageSource = Converter.Instance.ConvertByteToBitmapImage(CurrentAccount.Image);
                 homeWindow.grdAcc_Image.Background = imageBrush;
                 homeWindow.menu_Acc_DisplayName.Header = CurrentAccount.DisplayName;
+
 
                 if (homeWindow.grdAcc_Image.Children.Count != 0)
                 {

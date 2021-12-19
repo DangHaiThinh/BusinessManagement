@@ -61,7 +61,7 @@
                         VerticalAlignment="Center"
                         Width="110"
                         Height="35"
-                        Margin="200,-70,0,69"
+                        Margin="200,-45,0,50"
                         Content="Lưu"
                         BorderThickness="0"
                         Foreground="#57548B"
@@ -91,10 +91,21 @@
                         FontWeight="SemiBold"
                         Command="{Binding AccountManagement_CloseCommand}"
                         CommandParameter="{Binding ElementName=wdAccount}" 
-                        Margin="200,12,221,-7" 
+                        Margin="200,41,221,-36" 
                         RenderTransformOrigin="0.545,-0.56">
                     </Button>
                 </Grid>
+                <CheckBox x:Name="chk_ban" 
+                    Content="Khóa tài khoản"
+                    HorizontalAlignment="Left" 
+                    Margin="43,-21,0,0" 
+                    VerticalAlignment="Top"
+                    Foreground="#FFC21616"
+                    FontWeight="SemiBold" RenderTransformOrigin="0.567,-0.417">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="1.8" ScaleY="1.8" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
             </Grid>
         </Grid>
         <Grid Grid.Column="0"

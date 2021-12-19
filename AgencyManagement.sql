@@ -11,8 +11,20 @@ create table Account
 	Image image,
 	Location nvarchar(100),
 	PhoneNumber nvarchar(10),
-	Role nvarchar(7),
+	Role nvarchar(10),
+	Ban bit,
+
 	constraint PK_Account primary key(Username)
+)
+go
+
+create table AutoLogin
+(
+	Username varchar(100),
+    Password varchar(1000), 
+    AutoLogin bit,
+
+	constraint PK_AutoLogin primary key(Username)
 )
 go
 

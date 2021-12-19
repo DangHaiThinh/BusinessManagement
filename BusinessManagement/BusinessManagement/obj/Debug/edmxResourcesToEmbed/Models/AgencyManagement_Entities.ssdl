@@ -10,7 +10,8 @@
     <Property Name="Image" Type="image" />
     <Property Name="Location" Type="nvarchar" MaxLength="100" />
     <Property Name="PhoneNumber" Type="nvarchar" MaxLength="10" />
-    <Property Name="Role" Type="nvarchar" MaxLength="7" />
+    <Property Name="Role" Type="nvarchar" MaxLength="10" />
+    <Property Name="Ban" Type="bit" />
   </EntityType>
   <EntityType Name="Agency">
     <Key>
@@ -26,6 +27,14 @@
     <Property Name="Email" Type="varchar" MaxLength="100" />
     <Property Name="Debt" Type="bigint" />
     <Property Name="IsDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="AutoLogin">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="1000" />
+    <Property Name="AutoLogin" Type="bit" />
   </EntityType>
   <EntityType Name="District">
     <Key>
@@ -229,6 +238,7 @@
   <EntityContainer Name="AgencyManagementModelStoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Agency" EntityType="Self.Agency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AutoLogin" EntityType="Self.AutoLogin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="InvoiceInfo" EntityType="Self.InvoiceInfo" Schema="dbo" store:Type="Tables" />
