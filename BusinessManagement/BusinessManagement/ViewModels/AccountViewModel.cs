@@ -438,7 +438,7 @@ namespace BusinessManagement.ViewModels
             }
 
             string username = para.txtUsername.Text;
-            string password = MD5Hash(para.pwbPassword.Password);
+            string password = SHA512Hash(para.pwbPassword.Password);
 
             var checkAcc = DataProvider.Instance.DB.Accounts.Where(p => p.Username == username && p.Password == password).Count();
             if(checkAcc <= 0)
@@ -450,7 +450,7 @@ namespace BusinessManagement.ViewModels
             else
             {
                 Account account = DataProvider.Instance.DB.Accounts.SingleOrDefault(p => p.Username == username);
-                string newPassword = MD5Hash(para.pwbNewPassword.Password);
+                string newPassword = SHA512Hash(para.pwbNewPassword.Password);
                 if (account != null)
                 {
                     account.Password = newPassword;

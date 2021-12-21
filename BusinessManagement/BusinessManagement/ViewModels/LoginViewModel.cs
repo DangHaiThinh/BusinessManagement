@@ -46,7 +46,7 @@ namespace BusinessManagement.ViewModels
                 return;
             }
 
-            string codedPassword = MD5Hash(parameter.txtPassword.Password);
+            string codedPassword = SHA512Hash(parameter.txtPassword.Password);
             var checkACC = DataProvider.Instance.DB.Accounts.Where(x => x.Username == parameter.txtUser.Text && x.Password == codedPassword).Count();
             if (checkACC > 0)
             {

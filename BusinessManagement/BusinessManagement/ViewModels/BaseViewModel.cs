@@ -20,11 +20,11 @@ namespace BusinessManagement.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public string MD5Hash(string str)
+        public string SHA512Hash(string str)
         {
             StringBuilder hash = new StringBuilder();
-            MD5 md5 = MD5.Create();
-            byte[] bytes = md5.ComputeHash(new UTF8Encoding().GetBytes(str));
+            SHA512 sha512 = SHA512.Create();
+            byte[] bytes = sha512.ComputeHash(new UTF8Encoding().GetBytes(str));
 
             for (int i = 0; i < bytes.Length; i++)
             {
