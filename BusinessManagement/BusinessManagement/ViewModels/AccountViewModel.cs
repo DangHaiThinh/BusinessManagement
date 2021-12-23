@@ -141,7 +141,12 @@ namespace BusinessManagement.ViewModels
                 AccountControlUC accountUC = new AccountControlUC();
                 accountUC.txtAccount.Text = account.Username.ToString();
                 accountUC.textName.Text = account.DisplayName.ToString();
-                if(account.Location != null)
+                if (accountUC.txtAccount.Text == "admin")
+                {
+                    accountUC.btnDeleteAccount.IsEnabled = false;
+                    accountUC.btnEditAccount.IsEnabled = false;
+                }
+                if (account.Location != null)
                 {
                     accountUC.txtAddress.Text = account.Location.ToString();
                 }
