@@ -25,6 +25,10 @@ namespace BusinessManagement.Views
         {
             InitializeComponent();
             var login = DataProvider.Instance.DB.AutoLogins.First();
+            if(login.Username != null)
+            {
+                txtUser.Text = login.Username;
+            }
             if (login.Checked == true)
             {
                 autoLogin.IsChecked = true;
@@ -65,7 +69,6 @@ namespace BusinessManagement.Views
             var login = DataProvider.Instance.DB.AutoLogins.First();
 
             login.Checked = false;
-            login.Username = "";
             login.Password = "";
 
             DataProvider.Instance.DB.SaveChanges();

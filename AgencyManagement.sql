@@ -20,11 +20,12 @@ go
 
 create table AutoLogin
 (
+	ID int not null,
 	Username varchar(100),
     Password varchar(1000), 
     AutoLogin bit,
 
-	constraint PK_AutoLogin primary key(Username)
+	constraint PK_AutoLogin primary key(ID)
 )
 go
 
@@ -492,4 +493,6 @@ VALUES (N'admin', N'4DFF4EA340F0A823F15D3F4F01AB62EAE0E5DA579CCB851F8DB9DFE84C58
 NULL, NULL, N'1234567')
 GO
 INSERT [dbo].[Setting] ([ID], [NumberStoreInDistrict]) VALUES (1, 4)
+GO
+INSERT [dbo].[AutoLogin] ([ID], [Checked]) VALUES (1, False)
 GO
