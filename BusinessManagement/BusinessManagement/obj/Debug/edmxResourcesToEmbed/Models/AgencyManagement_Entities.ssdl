@@ -30,11 +30,12 @@
   </EntityType>
   <EntityType Name="AutoLogin">
     <Key>
-      <PropertyRef Name="Username" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="100" />
     <Property Name="Password" Type="varchar" MaxLength="1000" />
-    <Property Name="AutoLogin" Type="bit" />
+    <Property Name="Checked" Type="bit" />
   </EntityType>
   <EntityType Name="District">
     <Key>

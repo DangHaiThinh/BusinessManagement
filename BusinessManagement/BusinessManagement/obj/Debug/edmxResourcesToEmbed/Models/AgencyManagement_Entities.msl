@@ -133,9 +133,10 @@
     <EntitySetMapping Name="AutoLogins">
       <EntityTypeMapping TypeName="AgencyManagementModel.AutoLogin">
         <MappingFragment StoreEntitySet="AutoLogin">
-          <ScalarProperty Name="AutoLogin1" ColumnName="AutoLogin" />
+          <ScalarProperty Name="Checked" ColumnName="Checked" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

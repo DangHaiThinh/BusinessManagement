@@ -14,8 +14,9 @@ namespace BusinessManagement.Models
     
     public partial class AutoLogin
     {
+        public int ID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public Nullable<bool> AutoLogin1 { get; set; }
+        public Nullable<bool> Checked { get; set; }
     }
 }

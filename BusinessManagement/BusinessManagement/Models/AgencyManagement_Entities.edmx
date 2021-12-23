@@ -35,11 +35,12 @@
         </EntityType>
         <EntityType Name="AutoLogin">
           <Key>
-            <PropertyRef Name="Username" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="100" />
           <Property Name="Password" Type="varchar" MaxLength="1000" />
-          <Property Name="AutoLogin" Type="bit" />
+          <Property Name="Checked" Type="bit" />
         </EntityType>
         <EntityType Name="District">
           <Key>
@@ -609,11 +610,12 @@
         </Association>
         <EntityType Name="AutoLogin">
           <Key>
-            <PropertyRef Name="Username" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="AutoLogin1" Type="Boolean" />
+          <Property Name="Checked" Type="Boolean" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -753,9 +755,10 @@
           <EntitySetMapping Name="AutoLogins">
             <EntityTypeMapping TypeName="AgencyManagementModel.AutoLogin">
               <MappingFragment StoreEntitySet="AutoLogin">
-                <ScalarProperty Name="AutoLogin1" ColumnName="AutoLogin" />
+                <ScalarProperty Name="Checked" ColumnName="Checked" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

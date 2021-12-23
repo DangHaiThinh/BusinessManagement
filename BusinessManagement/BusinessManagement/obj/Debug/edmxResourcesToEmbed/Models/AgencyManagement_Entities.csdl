@@ -314,10 +314,11 @@
   </Association>
   <EntityType Name="AutoLogin">
     <Key>
-      <PropertyRef Name="Username" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-    <Property Name="AutoLogin1" Type="Boolean" />
+    <Property Name="Checked" Type="Boolean" />
   </EntityType>
 </Schema>

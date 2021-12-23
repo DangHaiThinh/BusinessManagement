@@ -27,7 +27,7 @@
         <AssociationConnector Association="AgencyManagementModel.FK_District" />
         <EntityTypeShape EntityType="AgencyManagementModel.Setting" Width="1.5" PointX="0.75" PointY="0.75" />
         <AssociationConnector Association="AgencyManagementModel.FK_District1" />
-        <EntityTypeShape EntityType="AgencyManagementModel.AutoLogin" Width="1.5" PointX="18.375" PointY="6.875" />
+        <EntityTypeShape EntityType="AgencyManagementModel.AutoLogin" Width="1.5" PointX="18.125" PointY="6.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -72,14 +72,13 @@ namespace BusinessManagement.ViewModels
                 }
 
                 //add auto login
-                string[] autoLogin = new string[3];
+                var login = DataProvider.Instance.DB.AutoLogins.First();
                 if (parameter.autoLogin.IsChecked == true)
                 {
-                    autoLogin[0] = "True";
-                    autoLogin[1] = parameter.txtUser.Text;
-                    autoLogin[2] = codedPassword;
-
-                    File.WriteAllLines("cache.alg", autoLogin);
+                    login.Checked = true;
+                    login.Username = parameter.txtUser.Text;
+                    login.Password = codedPassword;
+                    DataProvider.Instance.DB.SaveChanges();
                 }
                 
                 homeWindow.ShowDialog();
