@@ -15,7 +15,8 @@
           <Property Name="Image" Type="image" />
           <Property Name="Location" Type="nvarchar" MaxLength="100" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="10" />
-          <Property Name="Role" Type="nvarchar" MaxLength="7" />
+          <Property Name="Role" Type="nvarchar" MaxLength="10" />
+          <Property Name="Ban" Type="bit" />
         </EntityType>
         <EntityType Name="Agency">
           <Key>
@@ -31,6 +32,15 @@
           <Property Name="Email" Type="varchar" MaxLength="100" />
           <Property Name="Debt" Type="bigint" />
           <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="AutoLogin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="1000" />
+          <Property Name="Checked" Type="bit" />
         </EntityType>
         <EntityType Name="District">
           <Key>
@@ -88,6 +98,7 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="NumberStoreInDistrict" Type="int" />
+          <Property Name="NumberProductType" Type="int" />
         </EntityType>
         <EntityType Name="StockReceipt">
           <Key>
@@ -233,6 +244,7 @@
         <EntityContainer Name="AgencyManagementModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Agency" EntityType="Self.Agency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AutoLogin" EntityType="Self.AutoLogin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvoiceInfo" EntityType="Self.InvoiceInfo" Schema="dbo" store:Type="Tables" />
@@ -337,6 +349,7 @@
             <End Role="District" EntitySet="Districts" />
             <End Role="Agency" EntitySet="Agencies" />
           </AssociationSet>
+          <EntitySet Name="AutoLogins" EntityType="AgencyManagementModel.AutoLogin" />
           </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -348,7 +361,8 @@
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Role" Type="String" />
+          <Property Name="Role" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Ban" Type="Boolean" />
         </EntityType>
         <EntityType Name="Agency">
           <Key>
@@ -580,6 +594,7 @@
           </Key>
           <Property Name="NumberStoreInDistrict" Type="Int32" />
           <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NumberProductType" Type="Int32" />
         </EntityType>
         <Association Name="FK_District1">
           <End Type="AgencyManagementModel.District" Role="District" Multiplicity="0..1" />
@@ -593,6 +608,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AutoLogin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Checked" Type="Boolean" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -602,7 +626,8 @@
 			<EntitySetMapping Name="Accounts">
 				<EntityTypeMapping TypeName="AgencyManagementModel.Account">
 					<MappingFragment StoreEntitySet="Account">
-						<ScalarProperty Name="Role" ColumnName="Role" />
+						<ScalarProperty Name="Ban" ColumnName="Ban" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
 						<ScalarProperty Name="Location" ColumnName="Location" />
 						<ScalarProperty Name="Image" ColumnName="Image" />
@@ -721,8 +746,19 @@
           <EntitySetMapping Name="Settings">
             <EntityTypeMapping TypeName="AgencyManagementModel.Setting">
               <MappingFragment StoreEntitySet="Setting">
-				  <ScalarProperty Name="ID" ColumnName="ID"/>
+				  <ScalarProperty Name="NumberProductType" ColumnName="NumberProductType" />
+                <ScalarProperty Name="ID" ColumnName="ID"/>
                 <ScalarProperty Name="NumberStoreInDistrict" ColumnName="NumberStoreInDistrict" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AutoLogins">
+            <EntityTypeMapping TypeName="AgencyManagementModel.AutoLogin">
+              <MappingFragment StoreEntitySet="AutoLogin">
+                <ScalarProperty Name="Checked" ColumnName="Checked" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

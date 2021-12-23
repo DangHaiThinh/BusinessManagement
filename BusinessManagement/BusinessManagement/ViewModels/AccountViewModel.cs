@@ -141,7 +141,12 @@ namespace BusinessManagement.ViewModels
                 AccountControlUC accountUC = new AccountControlUC();
                 accountUC.txtAccount.Text = account.Username.ToString();
                 accountUC.textName.Text = account.DisplayName.ToString();
-                if(account.Location != null)
+                if (accountUC.txtAccount.Text == "admin")
+                {
+                    accountUC.btnDeleteAccount.IsEnabled = false;
+                    accountUC.btnEditAccount.IsEnabled = false;
+                }
+                if (account.Location != null)
                 {
                     accountUC.txtAddress.Text = account.Location.ToString();
                 }
@@ -207,6 +212,18 @@ namespace BusinessManagement.ViewModels
             {
                 window.txtPhoneNumber.Text = account.PhoneNumber;
             }
+            if(window.txtUsername.Text == "admin")
+            {
+                window.chk_agency.IsEnabled = false;
+                window.chk_product.IsEnabled = false;
+                window.chk_business.IsEnabled = false;
+                window.chk_receipt.IsEnabled = false;
+                window.chk_report.IsEnabled = false;
+                window.chk_account_management.IsEnabled = false;
+                window.chk_setting.IsEnabled = false;
+                window.chk_ban.IsEnabled = false;
+            }
+
             //Role checkboxes
             if (account.Role.Contains("1"))
             {
@@ -236,14 +253,20 @@ namespace BusinessManagement.ViewModels
             {
                 window.chk_setting.IsChecked = true;
             }
+            if (account.Ban == true)
+            {
+                window.chk_ban.IsChecked = true;
+            }
 
             window.ShowDialog();
         }
         private void AccountMan_Save(AccountManagementWindow para)
         {
-            if(para.txtUsername.Text == "admin" && para.chk_account_management.IsChecked == false)
+            string username = CurrentAccount.Username;
+            if (para.txtUsername.Text == username && para.chk_ban.IsChecked == true)
             {
-                CustomMessageBox.Show("Phải có ít nhất 1 tài khoản quản lý các tài khoản khác!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Không thể tự khóa tài khoản của bản thân!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                para.chk_ban.IsChecked = false;
                 return;
             }
             if (para.chk_agency.IsChecked != true && para.chk_product.IsChecked != true && para.chk_business.IsChecked != true && para.chk_receipt.IsChecked != true && para.chk_report.IsChecked != true && para.chk_account_management.IsChecked != true && para.chk_setting.IsChecked != true)
@@ -253,10 +276,10 @@ namespace BusinessManagement.ViewModels
             }
 
             Account account = new Account();
-            string username = para.txtUsername.Text;
             account = (Account)DataProvider.Instance.DB.Accounts.Where(x => x.Username == username).First();
 
             string role = "";
+            bool ban = false;
             if(para.chk_agency.IsChecked == true)
             {
                 role += "1";
@@ -277,15 +300,21 @@ namespace BusinessManagement.ViewModels
             {
                 role += "5";
             }
-            if (para.chk_setting.IsChecked == true)
-            {
-                role += "7";
-            }
             if (para.chk_account_management.IsChecked == true)
             {
                 role += "6";
             }
+            if (para.chk_setting.IsChecked == true)
+            {
+                role += "7";
+            }
+            if (para.chk_ban.IsChecked == true)
+            {
+                ban = true;
+            }
+
             account.Role = role;
+            account.Ban = ban;
             DataProvider.Instance.DB.SaveChanges();
 
             para.Close();
@@ -414,7 +443,7 @@ namespace BusinessManagement.ViewModels
             }
 
             string username = para.txtUsername.Text;
-            string password = MD5Hash(para.pwbPassword.Password);
+            string password = SHA512Hash(para.pwbPassword.Password);
 
             var checkAcc = DataProvider.Instance.DB.Accounts.Where(p => p.Username == username && p.Password == password).Count();
             if(checkAcc <= 0)
@@ -426,7 +455,7 @@ namespace BusinessManagement.ViewModels
             else
             {
                 Account account = DataProvider.Instance.DB.Accounts.SingleOrDefault(p => p.Username == username);
-                string newPassword = MD5Hash(para.pwbNewPassword.Password);
+                string newPassword = SHA512Hash(para.pwbNewPassword.Password);
                 if (account != null)
                 {
                     account.Password = newPassword;

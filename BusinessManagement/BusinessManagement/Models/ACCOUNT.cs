@@ -21,5 +21,6 @@ namespace BusinessManagement.Models
         public string Location { get; set; }
         public string PhoneNumber { get; set; }
         public string Role { get; set; }
+        public Nullable<bool> Ban { get; set; }
     }
 }

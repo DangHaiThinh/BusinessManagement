@@ -46,12 +46,18 @@ namespace BusinessManagement.ViewModels
                 return;
             }
 
-            string codedPassword = MD5Hash(parameter.txtPassword.Password);
+            string codedPassword = SHA512Hash(parameter.txtPassword.Password);
             var checkACC = DataProvider.Instance.DB.Accounts.Where(x => x.Username == parameter.txtUser.Text && x.Password == codedPassword).Count();
             if (checkACC > 0)
             {
-                HomeWindow homeWindow = new HomeWindow();
                 CurrentAccount.Instance.ConvertAccToCurrentAcc(parameter.txtUser.Text);
+                if (CurrentAccount.Ban == true)
+                {
+                    CustomMessageBox.Show("Tài khoản đã bị khóa!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                HomeWindow homeWindow = new HomeWindow();
                 parameter.Hide();
 
                 ImageBrush imageBrush = new ImageBrush();
@@ -59,20 +65,20 @@ namespace BusinessManagement.ViewModels
                 homeWindow.grdAcc_Image.Background = imageBrush;
                 homeWindow.menu_Acc_DisplayName.Header = CurrentAccount.DisplayName;
 
+
                 if (homeWindow.grdAcc_Image.Children.Count != 0)
                 {
                     homeWindow.grdAcc_Image.Children.Remove(homeWindow.grdAcc_Image.Children[0]);
                 }
 
                 //add auto login
-                string[] autoLogin = new string[3];
+                var login = DataProvider.Instance.DB.AutoLogins.First();
                 if (parameter.autoLogin.IsChecked == true)
                 {
-                    autoLogin[0] = "True";
-                    autoLogin[1] = parameter.txtUser.Text;
-                    autoLogin[2] = codedPassword;
-
-                    File.WriteAllLines("cache.alg", autoLogin);
+                    login.Checked = true;
+                    login.Username = parameter.txtUser.Text;
+                    login.Password = codedPassword;
+                    DataProvider.Instance.DB.SaveChanges();
                 }
                 
                 homeWindow.ShowDialog();

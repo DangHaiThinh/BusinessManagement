@@ -21,33 +21,25 @@ namespace BusinessManagement.Views
     /// </summary>
     public partial class LoginWindow : Window
     {
-        string workingDirectory = Environment.CurrentDirectory;
-        string codedPassword;
         public LoginWindow()
         {
             InitializeComponent();
-            string cache = workingDirectory + "/cache.alg";
-            if (File.Exists(cache))
+            var login = DataProvider.Instance.DB.AutoLogins.First();
+            if (login.Checked == true)
             {
-                string[] autoL = File.ReadAllLines(workingDirectory + "/cache.alg");
-                txtUser.Text = autoL[1];
-                if (autoL[0] == "True")
-                {
-                    autoLogin.IsChecked = true;
-                    codedPassword = autoL[2];
-                    AutoLogin();
-                }
+                autoLogin.IsChecked = true;
+                AutoLogin(login.Username,login.Password);
             }
             
         }
 
-        private void AutoLogin()
+        private void AutoLogin(string username, string codedPassword)
         {
-            var checkACC = DataProvider.Instance.DB.Accounts.Where(x => x.Username == txtUser.Text && x.Password == codedPassword).Count();
+            var checkACC = DataProvider.Instance.DB.Accounts.Where(x => x.Username == username && x.Password == codedPassword).Count();
             if (checkACC > 0)
             {
                 HomeWindow homeWindow = new HomeWindow();
-                CurrentAccount.Instance.ConvertAccToCurrentAcc(txtUser.Text);
+                CurrentAccount.Instance.ConvertAccToCurrentAcc(username);
                 this.Hide();
 
                 ImageBrush imageBrush = new ImageBrush();
@@ -70,12 +62,13 @@ namespace BusinessManagement.Views
 
         private void autoLogin_Unchecked(object sender, RoutedEventArgs e)
         {
-            string[] autoL = new string[3];
-            autoL[0] = "False";
-            autoL[1] = txtUser.Text;
-            autoL[2] = "";
+            var login = DataProvider.Instance.DB.AutoLogins.First();
 
-            File.WriteAllLines("cache.alg", autoL);
+            login.Checked = false;
+            login.Username = "";
+            login.Password = "";
+
+            DataProvider.Instance.DB.SaveChanges();
         }
     }
 }

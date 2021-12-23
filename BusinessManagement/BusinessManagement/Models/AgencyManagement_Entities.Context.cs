@@ -37,5 +37,6 @@ namespace BusinessManagement.Models
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<District> Districts { get; set; }
         public virtual DbSet<Setting> Settings { get; set; }
+        public virtual DbSet<AutoLogin> AutoLogins { get; set; }
     }
 }

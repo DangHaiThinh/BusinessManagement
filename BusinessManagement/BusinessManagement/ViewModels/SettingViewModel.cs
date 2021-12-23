@@ -42,6 +42,7 @@ namespace BusinessManagement.ViewModels
 
             LoadSettingWindowCommand = new RelayCommand<HomeWindow>((para) => true, (para) => LoadSettingWindow(para));
             SaveRulesType_SettingCommand = new RelayCommand<HomeWindow>((para) => true, (para) => SaveRulesType_Setting(para));
+            SaveRulesProduct_SettingCommand = new RelayCommand<HomeWindow>((para) => true, (para) => SaveRulesProduct_Setting(para));
             EditTypeCommand = new RelayCommand<TypeOfAgencyUC>((para) => true, (para) => EditType(para));
             DeleteTypeCommand = new RelayCommand<TypeOfAgencyUC>((para) => true, (para) => DeleteType(para));
             SaveStoreCommand = new RelayCommand<AddTypeOfAgencyWindow>((para) => true, (para) => SaveStore(para));
@@ -178,7 +179,7 @@ namespace BusinessManagement.ViewModels
 
             if (limit > ConvertToNumber(para.txtNumberAgencyinDistrict_Setting.Text))
             {
-                string show = string.Format("Số đại lý trong quận phải lớn hơn số đại lý hiện hữu!", limit);
+                string show = string.Format("Số đại lý trong quận phải lớn hơn số đại lý hiện tại!", limit);
                 CustomMessageBox.Show(show, "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
@@ -188,7 +189,36 @@ namespace BusinessManagement.ViewModels
             DataProvider.Instance.DB.SaveChanges();
             CustomMessageBox.Show("Thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+        public void SaveRulesProduct_Setting(HomeWindow para)
+        {
+            int limit = LimitOfProduct();
+            int? count = DataProvider.Instance.DB.Settings.First().NumberProductType;
 
+            if (string.IsNullOrEmpty(para.txtNumberProduct_Setting.Text))
+            {
+                para.txtNumberProduct_Setting.Text = "";
+                para.txtNumberProduct_Setting.Focus();
+                return;
+            }
+
+            if (ConvertToNumber(para.txtNumberProduct_Setting.Text) == count)
+            {
+                CustomMessageBox.Show("Cài đặt chưa thay đổi...!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (limit > ConvertToNumber(para.txtNumberProduct_Setting.Text))
+            {
+                string show = string.Format("Số loại sản phẩm phải lớn hơn số loại sản phẩm hiện tại!", limit);
+                CustomMessageBox.Show(show, "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            Setting setting = DataProvider.Instance.DB.Settings.Where(x => x.ID == 1).First();
+            setting.NumberProductType = (int)ConvertToNumber(para.txtNumberProduct_Setting.Text);
+            DataProvider.Instance.DB.Settings.AddOrUpdate(setting);
+            DataProvider.Instance.DB.SaveChanges();
+            CustomMessageBox.Show("Thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
         public void LoadSettingWindow(HomeWindow para)
         {
             this.HomeWindow = para;
@@ -206,9 +236,13 @@ namespace BusinessManagement.ViewModels
             }
 
 
-            int? count = DataProvider.Instance.DB.Settings.First().NumberStoreInDistrict;
-            para.txtNumberAgencyinDistrict_Setting.Text = ConvertToString(count);
+            int? countStore = DataProvider.Instance.DB.Settings.First().NumberStoreInDistrict;
+            para.txtNumberAgencyinDistrict_Setting.Text = ConvertToString(countStore);
             para.txtNumberAgencyinDistrict_Setting.SelectionStart = para.txtNumberAgencyinDistrict_Setting.Text.Length;
+
+            int? countProduct = DataProvider.Instance.DB.Settings.First().NumberProductType;
+            para.txtNumberProduct_Setting.Text = ConvertToString(countProduct);
+            para.txtNumberProduct_Setting.SelectionStart = para.txtNumberProduct_Setting.Text.Length;
 
             Button bt = new Button();
             bt = (Button)para.stkListType_Setting.Children[0];
@@ -220,9 +254,13 @@ namespace BusinessManagement.ViewModels
         {
             this.HomeWindow = para;
 
-            int? count = DataProvider.Instance.DB.Settings.First().NumberStoreInDistrict;
-            para.txtNumberAgencyinDistrict_Setting.Text = ConvertToString(count);
+            int? countStore = DataProvider.Instance.DB.Settings.First().NumberStoreInDistrict;
+            para.txtNumberAgencyinDistrict_Setting.Text = ConvertToString(countStore);
             para.txtNumberAgencyinDistrict_Setting.SelectionStart = para.txtNumberAgencyinDistrict_Setting.Text.Length;
+
+            int? countProduct = DataProvider.Instance.DB.Settings.First().NumberProductType;
+            para.txtNumberProduct_Setting.Text = ConvertToString(countProduct);
+            para.txtNumberProduct_Setting.SelectionStart = para.txtNumberProduct_Setting.Text.Length;
         }
 
         private int LimitOfAgencyinDistrict()
@@ -244,7 +282,17 @@ namespace BusinessManagement.ViewModels
                 if (count > max)
                     max = count;
             }
+            return max;
+        }
+        private int LimitOfProduct()
+        {
+            int max = 0;
+            List<Product> listProduct = DataProvider.Instance.DB.Products.Where(x => x.IsDelete == false).ToList();
 
+            foreach (Product item in listProduct)
+            {
+                max++;
+            }
             return max;
         }
     }
