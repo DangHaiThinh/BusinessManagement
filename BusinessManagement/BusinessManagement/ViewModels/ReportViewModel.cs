@@ -382,7 +382,7 @@ namespace BusinessManagement.ViewModels
 
             para.cboSelectTypeOfChart.Text = "Doanh thu và nợ";
 
-            para.cboSelectPeriod.Text = "Hàng tháng";
+            para.cboSelectPeriod.Text = "Tháng";
 
             para.cboSelectTime.Text = month;
 
