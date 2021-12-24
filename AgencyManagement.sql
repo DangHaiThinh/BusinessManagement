@@ -23,12 +23,11 @@ create table AutoLogin
 	ID int not null,
 	Username varchar(100),
     Password varchar(1000), 
-    AutoLogin bit,
+    Checked bit,
 
 	constraint PK_AutoLogin primary key(ID)
 )
 go
-
 create table Agency
 (
 	ID int,
@@ -494,5 +493,5 @@ NULL, NULL, N'1234567')
 GO
 INSERT [dbo].[Setting] ([ID], [NumberStoreInDistrict]) VALUES (1, 4)
 GO
-INSERT [dbo].[AutoLogin] ([ID], [Checked]) VALUES (1, False)
+INSERT [dbo].[AutoLogin] ([ID], [Checked]) VALUES (1, 'false')
 GO
