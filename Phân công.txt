@@ -1,4 +1,0 @@
-Minh Anh - Kiểm tra email
-Trung - Bộ lọc cho phần hóa đơn
-Khoa - Thêm cài đặt sản phẩm
-Thịnh - Quản lý tài khoản nhân viên
